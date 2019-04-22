@@ -47,7 +47,7 @@ p {
   font-family: 'overpass'; }
 
 textarea {
-  min-height: 5rem; }
+  min-height: 2rem; }
 
 select,
 input,
@@ -187,6 +187,14 @@ textarea {
     height: 100%; }
     .forum-bar > ul > li > a {
       color: #d8d8db; }
+
+.form-container {
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  .form-container > .btn {
+    font-size: 1.6rem; }
 
 .signup-page {
   margin: 1rem 10vw;
