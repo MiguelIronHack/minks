@@ -5,6 +5,7 @@ const audioCtx = new AudioContext();
 const synthNode = document.getElementById("synth-parent");
 const midiController = new MIDIController(audioCtx);
 const keyBoard = new KeyBoard(audioCtx);
+const url = "http://localhost:3434";
 
 keyBoard.setKeyListeners(window);
 keyBoard.setMouseListener(synthNode.children);
@@ -15,6 +16,15 @@ midiController
     midiController.onMIDISuccess.bind(midiController),
     midiController.onMIDIFailure.bind(midiController)
   );
+function getDrumSound() {
+  axios
+    .get(url + "/sounds")
+    .then(servRes => {
+      console.log(servRes.data);
+    })
+    .catch(err => console.log("fuck me "));
+}
+getDrumSound();
 // console.log(440 * Math.pow(2, (27 - 33) / 12));
 
 // const oscArr = [];
