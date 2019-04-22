@@ -1,24 +1,25 @@
-{{> nav}}
 <section class="signup-page">
   <h2 class="title">Login</h2>
   <i class="fab fa-3x fa-node-js form-icon"></i>
-  <form action="/login" method="POST" id="form-container" class="form">
+  <form action="/login" method="POST" id="form" class="form b-r">
+    <div class="form-container">
 
-    <label for="username">Username</label>
-    <input class="input" type="text" name="username" placeholder="input username here...">
+      <label for="username">Username</label>
+      <input class="input" type="text" name="username" placeholder="input username here...">
 
-    <label for="password">Password:</label>
-    <input class="input" type="password" name="password" placeholder="input password here...">
+      <label for="password">Password:</label>
+      <input class="input" type="password" name="password" placeholder="input password here...">
 
-    {{#if msg}}
-    <div class="error-msg">{{ msg }}</div>
-    {{/if}}
+      {{#if msg}}
+      <div class="error-msg">{{ msg }}</div>
+      {{/if}}
 
-    <button class="btn">Sign in</button>
+      <button class="btn">Sign in</button>
 
-    <p class="account-msg">
-      Don't have an account?
-      <a href="/signup">Create One</a>
-    </p>
+      <p class="account-msg">
+        Don't have an account?
+        <a href="/signup">Create One</a>
+      </p>
+    </div>
   </form>
 </section>

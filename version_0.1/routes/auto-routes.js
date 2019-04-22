@@ -47,6 +47,7 @@ authRoutes.post('/signup', (req, res, next) => {
 authRoutes.get('/login', (req, res, next) => {
   res.render('auth/login');
 });
+
 authRoutes.post(
   '/login',
   passport.authenticate('local', {

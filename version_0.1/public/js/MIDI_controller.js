@@ -1,4 +1,4 @@
-import { Oscillator } from "./oscillator.js";
+import { Oscillator } from './oscillator.js';
 
 export class MIDIController {
   constructor(audioCtx) {
@@ -16,13 +16,13 @@ export class MIDIController {
     this.gain.connect(this.audioCtx.destination);
     if (context.requestMIDIAccess) {
       for (let i = 0; i < 100; i++) {
-        this.oscArr[i] = new Oscillator("sawtooth", this.audioCtx);
+        this.oscArr[i] = new Oscillator('sawtooth', this.audioCtx);
       }
       return context.requestMIDIAccess({
         sysex: false
       });
     } else {
-      alert("No MIDI support in your browser.");
+      alert('No MIDI support in your browser.');
     }
   }
 
@@ -57,12 +57,12 @@ export class MIDIController {
     if (!velocity) this.keyState[note] = false; //NOTE OFF
 
     if (this.keyState[note] && !this.oscArr[note].isStarted) {
-      this.oscArr[note] = new Oscillator("triangle", this.audioCtx);
+      this.oscArr[note] = new Oscillator('sine', this.audioCtx);
       this.oscArr[note].start(this.noteToFrequence(note), this.gain);
     }
     if (!this.keyState[note] && this.oscArr[note].isStarted) {
       this.oscArr[note].stop();
-      this.oscArr[note] = new Oscillator("triangle", this.audioCtx);
+      this.oscArr[note] = new Oscillator('sine', this.audioCtx);
     }
   }
 
