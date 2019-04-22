@@ -145,6 +145,11 @@
     }
   }
 }
+
+.synth-pad:active {
+  color: $dcolor;
+  background: #000;
+}
 /* login */
 .login h1 {
   text-align: center;
@@ -175,8 +180,34 @@
   background: #6568ff;
 }
 
-// @include mediaMd {
-//   .index-main-nav-content > li:not(.menu-button) {
-//     display: none;
-//   }
-// }
+.burger-menu > * > *:not(.menu-button) {
+  @include easeOut();
+  display: flex;
+}
+
+.burger-menu > *:nth-last-child(1) {
+  display: none;
+}
+
+@include mediaMd {
+  .burger-menu > *:nth-last-child(1) {
+    display: flex;
+  }
+  .burger-menu > * > *:not(.menu-button) {
+    display: none;
+    @include easeOut();
+  }
+  .index-main-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    background: $dcolor;
+    font-size: 2.2rem;
+  }
+  .index-main-nav-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 5vw;
+  }
+}

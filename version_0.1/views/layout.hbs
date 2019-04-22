@@ -10,7 +10,9 @@
     crossorigin="anonymous"></script>
   <script src="/js/script.js" type="module"></script>
   <script src="/js/nav.js" type="module"></script>
-  <script src="/js/play.js" type="module"></script>
+  {{#each script}}
+  <script src="/js/{{this}}" type="module"></script>
+  {{/each}}
   <title>{{title}}</title>
   <link rel="stylesheet" href="/css/style.css" />
 </head>

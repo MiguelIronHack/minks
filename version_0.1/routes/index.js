@@ -6,7 +6,7 @@ router.get('/', (req, res, next) => {
 });
 
 router.get('/play', (req, res, next) => {
-  res.render('play');
+  res.render('play', { script: ['play.js'] });
 });
 
 module.exports = router;

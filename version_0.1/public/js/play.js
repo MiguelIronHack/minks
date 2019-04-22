@@ -1,4 +1,5 @@
-const synthPads = document.querySelectorAll(".synth-pad");
+/* Synth */
+const synthPads = document.querySelectorAll('.synth-pad');
 
 const c0 = document.getElementById('synth-a').classList;
 const c$0 = document.getElementById('synth-b').classList;
@@ -16,7 +17,7 @@ const c1 = document.getElementById('synth-m').classList;
 const c$1 = document.getElementById('synth-n').classList;
 const d1 = document.getElementById('synth-o').classList;
 const d$1 = document.getElementById('synth-p').classList;
-
+// Click events
 synthPads.forEach(pad => {
   pad.addEventListener('mousedown', () => {
     pad.classList.add('active');
@@ -25,22 +26,7 @@ synthPads.forEach(pad => {
     pad.classList.remove('active');
   });
 });
-
-<<<<<<< HEAD
-function setupSounds(e) {
-  e.preventDefault();
-}
-// we tyu
-// asdfghjk
-document.addEventListener("keydown", e => {
-  if (e.key == "a") {
-    c1.add("active");
-  }
-});
-document.addEventListener("keyup", e => {
-  if (e.key == "a") {
-    c1.remove("active");
-=======
+// key events
 document.addEventListener('keydown', e => {
   if (e.code == 'KeyA') {
     c0.add('active');
@@ -169,7 +155,6 @@ document.addEventListener('keydown', e => {
 document.addEventListener('keyup', e => {
   if (e.code == 'KeyK') {
     c1.remove('active');
->>>>>>> 400608ab4bc28677578feea23e92f3cc5c55b42a
   }
 });
 document.addEventListener('keydown', e => {
@@ -203,7 +188,8 @@ document.addEventListener('keyup', e => {
   }
 });
 
-/* */
+/* Drum-Pad */
+// drum-pad click events
 const drumPad = document.querySelectorAll('.drum-pad-row-container div');
 
 drumPad.forEach(e => {

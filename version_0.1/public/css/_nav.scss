@@ -8,12 +8,13 @@
   justify-content: space-between;
   margin: 0 5vw;
 }
-.index-main-nav-content > * {
-  padding: 0.5rem;
-}
+// .index-main-nav-content > * {
+//   padding: 0.5rem;
+// }
 $sass-burger-add-vendor-prefixes: true !default;
 .burger-menu {
   display: flex;
+  padding: 0.4rem;
 }
 // Burger
 @mixin burger(
@@ -26,16 +27,9 @@ $sass-burger-add-vendor-prefixes: true !default;
 ) {
   $burger-height: $height !global;
   $burger-gutter: $gutter !global;
-
   position: relative;
   margin-top: $height + $gutter;
   margin-bottom: $height + $gutter;
-
-  @if $sass-burger-add-vendor-prefixes {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-  }
   user-select: none;
 
   &,
@@ -48,19 +42,7 @@ $sass-burger-add-vendor-prefixes: true !default;
     @if $border-radius != 0 {
       border-radius: $border-radius;
     }
-
-    @if $sass-burger-add-vendor-prefixes {
-      -webkit-transition-property: background-color, -webkit-transform;
-      -moz-transition-property: background-color, -moz-transform;
-      -o-transition-property: background-color, -o-transform;
-    }
     transition-property: background-color, transform;
-
-    @if $sass-burger-add-vendor-prefixes {
-      -webkit-transition-duration: $transition-duration;
-      -moz-transition-duration: $transition-duration;
-      -o-transition-duration: $transition-duration;
-    }
     transition-duration: $transition-duration;
   }
 
@@ -112,32 +94,16 @@ $sass-burger-add-vendor-prefixes: true !default;
     background-color: transparent;
   }
   &:before {
-    @if $sass-burger-add-vendor-prefixes {
-      -webkit-transform: translateY($burger-gutter + $burger-height)
-        rotate(45deg);
-      -moz-transform: translateY($burger-gutter + $burger-height) rotate(45deg);
-      -ms-transform: translateY($burger-gutter + $burger-height) rotate(45deg);
-      -o-transform: translateY($burger-gutter + $burger-height) rotate(45deg);
-    }
     transform: translateY($burger-gutter + $burger-height) rotate(45deg);
   }
   &:after {
-    @if $sass-burger-add-vendor-prefixes {
-      -webkit-transform: translateY(-($burger-gutter + $burger-height))
-        rotate(-45deg);
-      -moz-transform: translateY(-($burger-gutter + $burger-height))
-        rotate(-45deg);
-      -ms-transform: translateY(-($burger-gutter + $burger-height))
-        rotate(-45deg);
-      -o-transform: translateY(-($burger-gutter + $burger-height))
-        rotate(-45deg);
-    }
     transform: translateY(-($burger-gutter + $burger-height)) rotate(-45deg);
   }
 }
 
 .menu-button {
   display: inline-block;
+  padding: 0.4rem 0;
 }
 
 .burger-icon {

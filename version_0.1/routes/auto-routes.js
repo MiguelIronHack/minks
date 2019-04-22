@@ -5,7 +5,6 @@ const ensureLogin = require('connect-ensure-login');
 
 // User model
 const User = require('../models/User');
-
 const bcrypt = require('bcrypt');
 const bcryptSalt = 10;
 
@@ -48,15 +47,20 @@ authRoutes.get('/login', (req, res, next) => {
   res.render('auth/login');
 });
 
-authRoutes.post(
-  '/login',
-  passport.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: '/login',
-    failureFlash: true,
-    passReqToCallback: true
-  })
-);
+authRoutes.post('/login', (req, res, next) => {
+  const { username, password } = req.body;
+
+  User.findOne({ username: username })
+    .then(() => {
+      passport.authenticate('local', {
+        successRedirect: '/private-page',
+        failureRedirect: '/login',
+        failureFlash: true,
+        passReqToCallback: true
+      });
+    })
+    .catch(err => next(err));
+});
 
 authRoutes.get('/private-page', ensureLogin.ensureLoggedIn(), (req, res) => {
   res.render('private', { user: req.user });
