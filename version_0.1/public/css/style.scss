@@ -79,7 +79,7 @@
 /* Play */
 .main {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
   grid-row-gap: 5vw;
 }
 .drum-section {
@@ -128,6 +128,7 @@
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 1rem;
   margin: 2vh 0;
+
   & > * {
     display: flex;
     justify-content: center;
@@ -144,7 +145,6 @@
     }
   }
 }
-
 /* login */
 .login h1 {
   text-align: center;
@@ -166,6 +166,13 @@
   & > * {
     margin: 0.4rem auto;
   }
+}
+
+.active:nth-child(even) {
+  background: #808000;
+}
+.active:nth-child(odd) {
+  background: #6568ff;
 }
 
 // @include mediaMd {
