@@ -2,13 +2,15 @@ import { MIDIController } from "./MIDI_controller.js";
 import { KeyBoard } from "./user_keyboard.js";
 
 const audioCtx = new AudioContext();
-
+const synthNode = document.getElementById("synth-parent");
 const midiController = new MIDIController(audioCtx);
 const keyBoard = new KeyBoard(audioCtx);
-keyBoard.setListeners(window);
+
+keyBoard.setKeyListeners(window);
+keyBoard.setMouseListener(synthNode.children);
 
 midiController
-  .init(navigator)
+  .init(window.navigator)
   .then(
     midiController.onMIDISuccess.bind(midiController),
     midiController.onMIDIFailure.bind(midiController)
