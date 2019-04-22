@@ -5,14 +5,14 @@ const c0 = document.getElementById('synth-a').classList;
 const c$0 = document.getElementById('synth-b').classList;
 const d0 = document.getElementById('synth-c').classList;
 const d$0 = document.getElementById('synth-d').classList;
-const e1 = document.getElementById('synth-e').classList;
-const f1 = document.getElementById('synth-f').classList;
-const f$1 = document.getElementById('synth-g').classList;
-const g1 = document.getElementById('synth-h').classList;
-const g$1 = document.getElementById('synth-i').classList;
-const a1 = document.getElementById('synth-j').classList;
-const a$1 = document.getElementById('synth-k').classList;
-const b1 = document.getElementById('synth-l').classList;
+const g$1 = document.getElementById('synth-e').classList;
+const a1 = document.getElementById('synth-f').classList;
+const a$1 = document.getElementById('synth-g').classList;
+const b1 = document.getElementById('synth-h').classList;
+const e1 = document.getElementById('synth-i').classList;
+const f1 = document.getElementById('synth-j').classList;
+const f$1 = document.getElementById('synth-k').classList;
+const g1 = document.getElementById('synth-l').classList;
 const c1 = document.getElementById('synth-m').classList;
 const c$1 = document.getElementById('synth-n').classList;
 const d1 = document.getElementById('synth-o').classList;
@@ -29,42 +29,42 @@ synthPads.forEach(pad => {
 
 document.addEventListener('keydown', e => {
   if (e.code == 'KeyA') {
-    c0.add('active');
+    c1.add('active');
   }
 });
 document.addEventListener('keyup', e => {
   if (e.code == 'KeyA') {
-    c0.remove('active');
+    c1.remove('active');
   }
 });
 document.addEventListener('keydown', e => {
   if (e.code == 'KeyW') {
-    c$0.add('active');
+    c$1.add('active');
   }
 });
 document.addEventListener('keyup', e => {
   if (e.code == 'KeyW') {
-    c$0.remove('active');
+    c$1.remove('active');
   }
 });
 document.addEventListener('keydown', e => {
   if (e.code == 'KeyS') {
-    d0.add('active');
+    d1.add('active');
   }
 });
 document.addEventListener('keyup', e => {
   if (e.code == 'KeyS') {
-    d0.remove('active');
+    d1.remove('active');
   }
 });
 document.addEventListener('keydown', e => {
   if (e.code == 'KeyE') {
-    d$0.add('active');
+    d$1.add('active');
   }
 });
 document.addEventListener('keyup', e => {
   if (e.code == 'KeyE') {
-    d$0.remove('active');
+    d$1.remove('active');
   }
 });
 document.addEventListener('keydown', e => {
@@ -149,42 +149,42 @@ document.addEventListener('keyup', e => {
 });
 document.addEventListener('keydown', e => {
   if (e.code == 'KeyK') {
-    c1.add('active');
+    c0.add('active');
   }
 });
 document.addEventListener('keyup', e => {
   if (e.code == 'KeyK') {
-    c1.remove('active');
+    c0.remove('active');
   }
 });
 document.addEventListener('keydown', e => {
   if (e.code == 'KeyO') {
-    c$1.add('active');
+    c$0.add('active');
   }
 });
 document.addEventListener('keyup', e => {
   if (e.code == 'KeyO') {
-    c$1.remove('active');
+    c$0.remove('active');
   }
 });
 document.addEventListener('keydown', e => {
   if (e.code == 'KeyL') {
-    d1.add('active');
+    d0.add('active');
   }
 });
 document.addEventListener('keyup', e => {
   if (e.code == 'KeyL') {
-    d1.remove('active');
+    d0.remove('active');
   }
 });
 document.addEventListener('keydown', e => {
   if (e.code == 'KeyP') {
-    d$1.add('active');
+    d$0.add('active');
   }
 });
 document.addEventListener('keyup', e => {
   if (e.code == 'KeyP') {
-    d$1.remove('active');
+    d$0.remove('active');
   }
 });
 

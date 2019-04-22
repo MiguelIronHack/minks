@@ -19,9 +19,15 @@ body {
   display: flex; }
 
 h1 {
-  font-size: 2.2rem; }
+  font-size: 3.7rem; }
 
 h2 {
+  font-size: 2.6rem; }
+
+h3 {
+  font-size: 2.3rem; }
+
+h4 {
   font-size: 2rem; }
 
 ol,
@@ -131,6 +137,37 @@ input {
 
 .menu-button.is-active .burger-icon:after {
   transform: translateY(-8px) rotate(-45deg); }
+
+.forum-section {
+  font-family: overpass;
+  display: grid;
+  grid-gap: 1rem;
+  margin: 0 5vw 0 25vw; }
+  .forum-section .forum-card {
+    border: 2px solid #1b2432;
+    padding: 1.3rem; }
+  .forum-section > i:hover {
+    color: black; }
+
+.forum-header {
+  text-align: center;
+  font-family: overpass; }
+
+.forum-bar {
+  font-family: overpass;
+  border: 2px solid #1b2432;
+  position: fixed;
+  display: block;
+  left: 0;
+  top: 50vh;
+  padding: 10vh 5vw;
+  background: #1b2432; }
+  .forum-bar > ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 100%; }
 
 .signup-page {
   margin: 1rem 10vw;
