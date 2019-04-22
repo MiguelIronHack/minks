@@ -1,7 +1,11 @@
-import { MIDIController } from './MIDI_controller.js';
+import { MIDIController } from "./MIDI_controller.js";
+import { KeyBoard } from "./user_keyboard.js";
+
 const audioCtx = new AudioContext();
 
 const midiController = new MIDIController(audioCtx);
+const keyBoard = new KeyBoard(audioCtx);
+keyBoard.setListeners(window);
 
 midiController
   .init(navigator)
@@ -9,7 +13,6 @@ midiController
     midiController.onMIDISuccess.bind(midiController),
     midiController.onMIDIFailure.bind(midiController)
   );
-
 // console.log(440 * Math.pow(2, (27 - 33) / 12));
 
 // const oscArr = [];
