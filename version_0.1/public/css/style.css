@@ -214,7 +214,7 @@ input {
 /* Play */
 .main {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
   grid-row-gap: 5vw; }
 
 .drum-section {
@@ -289,5 +289,11 @@ input {
   margin: 1rem auto; }
   .form > * {
     margin: 0.4rem auto; }
+
+.active:nth-child(even) {
+  background: #808000; }
+
+.active:nth-child(odd) {
+  background: #6568ff; }
 
 /*# sourceMappingURL=style.css.map */
