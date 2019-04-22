@@ -40,13 +40,18 @@ a {
   transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1); }
 
 a:hover {
-  color: #1b2432;
+  color: #121420;
   transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1); }
 
 p {
   font-family: 'overpass'; }
 
-input {
+textarea {
+  min-height: 5rem; }
+
+select,
+input,
+textarea {
   font-size: 1rem;
   border: 2px solid #1b2432;
   border-radius: 1rem;
@@ -54,10 +59,17 @@ input {
   padding: 0.4rem 1rem;
   height: min-content;
   background: #8ba0c1; }
-  input:focus {
+  select:focus,
+  input:focus,
+  textarea:focus {
     background: #dee4ed; }
-  input::placeholder {
+  select::placeholder,
+  input::placeholder,
+  textarea::placeholder {
     color: #121420; }
+
+textarea {
+  resize: none; }
 
 .btn {
   display: flex;
@@ -138,6 +150,9 @@ input {
 .menu-button.is-active .burger-icon:after {
   transform: translateY(-8px) rotate(-45deg); }
 
+.forum-main {
+  margin-bottom: 1rem; }
+
 .forum-section {
   font-family: overpass;
   display: grid;
@@ -156,6 +171,8 @@ input {
 .forum-bar {
   font-family: overpass;
   border: 2px solid #1b2432;
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
   position: fixed;
   display: block;
   left: 0;
@@ -168,6 +185,8 @@ input {
     align-items: center;
     justify-content: space-evenly;
     height: 100%; }
+    .forum-bar > ul > li > a {
+      color: #d8d8db; }
 
 .signup-page {
   margin: 1rem 10vw;

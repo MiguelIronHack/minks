@@ -1,10 +1,12 @@
 <h1 class="forum-header">Forum</h1>
 <main class="forum-main">
-  <aside class="forum-bar b-r">
+  <aside class="forum-bar">
     <ul>
-      <li>synth</li>
-      <li>drum</li>
-      <li>songs</li>
+      <li>
+        <a href="#synth-tag">synth</a>
+      </li>
+      <li><a href="#drum-tag">drum</a></li>
+      <li><a href="#songs-tag">songs</a></li>
     </ul>
   </aside>
   <section class="forum-section">
@@ -42,49 +44,5 @@
         <i class="fab fa-reddit-square"></i>
       </div>
     </div>
-    <div class="forum-card">
-      <h3>{{username}}</h3>
-      <h4>title</h4>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, voluptatum fugit atque quia nesciunt ab.</p>
-      <div class="forum-share">
-        <i class="fab fa-github"></i>
-        <i class="fab fa-facebook"></i>
-        <i class="fab fa-twitter-square"></i>
-        <i class="fab fa-reddit-square"></i>
-      </div>
-    </div>
-    <div class="forum-card">
-      <h3>{{username}}</h3>
-      <h4>title</h4>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, voluptatum fugit atque quia nesciunt ab.</p>
-      <div class="forum-share">
-        <i class="fab fa-github"></i>
-        <i class="fab fa-facebook"></i>
-        <i class="fab fa-twitter-square"></i>
-        <i class="fab fa-reddit-square"></i>
-      </div>
-    </div>
-    <div class="forum-card">
-      <h3>{{username}}</h3>
-      <h4>title</h4>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, voluptatum fugit atque quia nesciunt ab.</p>
-      <div class="forum-share">
-        <i class="fab fa-github"></i>
-        <i class="fab fa-facebook"></i>
-        <i class="fab fa-twitter-square"></i>
-        <i class="fab fa-reddit-square"></i>
-      </div>
-    </div>
-    <div class="forum-card">
-      <h3>{{username}}</h3>
-      <h4>title</h4>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, voluptatum fugit atque quia nesciunt ab.</p>
-      <div class="forum-share">
-        <i class="fab fa-github"></i>
-        <i class="fab fa-facebook"></i>
-        <i class="fab fa-twitter-square"></i>
-        <i class="fab fa-reddit-square"></i>
-      </div>
-    </div>
-  </section>
+    {{> post}}
 </main>

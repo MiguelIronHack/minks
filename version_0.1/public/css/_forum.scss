@@ -1,3 +1,7 @@
+.forum-main {
+  margin-bottom: 1rem;
+}
+
 .forum-section {
   font-family: overpass;
   display: grid;
@@ -20,6 +24,8 @@
 .forum-bar {
   font-family: overpass;
   border: 2px solid $tcolor;
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
   position: fixed;
   display: block;
   left: 0;
@@ -32,5 +38,8 @@
     align-items: center;
     justify-content: space-evenly;
     height: 100%;
+    & > li > a {
+      color: $dcolor;
+    }
   }
 }

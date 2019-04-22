@@ -10,6 +10,14 @@ $click: #8080008c;
   transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
+@function set-text-color($color) {
+  @if (lightness($color) > 60) {
+    @return $dcolor;
+  } @else {
+    @return $pcolor;
+  }
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -45,19 +53,25 @@ ol,
 ul {
   list-style: none;
 }
+
 a {
   text-decoration: none;
-  color: $pcolor;
+  color: set-text-color($pcolor);
   @include easeOut();
 }
 a:hover {
-  color: $tcolor;
+  color: set-text-color($pcolor);
   @include easeOut();
 }
 p {
   font-family: 'overpass';
 }
-input {
+textarea {
+  min-height: 5rem;
+}
+select,
+input,
+textarea {
   font-size: 1rem;
   border: 2px solid $tcolor;
   border-radius: 1rem;
@@ -72,6 +86,9 @@ input {
   &::placeholder {
     color: $pcolor;
   }
+}
+textarea {
+  resize: none;
 }
 .btn {
   display: flex;
