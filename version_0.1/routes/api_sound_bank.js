@@ -1,20 +1,12 @@
 const express = require("express");
 const router = new express.Router();
-const url = "http://localhost:3434";
+const SoundBank = require("../models/Sound_Bank");
 
-const getDrums = id => sendDrum(id);
+const getDrumKit = () => SoundBank.find();
 
-router.get("/sounds/", (req, res) => {
-  getDrums()
-    .then(aiRes => res.status(200).json(aiRes))
-    .catch(aiRess => console.log(aiRes));
+router.get("/drumkit", (req, res) => {
+  getDrumKit()
+    .then(result => res.status(200).json(result))
+    .catch(err => res.send(err));
 });
-
-function sendDrum(id) {
-  return new Promise((resolve, reject) => {
-    resolve(url + "/sound_bank/drum_kits/909_kick.wav");
-    reject("Not found");
-  });
-}
-
-module.exports = [router, getDrums];
+module.exports = [router, getDrumKit];

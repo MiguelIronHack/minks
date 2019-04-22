@@ -13,13 +13,14 @@ const bcrypt = require("bcrypt");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const User = require("./models/User");
+const index = require("./routes/index");
+const apiSoundBankRouter = require("./routes/api_sound_bank");
+const authRoutes = require("./routes/auto-routes");
 //
 mongoose
-  .connect("mongodb://localhost/passport-intro", { useNewUrlParser: true })
+  .connect("mongodb://localhost/minks", { useNewUrlParser: true })
   .then(x => {
-    console.log(
-      `Connected to Mongo! Database name: "${x.connections[0].name}"`
-    );
+    console.log(`Connected to Mongo! Database name: `);
   })
   .catch(err => {
     console.error("Error connecting to mongo", err);
@@ -99,22 +100,19 @@ app.set("view engine", "hbs");
 app.use(express.static(path.join(__dirname, "public")));
 app.use(favicon(path.join(__dirname, "public", "images", "favicon.ico")));
 
+app.use("/", index);
+app.use("/api/soundbank", apiSoundBankRouter);
+app.use("/", authRoutes);
 // default value for title local
 app.locals.title = "Minks";
-
-const index = require("./routes/index");
-app.use("/", index);
 
 module.exports = app;
 // Mongoose config
 mongoose.Promise = Promise;
 mongoose
-  .connect("mongodb://localhost/basic-auth", {
+  .connect("mongodb://localhost/minks", {
     userMongoClient: true,
     useNewUrlParser: true
   })
   .then(() => console.log("connected to the database"))
   .catch(err => console.error("Error connecting to mongo ", err));
-
-const authRoutes = require("./routes/auto-routes");
-app.use("/", authRoutes);

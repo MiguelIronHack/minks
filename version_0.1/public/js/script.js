@@ -16,15 +16,18 @@ midiController
     midiController.onMIDISuccess.bind(midiController),
     midiController.onMIDIFailure.bind(midiController)
   );
+
 function getDrumSound() {
-  axios
-    .get(url + "/sounds")
-    .then(servRes => {
-      console.log(servRes.data);
-    })
-    .catch(err => console.log("fuck me "));
+  return axios.get(url + "/api/soundbank/drumkit");
 }
-getDrumSound();
+
+getDrumSound()
+  .then(servRes => {
+    let audio = new Audio(servRes.data[1].url);
+    audio.play();
+  })
+  .catch(err => console.log(err));
+
 // console.log(440 * Math.pow(2, (27 - 33) / 12));
 
 // const oscArr = [];
