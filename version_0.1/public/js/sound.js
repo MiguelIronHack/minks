@@ -1,7 +1,11 @@
-import { MIDIController } from './MIDI_controller.js';
+import { MIDIController } from "./MIDI_controller.js";
+import { KeyBoard } from "./user_keyboard";
+
 const audioCtx = new AudioContext();
 
 const midiController = new MIDIController(audioCtx);
+const keyBoard = new KeyBoard();
+keyBoard.setListeners(navigator);
 
 midiController
   .init(navigator)

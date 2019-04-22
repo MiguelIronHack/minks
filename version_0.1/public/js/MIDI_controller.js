@@ -16,7 +16,7 @@ export class MIDIController {
     this.gain.connect(this.audioCtx.destination);
     if (context.requestMIDIAccess) {
       for (let i = 0; i < 100; i++) {
-        this.oscArr[i] = new Oscillator("sawtooth", this.audioCtx);
+        this.oscArr[i] = new Oscillator("triangle", this.audioCtx);
       }
       return context.requestMIDIAccess({
         sysex: false
