@@ -9,14 +9,16 @@
     integrity="sha384-g5uSoOSBd7KkhAMlnQILrecXvzst9TdC09/VM+pjDTCM+1il8RHz5fKANTFFb+gQ"
     crossorigin="anonymous"></script>
   <script src="/js/script.js" type="module"></script>
+  <script src="/js/nav.js" type="module"></script>
+  <script src="/js/play.js" type="module"></script>
   <title>{{title}}</title>
   <link rel="stylesheet" href="/css/style.css" />
 </head>
 
 <body>
-
+  {{> nav}}
   {{{body}}}
-
+  {{> footer}}
 </body>
 
 </html>

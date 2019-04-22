@@ -1,90 +1,18 @@
-@import url('https://fonts.googleapis.com/css?family=Dokdo');
-@import url('http://overpass-30e2.kxcdn.com/overpass.css');
+@import 'config';
+@import 'nav';
 
-$tcolor: #333;
-$dcolor: #ccc;
-$pcolor: #111;
-$click: #8080008c;
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-body {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  background: $pcolor;
-  color: $dcolor;
-  font-family: 'Dokdo', cursive;
-  font-size: 1.5rem;
-  align-content: center;
-}
-h1 {
-  font-size: 2.2rem;
-}
-h2 {
-  font-size: 2rem;
-}
-ol,
-ul {
-  list-style: none;
-}
-a {
-  text-decoration: none;
-  color: $tcolor;
-  transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
-}
-a:hover {
-  color: $pcolor;
-  transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
-}
-p {
-  font-family: 'overpass';
-}
-input {
-  font-size: 1rem;
-  border: 2px solid $tcolor;
-  border-radius: 1rem;
-  text-align: center;
-  padding: 0.4rem 1rem;
-  height: min-content;
-  background: lighten($color: $tcolor, $amount: 15);
-  &:hover {
-    background: lighten($color: $tcolor, $amount: 20);
-  }
-}
-.btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 0;
-  padding: 0.4rem 1rem;
-  border-radius: 1rem;
-  font-family: 'Dokdo', cursive;
-  font-size: 1.5rem;
-  background: $tcolor;
-  transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
-
-  &:hover {
-    border-color: $dcolor;
-    background: lighten($color: $tcolor, $amount: 10);
-    border-radius: 1rem;
-    font-size: 1rem;
-    padding: 0.4rem 1rem;
-    transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
-  }
-}
-.error-msg {
-  color: #bb0000;
-}
 // Signup page
 .signup-page {
-  margin: 1rem 20vw;
+  margin: 1rem 10vw;
   display: flex;
   flex-direction: column;
-
+  .form {
+    margin: 1rem auto;
+    border-radius: 1rem;
+    border: 2px solid $tcolor;
+    min-height: min-content;
+    min-width: min-content;
+  }
   .title {
     text-align: center;
   }
@@ -92,35 +20,26 @@ input {
     margin: 1rem auto 0.5rem;
     align-self: center;
   }
-  .form {
+  .form-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 1rem auto;
-    border-radius: 1rem;
-    border: 1px solid $tcolor;
-    padding: 1rem;
-    height: 100%;
-    width: 100%;
+    justify-content: center;
     & > * {
       margin: 0.4rem;
+    }
+    .account-msg {
+      text-align: center;
+    }
+    .account-msg > a {
+      color: darken($color: $dcolor, $amount: 10);
+      &:hover {
+        color: lighten($color: $dcolor, $amount: 20);
+      }
     }
   }
 }
 
-/*  */
-.index-main-nav {
-  background: $dcolor;
-  font-size: 2.2rem;
-}
-.index-main-nav-content {
-  display: flex;
-  justify-content: space-between;
-  margin: 0 5vw;
-}
-.index-main-nav-content > * {
-  padding: 0.5rem;
-}
 /* Index */
 .index-showcase {
   display: flex;
@@ -146,7 +65,6 @@ input {
     url(/images/a.jpg) no-repeat;
   background-size: cover;
   background-position: center;
-  border-radius: 1rem;
   width: 100%;
   height: 40vh;
   margin: 1rem auto;
@@ -155,7 +73,7 @@ input {
   align-items: center;
 }
 .play-icon {
-  color: $pcolor;
+  color: $dcolor;
   cursor: pointer;
 }
 /* Play */
@@ -165,13 +83,26 @@ input {
   grid-row-gap: 5vw;
 }
 .drum-section {
-  background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
-    url(/images/abs2.jpg) no-repeat;
   background-size: cover;
+  & > * {
+    & > * {
+      display: flex;
+      justify-content: center;
+      padding: 5vh 1vw;
+      border: 2px solid $dcolor;
+      border-radius: 1rem;
+      margin: 2vh 0;
+      cursor: pointer;
+      &:hover {
+        background: $click;
+      }
+      &:active {
+        background: lighten($color: $click, $amount: 10);
+      }
+    }
+  }
 }
 .synth-section {
-  background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
-    url(/images/abs1.jpg) no-repeat;
   background-size: cover;
 }
 .pad-section {
@@ -180,6 +111,7 @@ input {
   justify-content: center;
   margin: 0 5vw;
 }
+
 .pad-header {
   align-self: center;
   margin-top: 1rem;
@@ -196,38 +128,23 @@ input {
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 1rem;
   margin: 2vh 0;
-}
-.drum-pad {
-  display: flex;
-  justify-content: center;
-  padding: 5vh 1vw;
-  border: 2px solid $dcolor;
-  border-radius: 5px;
-  margin: 2vh 0;
-  cursor: pointer;
-}
-.drum-pad:hover {
-  background: $click;
-}
-.drum-pad:active {
-  background: lighten($color: $click, $amount: 10);
+  & > * {
+    display: flex;
+    justify-content: center;
+    padding: 5vh 3vw;
+    border: 2px solid $dcolor;
+    border-radius: 1rem;
+    margin: 2vh 0;
+    cursor: pointer;
+    &:hover {
+      background: $click;
+    }
+    &:active {
+      background: lighten($color: $click, $amount: 10);
+    }
+  }
 }
 
-.synth-pad {
-  display: flex;
-  justify-content: center;
-  padding: 5vh 3vw;
-  border: 2px solid $dcolor;
-  border-radius: 35px;
-  margin: 2vh 0;
-  cursor: pointer;
-}
-.synth-pad:hover {
-  background: $click;
-}
-.synth-pad:active {
-  background: lighten($color: $click, $amount: 10);
-}
 /* login */
 .login h1 {
   text-align: center;
@@ -245,7 +162,14 @@ input {
   min-height: 15rem;
   min-width: 15rem;
   margin: 1rem auto;
+
+  & > * {
+    margin: 0.4rem auto;
+  }
 }
-.form > * {
-  margin: 0.4rem auto;
-}
+
+// @include mediaMd {
+//   .index-main-nav-content > li:not(.menu-button) {
+//     display: none;
+//   }
+// }

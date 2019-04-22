@@ -57,12 +57,12 @@ export class MIDIController {
     if (!velocity) this.keyState[note] = false; //NOTE OFF
 
     if (this.keyState[note] && !this.oscArr[note].isStarted) {
-      this.oscArr[note] = new Oscillator("triangle", this.audioCtx);
+      this.oscArr[note] = new Oscillator("sine", this.audioCtx);
       this.oscArr[note].start(this.noteToFrequence(note), this.gain);
     }
     if (!this.keyState[note] && this.oscArr[note].isStarted) {
       this.oscArr[note].stop();
-      this.oscArr[note] = new Oscillator("triangle", this.audioCtx);
+      this.oscArr[note] = new Oscillator("sine", this.audioCtx);
     }
   }
 
