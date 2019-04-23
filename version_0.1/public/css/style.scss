@@ -45,7 +45,10 @@
 }
 .drum-section {
   background-size: cover;
-
+  .active {
+    background: $dcolor;
+    color: $pcolor;
+  }
   & > * {
     & > * {
       display: flex;
@@ -56,22 +59,21 @@
       margin: 2vh 0;
       cursor: pointer;
       &:hover {
-        background: $click;
+        background: $pad-bg-click;
       }
       &:active {
-        background: lighten($color: $click, $amount: 10);
+        background: $pad-bg-click;
+        border-color: $pad-b-click;
       }
     }
   }
 }
-
 .pad-section {
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin: 0 5vw;
 }
-
 .pad-header {
   align-self: center;
   margin-top: 1rem;
@@ -105,24 +107,20 @@
     border-radius: 1rem;
     cursor: pointer;
   }
+  .active {
+    background: $pad-bg-click;
+    border-color: $pad-b-click;
+  }
 }
-
 .synth-pad {
   background: $pad-bg;
   color: $pad-c;
   padding: 3rem;
   border: 0.6rem solid $pad-bg;
+  &:active {
+    @include easeOut;
+  }
 }
-.synth-pad:active {
-  @include easeOut;
-}
-
-.active {
-  background: $pad-bg-click;
-  border-color: $pad-b-click;
-}
-// knob
-
 // Register
 .register-container {
   width: 100%;

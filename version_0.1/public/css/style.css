@@ -110,6 +110,9 @@ textarea {
 
 .drum-section {
   background-size: cover; }
+  .drum-section .active {
+    background: #fbfbfb;
+    color: #121420; }
   .drum-section > * > * {
     display: flex;
     justify-content: center;
@@ -119,9 +122,10 @@ textarea {
     margin: 2vh 0;
     cursor: pointer; }
     .drum-section > * > *:hover {
-      background: #8080008c; }
+      background: #50507e; }
     .drum-section > * > *:active {
-      background: rgba(179, 179, 0, 0.54902); }
+      background: #50507e;
+      border-color: #a1a1cc; }
 
 .pad-section {
   display: flex;
@@ -157,19 +161,17 @@ textarea {
     border: 2px solid #fbfbfb;
     border-radius: 1rem;
     cursor: pointer; }
+  .synth-container .active {
+    background: #50507e;
+    border-color: #a1a1cc; }
 
 .synth-pad {
   background: #fbfbfb;
   color: #313131;
   padding: 3rem;
   border: 0.6rem solid #fbfbfb; }
-
-.synth-pad:active {
-  transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1); }
-
-.active {
-  background: #50507e;
-  border-color: #a1a1cc; }
+  .synth-pad:active {
+    transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1); }
 
 .register-container {
   width: 100%; }

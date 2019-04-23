@@ -1,5 +1,5 @@
 // Create knob element, 300 x 300 px in size.
-var knob = pureknob.createKnob(300, 300);
+// var knob = pureknob.createKnob(300, 300);
 
 // Set properties.
 knob.setProperty('angleStart', -0.75 * Math.PI);
