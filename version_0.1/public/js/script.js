@@ -1,61 +1,61 @@
-import { MIDIController } from './MIDI_controller.js';
-import { KeyBoard } from './user_interface.js';
-import { Drums } from './drum_machine.js';
+import { MIDIController } from "./MIDI_controller.js";
+import { KeyBoard } from "./user_interface.js";
+import { Drums } from "./drum_machine.js";
 const audioCtx = new AudioContext();
-const synthNode = document.getElementById('synth-parent');
+const synthNode = document.getElementById("synth-parent");
 const midiController = new MIDIController(audioCtx);
 
-const kickNode = document.getElementById('kick-section');
-const snareNode = document.getElementById('snare-section');
+const kickNode = document.getElementById("kick-section");
+const snareNode = document.getElementById("snare-section");
 // const kickNode = document.getElementById("kick-section");
 // const kickNode = document.getElementById("kick-section");
-const serverUrl = 'http://localhost:3434';
+const serverUrl = "http://localhost:3434";
 
 const noteScale = [
-  'C3',
-  'C#3',
-  'D3',
-  'D#3',
-  'E3',
-  'F3',
-  'F#3',
-  'G3',
-  'G#3',
-  'A3',
-  'A#3',
-  'B3',
-  'C4',
-  'C#4',
-  'D4',
-  'D#4'
+  "C3",
+  "C#3",
+  "D3",
+  "D#3",
+  "E3",
+  "F3",
+  "F#3",
+  "G3",
+  "G#3",
+  "A3",
+  "A#3",
+  "B3",
+  "C4",
+  "C#4",
+  "D4",
+  "D#4"
 ];
 
 const keyBoard = new KeyBoard(noteScale);
 function createDrumElements(name, url) {
   axios
-    .post(serverUrl + '/api/soundbank/create', { name, url })
+    .post(serverUrl + "/api/soundbank/create", { name, url })
     .then(serverRes => {
       console.log(serverRes.data);
     })
     .catch(err => console.log(err));
 }
 
-createDrumElements(
-  'KICK',
-  'https://ia801507.us.archive.org/18/items/909KICK/909_KICK.wav'
-);
-createDrumElements(
-  'SNARE',
-  'https://ia601408.us.archive.org/34/items/909Snare/909_snare.wav'
-);
-createDrumElements(
-  'HI-HAT',
-  'https://ia601400.us.archive.org/4/items/909HighHat/909_HighHat.wav'
-);
-createDrumElements(
-  'Clap',
-  'https://ia801501.us.archive.org/31/items/909Clap/909_clap.wav'
-);
+// createDrumElements(
+//   'KICK',
+//   'https://ia801507.us.archive.org/18/items/909KICK/909_KICK.wav'
+// );
+// createDrumElements(
+//   'SNARE',
+//   'https://ia601408.us.archive.org/34/items/909Snare/909_snare.wav'
+// );
+// createDrumElements(
+//   'HI-HAT',
+//   'https://ia601400.us.archive.org/4/items/909HighHat/909_HighHat.wav'
+// );
+// createDrumElements(
+//   'Clap',
+//   'https://ia801501.us.archive.org/31/items/909Clap/909_clap.wav'
+// );
 
 keyBoard.setKeyListeners(window);
 keyBoard.setMouseListener(synthNode.children);
@@ -67,17 +67,17 @@ midiController
   );
 
 function getDrumSound() {
-  return axios.get(serverUrl + '/api/soundbank/all');
+  return axios.get(serverUrl + "/api/soundbank/all");
 }
 
 getDrumSound()
   .then(servRes => {
     try {
       const kickUrl = servRes.data[0].url;
-      const kick = new Drums(kickNode, kickUrl, 'kick', audioCtx);
+      const kick = new Drums(kickNode, kickUrl, "kick", audioCtx);
       kick.startSequence(120);
       const snareUrl = servRes.data[1].url;
-      const snare = new Drums(snareNode, snareUrl, 'snare', audioCtx);
+      const snare = new Drums(snareNode, snareUrl, "snare", audioCtx);
       snare.startSequence(120);
     } catch (e) {
       console.log(e);

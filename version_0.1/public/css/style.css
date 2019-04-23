@@ -183,4 +183,10 @@ textarea {
 .card {
   margin: 3rem 15vw; }
 
+.form-group {
+  display: none; }
+
+#form-display :hover {
+  cursor: pointer; }
+
 /*# sourceMappingURL=style.css.map */
