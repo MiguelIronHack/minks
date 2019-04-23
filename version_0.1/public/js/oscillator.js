@@ -1,6 +1,5 @@
 export class Oscillator {
   constructor() {
-    this.synth = new Tone.Synth().toMaster();
     // this.audioCtx = audioCtx;
     // this.gainNode = gain;
     // this.osc = this.audioCtx.createOscillator();

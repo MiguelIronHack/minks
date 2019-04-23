@@ -1,22 +1,32 @@
 import { Oscillator } from "./oscillator.js";
 
 export class MIDIController {
-  constructor(audioCtx) {
+  constructor() {
     this.data = null;
-    this.midi = 1;
-    this.audioCtx = audioCtx;
-    this.filter = 0;
-    this.reverb = 0;
-    this.gain = this.audioCtx.createGain();
+    this.midi = null;
     this.keyState = new Object();
-    this.oscArr = [];
+    this.synthArray = [];
   }
 
   init(context) {
-    this.gain.connect(this.audioCtx.destination);
     if (context.requestMIDIAccess) {
       for (let i = 0; i < 100; i++) {
-        this.oscArr[i] = new Oscillator("sawtooth", this.audioCtx);
+        let synth = new Tone.Synth({
+          oscillator: {
+            type: this.synthType,
+            modulationType: this.modulationType,
+            modulationIndex: 3,
+            harmonicity: 3.4
+          },
+          envelope: {
+            attack: 0.001,
+            decay: 0.1,
+            sustain: 0.1,
+            release: 4
+          }
+        }).toMaster();
+        synth.volume.value = -5;
+        this.synthArray.push(synth);
       }
       return context.requestMIDIAccess({
         sysex: false
@@ -27,7 +37,7 @@ export class MIDIController {
   }
 
   onMIDISuccess(midiAccess) {
-    console.log("Midi Worked !");
+    console.log(`Midi Success: ${midiAccess}`);
     this.midi = midiAccess; // this is our raw MIDI data, inputs, outputs, and sysex status
     let inputs = this.midi.inputs.values();
 
@@ -49,12 +59,11 @@ export class MIDIController {
     if (velocity > 1) this.keyState[note] = true; // NOTE ON
     if (!velocity) this.keyState[note] = false; //NOTE OFF
 
-    if (this.keyState[note] && !this.oscArr[note].isStarted) {
-      this.oscArr[note].start(this.noteToFrequence(note), this.gain);
+    if (!this.keyState[note]) {
+      this.synthArray[note].triggerAttack(this.noteToFrequence(note));
     }
-    if (!this.keyState[note] && this.oscArr[note].isStarted) {
-      this.oscArr[note].stop();
-      this.oscArr[note] = new Oscillator("sawtooth", this.audioCtx);
+    if (this.keyState[note]) {
+      this.synthArray[note].triggerRelease();
     }
   }
   noteToFrequence(note) {
