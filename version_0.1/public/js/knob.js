@@ -1,34 +1,36 @@
-Ui.Demo = function() {};
+// Create knob element, 300 x 300 px in size.
+var knob = pureknob.createKnob(300, 300);
 
-Ui.Demo.prototype = Object.create(Ui.prototype);
+// Set properties.
+knob.setProperty('angleStart', -0.75 * Math.PI);
+knob.setProperty('angleEnd', 0.75 * Math.PI);
+knob.setProperty('colorFG', '#88ff88');
+knob.setProperty('trackWidth', 0.4);
+knob.setProperty('valMin', 0);
+knob.setProperty('valMax', 100);
 
-Ui.Demo.prototype.createElement = function() {
-  'use strict';
-  Ui.prototype.createElement.apply(this, arguments);
-  this.addComponent(
-    new Ui.Pointer({
-      type: 'Rect',
-      pointerWidth: 3,
-      pointerHeight: this.width / 5,
-      offset: this.width / 2 - this.width / 3.3 - this.width / 10
-    })
-  );
+// Set initial value.
+knob.setValue(50);
 
-  this.addComponent(
-    new Ui.Scale(
-      this.merge(this.options, {
-        drawScale: false,
-        drawDial: true,
-        radius: this.width / 2.6
-      })
-    )
-  );
-
-  var circle = new Ui.El.Circle(
-    this.width / 3.3,
-    this.width / 2,
-    this.height / 2
-  );
-  this.el.node.appendChild(circle.node);
-  this.el.node.setAttribute('class', 'Demo');
+/*
+ * Event listener.
+ *
+ * Parameter 'knob' is the knob object which was
+ * actuated. Allows you to associate data with
+ * it to discern which of your knobs was actuated.
+ *
+ * Parameter 'value' is the value which was set
+ * by the user.
+ */
+var listener = function(knob, value) {
+  console.log(value);
 };
+
+knob.addListener(listener);
+
+// Create element node.
+var node = knob.node();
+
+// Add it to the DOM.
+var elem = document.getElementById('knob');
+elem.appendChild(node);

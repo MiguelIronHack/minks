@@ -122,33 +122,6 @@
   border-color: $pad-b-click;
 }
 // knob
-.Demo rect {
-  fill: #57c7b6;
-}
-
-.Demo g polygon {
-  opacity: 1;
-}
-
-.Demo circle {
-  fill: #256058;
-  stroke: #57c7b6;
-  stroke-width: 2;
-  filter: url(#dropshadow);
-}
-
-.Demo text {
-  font-size: 10px;
-  fill: #57c7b6;
-  font-family: sans-serif;
-  font-weight: 300;
-  -webkit-transition: all 0.1s ease-in-out;
-}
-
-.Demo text.active {
-  font-size: 15px;
-  -webkit-transition: all 0.3s ease-in-out;
-}
 
 // Register
 .register-container {

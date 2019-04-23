@@ -1,1 +1,1048 @@
-var Knob;Knob=function(e,t){var n=document.createElement("div");n.setAttribute("tabindex",0),e.parentNode.replaceChild(n,e),e.style.cssText="position: absolute; top: -10000px",e.setAttribute("tabindex",-1),n.appendChild(e);var r=this.settings=this._getSettings(e);this.value=e.value=r.min+r.range/2,this.input=e,this.min=r.min,this.ui=t;var i={keydown:this._handleKeyEvents.bind(this),mousewheel:this._handleWheelEvents.bind(this),DOMMouseScroll:this._handleWheelEvents.bind(this),touchstart:this._handleMove.bind(this,"touchmove","touchend"),mousedown:this._handleMove.bind(this,"mousemove","mouseup")};for(var s in i)n.addEventListener(s,i[s],!1);n.style.cssText="position: relative; width:"+r.width+"px;"+"height:"+r.height+"px;",t.init(n,r),this.container=n,this.changed(0)},Knob.prototype={_handleKeyEvents:function(e){var t=e.keyCode;if(t>=37&&t<=40){e.preventDefault();var n=1+e.shiftKey*9;this.changed({37:-1,38:1,39:1,40:-1}[t]*n)}},_handleWheelEvents:function(e){e.preventDefault();var t=-e.detail||e.wheelDeltaX,n=-e.detail||e.wheelDeltaY,r=t>0||n>0?1:t<0||n<0?-1:0;this.changed(r)},_handleMove:function(e,t){this.centerX=Math.floor(this.container.getBoundingClientRect().left)+document.body.scrollLeft+this.settings.width/2,this.centerY=Math.floor(this.container.getBoundingClientRect().top)+document.body.scrollTop+this.settings.height/2;var n=this._updateWhileMoving.bind(this),r=document.body;r.addEventListener(e,n,!1),r.addEventListener(t,function(){r.removeEventListener(e,n,!1)},!1)},_updateWhileMoving:function(e){e.preventDefault();var t=e.changedTouches?e.changedTouches[0]:e,n=this.centerX-t.pageX,r=this.centerY-t.pageY,i=Math.atan2(-r,-n)*180/Math.PI+90-this.settings.angleoffset,s;i<0&&(i+=360),i%=360,i<=this.settings.anglerange?s=Math.max(Math.min(1,i/this.settings.anglerange),0):s=+(i-this.settings.anglerange<(360-this.settings.anglerange)/2);var o=this.settings.range,u=this.min+o*s,a=(this.settings.max-this.min)/o;this.value=this.input.value=Math.round(u/a)*a,this.ui.update(s,this.value),this.triggerChange()},changed:function(e){this.input.value=this.limit(parseFloat(this.input.value)+e*(this.input.step||1)),this.value=this.input.value,this.ui.update(this._valueToPercent(),this.value),this.triggerChange()},update:function(e){this.input.value=this.limit(e),this.value=this.input.value,this.ui.update(this._valueToPercent(),this.value),this.triggerChange()},triggerChange:function(){if(document.createEventObject){var e=document.createEventObject();this.input.fireEvent("onchange",e)}else this.input.dispatchEvent(new Event("change"))},_valueToPercent:function(){return this.value!=null?100/this.settings.range*(this.value-this.min)/100:this.min},limit:function(e){return Math.min(Math.max(this.settings.min,e),this.settings.max)},_getSettings:function(e){var t;e.dataset.labels&&(t=e.dataset.labels.split(","));var n={max:t?t.length-1:parseFloat(e.max),min:t?0:parseFloat(e.min),step:parseFloat(e.step)||1,angleoffset:0,anglerange:360,labels:t};n.range=n.max-n.min;var r=e.dataset;for(var i in r)if(r.hasOwnProperty(i)&&i!=="labels"){var s=+r[i];n[i]=isNaN(s)?r[i]:s}return n}};var Ui=function(){};Ui.prototype={init:function(e,t){this.options||(this.options={}),this.merge(this.options,t),this.width=t.width,this.height=t.height,this.createElement(e);if(!this.components)return;this.components.forEach(function(e){e.init(this.el.node,t)}.bind(this))},merge:function(e,t){for(var n in t)t.hasOwnProperty(n)&&(e[n]=t[n]);return e},addComponent:function(e){this.components||(this.components=[]),this.components.push(e)},update:function(e,t){if(!this.components)return;this.components.forEach(function(n){n.update(e,t)})},createElement:function(e){this.el=new Ui.El(this.width,this.height),this.el.create("svg",{version:"1.2",baseProfile:"tiny",width:this.width,height:this.height}),this.appendTo(e)},appendTo:function(e){e.appendChild(this.el.node)}},Ui.Pointer=function(e){this.options=e||{},this.options.type&&Ui.El[this.options.type]||(this.options.type="Triangle")},Ui.Pointer.prototype=Object.create(Ui.prototype),Ui.Pointer.prototype.update=function(e){this.el.rotate(this.options.angleoffset+e*this.options.anglerange,this.width/2,this.height/2)},Ui.Pointer.prototype.createElement=function(e){this.options.pointerHeight||(this.options.pointerHeight=this.height/2),this.options.type=="Arc"?(this.el=new Ui.El.Arc(this.options),this.el.setAngle(this.options.size)):this.el=new Ui.El[this.options.type](this.options.pointerWidth,this.options.pointerHeight,this.width/2,this.options.pointerHeight/2+this.options.offset),this.el.addClassName("pointer"),this.appendTo(e)},Ui.Arc=function(e){this.options=e||{}},Ui.Arc.prototype=Object.create(Ui.prototype),Ui.Arc.prototype.createElement=function(e){this.el=new Ui.El.Arc(this.options),this.appendTo(e)},Ui.Arc.prototype.update=function(e){this.el.setAngle(e*this.options.anglerange)},Ui.Scale=function(e){this.options=this.merge({steps:e.range/e.step,radius:this.width/2,tickWidth:1,tickHeight:3},e),this.options.type=Ui.El[this.options.type||"Rect"]},Ui.Scale.prototype=Object.create(Ui.prototype),Ui.Scale.prototype.createElement=function(e){this.el=new Ui.El(this.width,this.height),this.startAngle=this.options.angleoffset||0,this.options.radius||(this.options.radius=this.height/2.5),this.el.create("g"),this.el.addClassName("scale");if(this.options.drawScale&&!this.options.labels){var t=this.options.anglerange/this.options.steps,n=this.options.steps+(this.options.anglerange==360?0:1);this.ticks=[];var r=this.options.type;for(var i=0;i<n;i++){var s=new r(this.options.tickWidth,this.options.tickHeight,this.width/2,this.options.tickHeight/2);s.rotate(this.startAngle+i*t,this.width/2,this.height/2),this.el.append(s),this.ticks.push(s)}}this.appendTo(e),this.options.drawDial&&this.dial()},Ui.Scale.prototype.dial=function(){var e=this.options.anglerange/this.options.steps,t=this.options.min,n=(this.options.max-t)/this.options.steps,r=this.options.steps+(this.options.anglerange==360?0:1);this.dials=[];if(!this.options.labels)for(var i=0;i<r;i++){var s=new Ui.El.Text(Math.abs(t+n*i),this.width/2-2.5,this.height/2-this.options.radius,5,5);this.el.append(s),s.rotate(this.startAngle+i*e,this.width/2,this.height/2),this.dials.push(s)}else{e=this.options.anglerange/(this.options.labels.length-1);for(var i=0;i<this.options.labels.length;i++){var o=this.options.labels[i],s=new Ui.El.Text(o,this.width/2-2.5,this.height/2-this.options.radius,5,5);this.el.append(s),s.rotate(this.startAngle+i*e,this.width/2,this.height/2),s.attr("text-anchor","middle"),this.dials.push(s)}}},Ui.Scale.prototype.update=function(e){this.ticks&&(this.activeStep&&this.activeStep.attr("class",""),this.activeStep=this.ticks[Math.round(this.options.steps*e)],this.activeStep.attr("class","active")),this.dials&&(this.activeDial&&this.activeDial.attr("class",""),this.activeDial=this.dials[Math.round(this.options.steps*e)],this.activeDial&&this.activeDial.attr("class","active"))},Ui.Text=function(){},Ui.Text.prototype=Object.create(Ui.prototype),Ui.Text.prototype.createElement=function(e){this.parentEl=e,this.el=new Ui.El.Text("",0,this.height),this.appendTo(e),this.el.center(e)},Ui.Text.prototype.update=function(e,t){this.el.node.textContent=t,this.el.center(this.parentEl)},Ui.El=function(){},Ui.El.prototype={svgNS:"http://www.w3.org/2000/svg",init:function(e,t,n,r){this.width=e,this.height=t,this.x=n||0,this.y=r||0,this.left=this.x-e/2,this.right=this.x+e/2,this.top=this.y-t/2,this.bottom=this.y+t/2},create:function(e,t){this.node=document.createElementNS(this.svgNS,e);for(var n in t)this.attr(n,t[n])},rotate:function(e,t,n){this.attr("transform","rotate("+e+" "+(t||this.x)+" "+(n||this.y)+")")},attr:function(e,t){if(t==null)return this.node.getAttribute(e)||"";this.node.setAttribute(e,t)},append:function(e){this.node.appendChild(e.node)},addClassName:function(e){this.attr("class",this.attr("class")+" "+e)}},Ui.El.Triangle=function(){this.init.apply(this,arguments),this.create("polygon",{points:this.left+","+this.bottom+" "+this.x+","+this.top+" "+this.right+","+this.bottom})},Ui.El.Triangle.prototype=Object.create(Ui.El.prototype),Ui.El.Rect=function(){this.init.apply(this,arguments),this.create("rect",{x:this.x-this.width/2,y:this.y,width:this.width,height:this.height})},Ui.El.Rect.prototype=Object.create(Ui.El.prototype),Ui.El.Circle=function(e,t,n){arguments.length==4&&(t=arguments[2],n=arguments[3]),this.init(e*2,e*2,t,n),this.create("circle",{cx:this.x,cy:this.y,r:e})},Ui.El.Circle.prototype=Object.create(Ui.El.prototype),Ui.El.Text=function(e,t,n,r,i){this.create("text",{x:t,y:n,width:r,height:i}),this.node.textContent=e},Ui.El.Text.prototype=Object.create(Ui.El.prototype),Ui.El.Text.prototype.center=function(e){var t=e.getAttribute("width"),n=e.getAttribute("height");this.attr("x",t/2-this.node.getBBox().width/2),this.attr("y",n/2+this.node.getBBox().height/4)},Ui.El.Arc=function(e){this.options=e,this.options.angleoffset=(e.angleoffset||0)-(this.options.labels?0:90),this.create("path")},Ui.El.Arc.prototype=Object.create(Ui.El.prototype),Ui.El.Arc.prototype.setAngle=function(e){this.attr("d",this.getCoords(e))},Ui.El.Arc.prototype.getCoords=function(e){function p(e,t){return{x:o+e*Math.cos(t),y:o+e*Math.sin(t)}}var t=this.options.angleoffset,n=this.options.outerRadius||this.options.width/2,r=this.options.innerRadius||this.options.width/2-this.options.arcWidth,i=Math.PI*t/180,s=Math.PI*(t+e)/180,o=this.options.width/2,u=p(n,s),a=p(n,i),f=p(r,i),l=p(r,s),c="M"+u.x+","+u.y,h=e<180?0:1;return c+=" A"+n+","+n+" 0 "+h+" 0 "+a.x+","+a.y,c+="L"+f.x+","+f.y,c+=" A"+r+","+r+" 0 "+h+" 1 "+l.x+","+l.y,c+="L"+u.x+","+u.y,c};
+/*
+ * pure-knob
+ *
+ * Canvas-based JavaScript UI element implementing touch,
+ * keyboard, mouse and scroll wheel support.
+ *
+ * Copyright 2018 Andre Plötze
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+'use strict';
+
+/*
+ * Custom user interface elements for pure knob.
+ */
+function PureKnob() {
+  /*
+   * Creates a bar graph element.
+   */
+  this.createBarGraph = function(width, height) {
+    var heightString = height.toString();
+    var widthString = width.toString();
+    var canvas = document.createElement('canvas');
+    var div = document.createElement('div');
+    div.style.display = 'inline-block';
+    div.style.height = heightString + 'px';
+    div.style.position = 'relative';
+    div.style.textAlign = 'center';
+    div.style.width = widthString + 'px';
+    div.appendChild(canvas);
+
+    /*
+     * The bar graph object.
+     */
+    var graph = {
+      _canvas: canvas,
+      _div: div,
+      _height: height,
+      _width: width,
+
+      /*
+       * Properties of this bar graph.
+       */
+      _properties: {
+        colorBG: '#181818',
+        colorFG: '#ff8800',
+        colorMarkers: '#888888',
+        markerStart: 0,
+        markerEnd: 100,
+        markerStep: 20,
+        trackWidth: 0.5,
+        valMin: 0,
+        valMax: 100,
+        valPeaks: [],
+        val: 0
+      },
+
+      /*
+       * Returns the peak values for this bar graph.
+       */
+      getPeaks: function() {
+        var properties = this._properties;
+        var peaks = properties.valPeaks;
+        var numPeaks = peaks.length;
+        var peaksCopy = [];
+
+        /*
+         * Iterate over the peak values and copy them.
+         */
+        for (var i = 0; i < numPeaks; i++) {
+          var peak = peaks[i];
+          peaksCopy.push(peak);
+        }
+
+        return peaksCopy;
+      },
+
+      /*
+       * Returns the value of a property of this bar graph.
+       */
+      getProperty: function(key) {
+        var properties = this._properties;
+        var value = properties[key];
+        return value;
+      },
+
+      /*
+       * Returns the current value of the bar graph.
+       */
+      getValue: function() {
+        var properties = this._properties;
+        var value = properties.val;
+        return value;
+      },
+
+      /*
+       * Return the DOM node representing this bar graph.
+       */
+      node: function() {
+        var div = this._div;
+        return div;
+      },
+
+      /*
+       * Redraw the bar graph on the canvas.
+       */
+      redraw: function() {
+        this.resize();
+        var properties = this._properties;
+        var colorTrack = properties.colorBG;
+        var colorFilling = properties.colorFG;
+        var colorMarkers = properties.colorMarkers;
+        var markerStart = properties.markerStart;
+        var markerEnd = properties.markerEnd;
+        var markerStep = properties.markerStep;
+        var trackWidth = properties.trackWidth;
+        var valMin = properties.valMin;
+        var valMax = properties.valMax;
+        var peaks = properties.valPeaks;
+        var value = properties.val;
+        var height = this._height;
+        var width = this._width;
+        var lineWidth = Math.round(trackWidth * height);
+        var halfWidth = 0.5 * lineWidth;
+        var centerY = 0.5 * height;
+        var lineTop = centerY - halfWidth;
+        var lineBottom = centerY + halfWidth;
+        var relativeValue = (value - valMin) / (valMax - valMin);
+        var fillingEnd = width * relativeValue;
+        var numPeaks = peaks.length;
+        var canvas = this._canvas;
+        var ctx = canvas.getContext('2d');
+
+        /*
+         * Clear the canvas.
+         */
+        ctx.clearRect(0, 0, width, height);
+
+        /*
+         * Check if markers should be drawn.
+         */
+        if (
+          (markerStart !== null) &
+          (markerEnd !== null) &
+          (markerStep !== null) &
+          (markerStep !== 0)
+        ) {
+          /*
+           * Draw the markers.
+           */
+          for (var v = markerStart; v <= markerEnd; v += markerStep) {
+            var relativePos = (v - valMin) / (valMax - valMin);
+            var pos = Math.round(width * relativePos);
+            ctx.beginPath();
+            ctx.moveTo(pos, 0);
+            ctx.lineTo(pos, height);
+            ctx.lineCap = 'butt';
+            ctx.lineWidth = '2';
+            ctx.strokeStyle = colorMarkers;
+            ctx.stroke();
+          }
+        }
+
+        /*
+         * Draw the track.
+         */
+        ctx.beginPath();
+        ctx.rect(0, lineTop, width, lineWidth);
+        ctx.fillStyle = colorTrack;
+        ctx.fill();
+
+        /*
+         * Draw the filling.
+         */
+        ctx.beginPath();
+        ctx.rect(0, lineTop, fillingEnd, lineWidth);
+        ctx.fillStyle = colorFilling;
+        ctx.fill();
+
+        /*
+         * Draw the peaks.
+         */
+        for (var i = 0; i < numPeaks; i++) {
+          var peak = peaks[i];
+          var relativePeak = (peak - valMin) / (valMax - valMin);
+          var pos = Math.round(width * relativePeak);
+          ctx.beginPath();
+          ctx.moveTo(pos, lineTop);
+          ctx.lineTo(pos, lineBottom);
+          ctx.lineCap = 'butt';
+          ctx.lineWidth = '2';
+          ctx.strokeStyle = colorFilling;
+          ctx.stroke();
+        }
+      },
+
+      /*
+       * This is called as the canvas or the surrounding DIV is resized.
+       */
+      resize: function() {
+        var canvas = this._canvas;
+        canvas.style.height = '100%';
+        canvas.style.width = '100%';
+        canvas.height = this._height;
+        canvas.width = this._width;
+      },
+
+      /*
+       * Sets the peak values of this bar graph.
+       */
+      setPeaks: function(peaks) {
+        var properties = this._properties;
+        var peaksCopy = [];
+        var numPeaks = peaks.length;
+
+        /*
+         * Iterate over the peak values and append them to the array.
+         */
+        for (var i = 0; i < numPeaks; i++) {
+          var peak = peaks[i];
+          peaksCopy.push(peak);
+        }
+
+        this.setProperty('valPeaks', peaksCopy);
+      },
+
+      /*
+       * Sets the value of a property of this bar graph.
+       */
+      setProperty: function(key, value) {
+        this._properties[key] = value;
+        this.redraw();
+      },
+
+      /*
+       * Sets the value of this bar graph.
+       */
+      setValue: function(value) {
+        var properties = this._properties;
+        var valMin = properties.valMin;
+        var valMax = properties.valMax;
+
+        /*
+         * Clamp the actual value into the [valMin; valMax] range.
+         */
+        if (value < valMin) value = valMin;
+        else if (value > valMax) value = valMax;
+
+        value = Math.round(value);
+        this.setProperty('val', value);
+      }
+    };
+
+    /*
+     * This is called when the size of the canvas changes.
+     */
+    var resizeListener = function(e) {
+      graph.redraw();
+    };
+
+    canvas.addEventListener('resize', resizeListener);
+    return graph;
+  };
+
+  /*
+   * Creates a knob element.
+   */
+  this.createKnob = function(width, height) {
+    var heightString = height.toString();
+    var widthString = width.toString();
+    var smaller = width < height ? width : height;
+    var fontSize = 0.2 * smaller;
+    var fontSizeString = fontSize.toString();
+    var canvas = document.createElement('canvas');
+    var div = document.createElement('div');
+    div.style.display = 'inline-block';
+    div.style.height = heightString + 'px';
+    div.style.position = 'relative';
+    div.style.textAlign = 'center';
+    div.style.width = widthString + 'px';
+    div.appendChild(canvas);
+    var input = document.createElement('input');
+    input.style.appearance = 'textfield';
+    input.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+    input.style.border = 'none';
+    input.style.color = '#ff8800';
+    input.style.fontFamily = 'sans-serif';
+    input.style.fontSize = fontSizeString + 'px';
+    input.style.height = heightString + 'px';
+    input.style.margin = 'auto';
+    input.style.padding = '0px';
+    input.style.textAlign = 'center';
+    input.style.width = widthString + 'px';
+    var inputMode = document.createAttribute('inputmode');
+    inputMode.value = 'numeric';
+    input.setAttributeNode(inputMode);
+    var inputDiv = document.createElement('div');
+    inputDiv.style.bottom = '0px';
+    inputDiv.style.display = 'none';
+    inputDiv.style.left = '0px';
+    inputDiv.style.position = 'absolute';
+    inputDiv.style.right = '0px';
+    inputDiv.style.top = '0px';
+    inputDiv.appendChild(input);
+    div.appendChild(inputDiv);
+
+    /*
+     * The knob object.
+     */
+    var knob = {
+      _canvas: canvas,
+      _div: div,
+      _height: height,
+      _input: input,
+      _inputDiv: inputDiv,
+      _listeners: [],
+      _mousebutton: false,
+      _previousVal: 0,
+      _timeout: null,
+      _timeoutDoubleTap: null,
+      _touchCount: 0,
+      _width: width,
+
+      /*
+       * Notify listeners about value changes.
+       */
+      _notifyUpdate: function() {
+        var properties = this._properties;
+        var value = properties.val;
+        var listeners = this._listeners;
+        var numListeners = listeners.length;
+
+        /*
+         * Call all listeners.
+         */
+        for (var i = 0; i < numListeners; i++) {
+          var listener = listeners[i];
+
+          /*
+           * Call listener, if it exists.
+           */
+          if (listener !== null) listener(this, value);
+        }
+      },
+
+      /*
+       * Properties of this knob.
+       */
+      _properties: {
+        angleEnd: 2.0 * Math.PI,
+        angleOffset: -0.5 * Math.PI,
+        angleStart: 0,
+        colorBG: '#181818',
+        colorFG: '#ff8800',
+        fnStringToValue: function(string) {
+          return parseInt(string);
+        },
+        fnValueToString: function(value) {
+          return value.toString();
+        },
+        needle: false,
+        readonly: false,
+        textScale: 1.0,
+        trackWidth: 0.4,
+        valMin: 0,
+        valMax: 100,
+        val: 0
+      },
+
+      /*
+       * Abort value change, restoring the previous value.
+       */
+      abort: function() {
+        var previousValue = this._previousVal;
+        var properties = this._properties;
+        properties.val = previousValue;
+        this.redraw();
+      },
+
+      /*
+       * Adds an event listener.
+       */
+      addListener: function(listener) {
+        var listeners = this._listeners;
+        listeners.push(listener);
+      },
+
+      /*
+       * Commit value, indicating that it is no longer temporary.
+       */
+      commit: function() {
+        var properties = this._properties;
+        var value = properties.val;
+        this._previousVal = value;
+        this.redraw();
+        this._notifyUpdate();
+      },
+
+      /*
+       * Returns the value of a property of this knob.
+       */
+      getProperty: function(key) {
+        var properties = this._properties;
+        var value = properties[key];
+        return value;
+      },
+
+      /*
+       * Returns the current value of the knob.
+       */
+      getValue: function() {
+        var properties = this._properties;
+        var value = properties.val;
+        return value;
+      },
+
+      /*
+       * Return the DOM node representing this knob.
+       */
+      node: function() {
+        var div = this._div;
+        return div;
+      },
+
+      /*
+       * Redraw the knob on the canvas.
+       */
+      redraw: function() {
+        this.resize();
+        var properties = this._properties;
+        var needle = properties.needle;
+        var angleStart = properties.angleStart;
+        var angleOffset = properties.angleOffset;
+        var angleEnd = properties.angleEnd;
+        var actualStart = angleStart + angleOffset;
+        var actualEnd = angleEnd + angleOffset;
+        var value = properties.val;
+        var valueToString = properties.fnValueToString;
+        var valueStr = valueToString(value);
+        var valMin = properties.valMin;
+        var valMax = properties.valMax;
+        var relValue = (value - valMin) / (valMax - valMin);
+        var relAngle = relValue * (angleEnd - angleStart);
+        var angleVal = actualStart + relAngle;
+        var colorTrack = properties.colorBG;
+        var colorFilling = properties.colorFG;
+        var textScale = properties.textScale;
+        var trackWidth = properties.trackWidth;
+        var height = this._height;
+        var width = this._width;
+        var smaller = width < height ? width : height;
+        var centerX = 0.5 * width;
+        var centerY = 0.5 * height;
+        var radius = 0.4 * smaller;
+        var lineWidth = Math.round(trackWidth * radius);
+        var fontSize = 0.2 * smaller * textScale;
+        var fontSizeString = fontSize.toString();
+        var canvas = this._canvas;
+        var ctx = canvas.getContext('2d');
+
+        /*
+         * Clear the canvas.
+         */
+        ctx.clearRect(0, 0, width, height);
+
+        /*
+         * Draw the track.
+         */
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, radius, actualStart, actualEnd);
+        ctx.lineCap = 'butt';
+        ctx.lineWidth = lineWidth;
+        ctx.strokeStyle = colorTrack;
+        ctx.stroke();
+
+        /*
+         * Draw the filling.
+         */
+        ctx.beginPath();
+
+        /*
+         * Check if we're in needle mode.
+         */
+        if (needle)
+          ctx.arc(centerX, centerY, radius, angleVal - 0.1, angleVal + 0.1);
+        else ctx.arc(centerX, centerY, radius, actualStart, angleVal);
+
+        ctx.lineCap = 'butt';
+        ctx.lineWidth = lineWidth;
+        ctx.strokeStyle = colorFilling;
+        ctx.stroke();
+
+        /*
+         * Draw the number.
+         */
+        ctx.font = fontSizeString + 'px sans-serif';
+        ctx.fillStyle = colorFilling;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(valueStr, centerX, centerY);
+
+        /*
+         * Set the color and font size of the input element.
+         */
+        var elemInput = this._input;
+        elemInput.style.color = colorFilling;
+        elemInput.style.fontSize = fontSizeString + 'px';
+      },
+
+      /*
+       * This is called as the canvas or the surrounding DIV is resized.
+       */
+      resize: function() {
+        var canvas = this._canvas;
+        canvas.style.height = '100%';
+        canvas.style.width = '100%';
+        canvas.height = this._height;
+        canvas.width = this._width;
+      },
+
+      /*
+       * Sets the value of a property of this knob.
+       */
+      setProperty: function(key, value) {
+        this._properties[key] = value;
+        this.redraw();
+      },
+
+      /*
+       * Sets the value of this knob.
+       */
+      setValue: function(value) {
+        this.setValueFloating(value);
+        this.commit();
+      },
+
+      /*
+       * Sets floating (temporary) value of this knob.
+       */
+      setValueFloating: function(value) {
+        var properties = this._properties;
+        var valMin = properties.valMin;
+        var valMax = properties.valMax;
+
+        /*
+         * Clamp the actual value into the [valMin; valMax] range.
+         */
+        if (value < valMin) value = valMin;
+        else if (value > valMax) value = valMax;
+
+        value = Math.round(value);
+        this.setProperty('val', value);
+      }
+    };
+
+    /*
+     * Convert mouse event to value.
+     */
+    var mouseEventToValue = function(e, properties) {
+      var canvas = e.target;
+      var width = canvas.scrollWidth;
+      var height = canvas.scrollHeight;
+      var centerX = 0.5 * width;
+      var centerY = 0.5 * height;
+      var x = e.offsetX;
+      var y = e.offsetY;
+      var relX = x - centerX;
+      var relY = y - centerY;
+      var angleStart = properties.angleStart;
+      var angleEnd = properties.angleEnd;
+      var angleDiff = angleEnd - angleStart;
+      var angle = Math.atan2(relX, -relY) - angleStart;
+      var twoPi = 2.0 * Math.PI;
+
+      /*
+       * Make negative angles positive.
+       */
+      if (angle < 0) {
+        if (angleDiff >= twoPi) angle += twoPi;
+        else angle = 0;
+      }
+
+      var valMin = properties.valMin;
+      var valMax = properties.valMax;
+      var value = (angle / angleDiff) * (valMax - valMin) + valMin;
+
+      /*
+       * Clamp values into valid interval.
+       */
+      if (value < valMin) value = valMin;
+      else if (value > valMax) value = valMax;
+
+      return value;
+    };
+
+    /*
+     * Convert touch event to value.
+     */
+    var touchEventToValue = function(e, properties) {
+      var canvas = e.target;
+      var rect = canvas.getBoundingClientRect();
+      var offsetX = rect.left;
+      var offsetY = rect.top;
+      var width = canvas.scrollWidth;
+      var height = canvas.scrollHeight;
+      var centerX = 0.5 * width;
+      var centerY = 0.5 * height;
+      var touches = e.targetTouches;
+      var touch = null;
+
+      /*
+       * If there are touches, extract the first one.
+       */
+      if (touches.length > 0) touch = touches.item(0);
+
+      var x = 0.0;
+      var y = 0.0;
+
+      /*
+       * If a touch was extracted, calculate coordinates relative to
+       * the element position.
+       */
+      if (touch !== null) {
+        var touchX = touch.pageX;
+        x = touchX - offsetX;
+        var touchY = touch.pageY;
+        y = touchY - offsetY;
+      }
+
+      var relX = x - centerX;
+      var relY = y - centerY;
+      var angleStart = properties.angleStart;
+      var angleEnd = properties.angleEnd;
+      var angleDiff = angleEnd - angleStart;
+      var angle = Math.atan2(relX, -relY) - angleStart;
+      var twoPi = 2.0 * Math.PI;
+
+      /*
+       * Make negative angles positive.
+       */
+      if (angle < 0) {
+        if (angleDiff >= twoPi) angle += twoPi;
+        else angle = 0;
+      }
+
+      var valMin = properties.valMin;
+      var valMax = properties.valMax;
+      var value = (angle / angleDiff) * (valMax - valMin) + valMin;
+
+      /*
+       * Clamp values into valid interval.
+       */
+      if (value < valMin) value = valMin;
+      else if (value > valMax) value = valMax;
+
+      return value;
+    };
+
+    /*
+     * Show input element on double click.
+     */
+    var doubleClickListener = function(e) {
+      var properties = knob._properties;
+      var readonly = properties.readonly;
+
+      /*
+       * If knob is not read-only, display input element.
+       */
+      if (!readonly) {
+        e.preventDefault();
+        var inputDiv = knob._inputDiv;
+        inputDiv.style.display = 'block';
+        var inputElem = knob._input;
+        inputElem.focus();
+        knob.redraw();
+      }
+    };
+
+    /*
+     * This is called when the mouse button is depressed.
+     */
+    var mouseDownListener = function(e) {
+      var btn = e.buttons;
+
+      /*
+       * It is a left-click.
+       */
+      if (btn === 1) {
+        var properties = knob._properties;
+        var readonly = properties.readonly;
+
+        /*
+         * If knob is not read-only, process mouse event.
+         */
+        if (!readonly) {
+          e.preventDefault();
+          var val = mouseEventToValue(e, properties);
+          knob.setValueFloating(val);
+        }
+
+        knob._mousebutton = true;
+      }
+
+      /*
+       * It is a middle click.
+       */
+      if (btn === 4) {
+        var properties = knob._properties;
+        var readonly = properties.readonly;
+
+        /*
+         * If knob is not read-only, display input element.
+         */
+        if (!readonly) {
+          e.preventDefault();
+          var inputDiv = knob._inputDiv;
+          inputDiv.style.display = 'block';
+          var inputElem = knob._input;
+          inputElem.focus();
+          knob.redraw();
+        }
+      }
+    };
+
+    /*
+     * This is called when the mouse cursor is moved.
+     */
+    var mouseMoveListener = function(e) {
+      var btn = knob._mousebutton;
+
+      /*
+       * Only process event, if mouse button is depressed.
+       */
+      if (btn) {
+        var properties = knob._properties;
+        var readonly = properties.readonly;
+
+        /*
+         * If knob is not read-only, process mouse event.
+         */
+        if (!readonly) {
+          e.preventDefault();
+          var val = mouseEventToValue(e, properties);
+          knob.setValueFloating(val);
+        }
+      }
+    };
+
+    /*
+     * This is called when the mouse button is released.
+     */
+    var mouseUpListener = function(e) {
+      var btn = knob._mousebutton;
+
+      /*
+       * Only process event, if mouse button was depressed.
+       */
+      if (btn) {
+        var properties = knob._properties;
+        var readonly = properties.readonly;
+
+        /*
+         * If knob is not read only, process mouse event.
+         */
+        if (!readonly) {
+          e.preventDefault();
+          var val = mouseEventToValue(e, properties);
+          knob.setValue(val);
+        }
+      }
+
+      knob._mousebutton = false;
+    };
+
+    /*
+     * This is called when the drag action is canceled.
+     */
+    var mouseCancelListener = function(e) {
+      var btn = knob._mousebutton;
+
+      /*
+       * Abort action if mouse button was depressed.
+       */
+      if (btn) {
+        knob.abort();
+        knob._mousebutton = false;
+      }
+    };
+
+    /*
+     * This is called when a user touches the element.
+     */
+    var touchStartListener = function(e) {
+      var properties = knob._properties;
+      var readonly = properties.readonly;
+
+      /*
+       * If knob is not read-only, process touch event.
+       */
+      if (!readonly) {
+        var touches = e.touches;
+        var numTouches = touches.length;
+        var singleTouch = numTouches === 1;
+
+        /*
+         * Only process single touches, not multi-touch
+         * gestures.
+         */
+        if (singleTouch) {
+          knob._mousebutton = true;
+
+          /*
+           * If this is the first touch, bind double tap
+           * interval.
+           */
+          if (knob._touchCount === 0) {
+            /*
+             * This is executed when the double tap
+             * interval times out.
+             */
+            var f = function() {
+              /*
+               * If control was tapped exactly
+               * twice, enable on-screen keyboard.
+               */
+              if (knob._touchCount === 2) {
+                var properties = knob._properties;
+                var readonly = properties.readonly;
+
+                /*
+                 * If knob is not read-only,
+                 * display input element.
+                 */
+                if (!readonly) {
+                  e.preventDefault();
+                  var inputDiv = knob._inputDiv;
+                  inputDiv.style.display = 'block';
+                  var inputElem = knob._input;
+                  inputElem.focus();
+                  knob.redraw();
+                }
+              }
+
+              knob._touchCount = 0;
+            };
+
+            var timeout = knob._timeoutDoubleTap;
+            window.clearTimeout(timeout);
+            timeout = window.setTimeout(f, 500);
+            knob._timeoutDoubleTap = timeout;
+          }
+
+          knob._touchCount++;
+          var val = touchEventToValue(e, properties);
+          knob.setValueFloating(val);
+        }
+      }
+    };
+
+    /*
+     * This is called when a user moves a finger on the element.
+     */
+    var touchMoveListener = function(e) {
+      var btn = knob._mousebutton;
+
+      /*
+       * Only process event, if mouse button is depressed.
+       */
+      if (btn) {
+        var properties = knob._properties;
+        var readonly = properties.readonly;
+
+        /*
+         * If knob is not read-only, process touch event.
+         */
+        if (!readonly) {
+          var touches = e.touches;
+          var numTouches = touches.length;
+          var singleTouch = numTouches === 1;
+
+          /*
+           * Only process single touches, not multi-touch
+           * gestures.
+           */
+          if (singleTouch) {
+            e.preventDefault();
+            var val = touchEventToValue(e, properties);
+            knob.setValueFloating(val);
+          }
+        }
+      }
+    };
+
+    /*
+     * This is called when a user lifts a finger off the element.
+     */
+    var touchEndListener = function(e) {
+      var btn = knob._mousebutton;
+
+      /*
+       * Only process event, if mouse button was depressed.
+       */
+      if (btn) {
+        var properties = knob._properties;
+        var readonly = properties.readonly;
+
+        /*
+         * If knob is not read only, process touch event.
+         */
+        if (!readonly) {
+          var touches = e.touches;
+          var numTouches = touches.length;
+          var singleTouch = numTouches === 1;
+
+          /*
+           * Only process single touches, not multi-touch
+           * gestures.
+           */
+          if (singleTouch) {
+            e.preventDefault();
+            knob._mousebutton = false;
+            knob.commit();
+          }
+        }
+      }
+
+      knob._mousebutton = false;
+    };
+
+    /*
+     * This is called when a user cancels a touch action.
+     */
+    var touchCancelListener = function(e) {
+      var btn = knob._mousebutton;
+
+      /*
+       * Abort action if mouse button was depressed.
+       */
+      if (btn) {
+        knob.abort();
+        knob._touchCount = 0;
+        var timeout = knob._timeoutDoubleTap;
+        window.clearTimeout(timeout);
+      }
+
+      knob._mousebutton = false;
+    };
+
+    /*
+     * This is called when the size of the canvas changes.
+     */
+    var resizeListener = function(e) {
+      knob.redraw();
+    };
+
+    /*
+     * This is called when the mouse wheel is moved.
+     */
+    var scrollListener = function(e) {
+      var readonly = knob.getProperty('readonly');
+
+      /*
+       * If knob is not read only, process mouse wheel event.
+       */
+      if (!readonly) {
+        e.preventDefault();
+        var delta = e.deltaY;
+        var direction = delta > 0 ? 1 : delta < 0 ? -1 : 0;
+        var val = knob.getValue();
+        val += direction;
+        knob.setValueFloating(val);
+
+        /*
+         * Perform delayed commit.
+         */
+        var commit = function() {
+          knob.commit();
+        };
+
+        var timeout = knob._timeout;
+        window.clearTimeout(timeout);
+        timeout = window.setTimeout(commit, 250);
+        knob._timeout = timeout;
+      }
+    };
+
+    /*
+     * This is called when the user presses a key on the keyboard.
+     */
+    var keyPressListener = function(e) {
+      var kc = e.keyCode;
+
+      /*
+       * Hide input element when user presses enter or escape.
+       */
+      if (kc === 13 || kc === 27) {
+        var inputDiv = knob._inputDiv;
+        inputDiv.style.display = 'none';
+        var input = e.target;
+
+        /*
+         * Only evaluate value when user pressed enter.
+         */
+        if (kc === 13) {
+          var properties = knob._properties;
+          var value = input.value;
+          var stringToValue = properties.fnStringToValue;
+          var val = stringToValue(value);
+          var valid = isFinite(val);
+
+          /*
+           * Check if input is a valid number.
+           */
+          if (valid) knob.setValue(val);
+        }
+
+        input.value = '';
+      }
+    };
+
+    canvas.addEventListener('dblclick', doubleClickListener);
+    canvas.addEventListener('mousedown', mouseDownListener);
+    canvas.addEventListener('mouseleave', mouseCancelListener);
+    canvas.addEventListener('mousemove', mouseMoveListener);
+    canvas.addEventListener('mouseup', mouseUpListener);
+    canvas.addEventListener('resize', resizeListener);
+    canvas.addEventListener('touchstart', touchStartListener);
+    canvas.addEventListener('touchmove', touchMoveListener);
+    canvas.addEventListener('touchend', touchEndListener);
+    canvas.addEventListener('touchcancel', touchCancelListener);
+    canvas.addEventListener('wheel', scrollListener);
+    input.addEventListener('keypress', keyPressListener);
+    return knob;
+  };
+}
+
+var pureknob = new PureKnob();

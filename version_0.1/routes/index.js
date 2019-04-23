@@ -19,7 +19,7 @@ router.get('/play', (req, res, next) => {
       'MIDI_controller.js',
       'drum_machine.js',
       'script.js',
-      'knob-min.js'
+      'knob.js'
     ]
   });
 });
