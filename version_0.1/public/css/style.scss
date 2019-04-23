@@ -86,6 +86,12 @@
     padding: 2.2rem 0;
   }
 }
+.synth-section {
+  .dropdown {
+    padding: 1rem;
+    margin: 1rem auto;
+  }
+}
 .synth-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -115,6 +121,8 @@
   background: $pad-bg-click;
   border-color: $pad-b-click;
 }
+// knob
+
 // Register
 .register-container {
   width: 100%;
