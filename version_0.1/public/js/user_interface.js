@@ -1,7 +1,7 @@
 export class KeyBoard {
   constructor(notes) {
     this.noteScale = notes;
-    this.synthType = "triangle8";
+    this.synthType = "sawtooth";
 
     this.synthArray = this.createSynths();
     this.keyState = new Object();
