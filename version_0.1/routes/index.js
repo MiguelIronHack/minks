@@ -13,7 +13,7 @@ router.get("/", (req, res, next) => {
 router.get("/play", (req, res, next) => {
   res.render("play", {
     script: [
-      "user_keyboard.js",
+      "user_interface.js",
       "play.js",
       "oscillator.js",
       "MIDI_controller.js",
