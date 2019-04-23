@@ -1,45 +1,5 @@
 @import 'config';
-@import 'nav';
 @import 'forum';
-
-// Signup page
-.signup-page {
-  margin: 1rem 10vw;
-  display: flex;
-  flex-direction: column;
-  .form {
-    margin: 1rem auto;
-    border-radius: 1rem;
-    border: 2px solid $tcolor;
-    min-height: min-content;
-    min-width: min-content;
-  }
-  .title {
-    text-align: center;
-  }
-  .form-icon {
-    margin: 1rem auto 0.5rem;
-    align-self: center;
-  }
-  .form-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    & > * {
-      margin: 0.4rem;
-    }
-    .account-msg {
-      text-align: center;
-    }
-    .account-msg > a {
-      color: darken($color: $dcolor, $amount: 10);
-      &:hover {
-        color: lighten($color: $dcolor, $amount: 20);
-      }
-    }
-  }
-}
 
 /* Index */
 .index-showcase {
@@ -149,66 +109,15 @@
 
 .synth-pad:active {
   color: $dcolor;
-  background: #000;
-}
-/* login */
-.login h1 {
-  text-align: center;
-  margin: 1rem 0;
-}
-.form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid $dcolor;
-  border-radius: 1rem;
-  width: 40vw;
-  height: 40vh;
-  min-height: 15rem;
-  min-width: 15rem;
-  margin: 1rem auto;
-
-  & > * {
-    margin: 0.4rem auto;
-  }
+  background: #f4f4f4;
+  border: 15px solid #b0dce9;
+  @include easeOut;
 }
 
-.active:nth-child(even) {
-  background: #808000;
+.active:nth-child() {
+  background: #f4f4f4;
 }
-.active:nth-child(odd) {
-  background: #6568ff;
-}
-
-.burger-menu > * > *:not(.menu-button) {
-  @include easeOut();
-  display: flex;
-}
-
-.burger-menu > *:nth-last-child(1) {
-  display: none;
-}
-
-@include mediaMd {
-  .burger-menu > *:nth-last-child(1) {
-    display: flex;
-  }
-  .burger-menu > * > *:not(.menu-button) {
-    display: none;
-    @include easeOut();
-  }
-  .index-main-nav {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    background: $dcolor;
-    font-size: 2.2rem;
-  }
-  .index-main-nav-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0 5vw;
-  }
+// Register
+.register-container {
+  width: 100%;
 }

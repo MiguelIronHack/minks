@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/css?family=Dokdo");
 @import url("http://overpass-30e2.kxcdn.com/overpass.css");
 * {
   box-sizing: border-box;
@@ -6,149 +5,21 @@
   margin: 0; }
 
 body {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  background: #121420;
-  color: #d8d8db;
-  font-family: 'Dokdo', cursive;
-  font-size: 1.5rem;
-  align-content: center; }
+  font-family: 'overpass';
+  width: 100%; }
 
 .display {
   display: flex; }
 
-h1 {
-  font-size: 3.7rem; }
-
-h2 {
-  font-size: 2.6rem; }
-
-h3 {
-  font-size: 2.3rem; }
-
-h4 {
-  font-size: 2rem; }
+a {
+  text-decoration: none; }
 
 ol,
 ul {
   list-style: none; }
 
-a {
-  text-decoration: none;
-  color: #121420;
-  transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1); }
-
-a:hover {
-  color: #121420;
-  transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1); }
-
-p {
-  font-family: 'overpass'; }
-
-textarea {
-  min-height: 2rem; }
-
-select,
-input,
-textarea {
-  font-size: 1rem;
-  border: 2px solid #1b2432;
-  border-radius: 1rem;
-  text-align: center;
-  padding: 0.4rem 1rem;
-  height: min-content;
-  background: #8ba0c1; }
-  select:focus,
-  input:focus,
-  textarea:focus {
-    background: #dee4ed; }
-  select::placeholder,
-  input::placeholder,
-  textarea::placeholder {
-    color: #121420; }
-
 textarea {
   resize: none; }
-
-.btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 0;
-  padding: 0.4rem 1rem;
-  border-radius: 1rem;
-  font-family: 'Dokdo', cursive;
-  font-size: 1.5rem;
-  background: #486085;
-  transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1); }
-  .btn:hover {
-    border-color: #d8d8db;
-    background: #8ba0c1;
-    border-radius: 1rem;
-    font-size: 1.7rem;
-    padding: 0.4rem 1rem;
-    transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1); }
-
-.error-msg {
-  color: #bb0000; }
-
-.b-r {
-  border-radius: 1rem; }
-
-.footer {
-  margin-top: auto;
-  background: #d8d8db;
-  color: #121420;
-  font-size: 1rem;
-  padding: 0.4rem; }
-
-/* Navbar */
-.index-main-nav {
-  background: #d8d8db;
-  font-size: 2.2rem; }
-
-.index-main-nav-content {
-  display: flex;
-  justify-content: space-between;
-  margin: 0 5vw; }
-
-.burger-menu {
-  display: flex;
-  padding: 0.4rem; }
-
-.menu-button {
-  display: inline-block;
-  padding: 0.4rem 0; }
-
-.burger-icon {
-  position: relative;
-  margin-top: 8px;
-  margin-bottom: 8px;
-  user-select: none; }
-  .burger-icon, .burger-icon:before, .burger-icon:after {
-    display: block;
-    width: 25px;
-    height: 3px;
-    background-color: #444;
-    transition-property: background-color, transform;
-    transition-duration: 0.3s; }
-  .burger-icon:before, .burger-icon:after {
-    position: absolute;
-    content: ''; }
-  .burger-icon:before {
-    top: -8px; }
-  .burger-icon:after {
-    top: 8px; }
-
-.menu-button.is-active .burger-icon {
-  background-color: transparent; }
-
-.menu-button.is-active .burger-icon:before {
-  transform: translateY(8px) rotate(45deg); }
-
-.menu-button.is-active .burger-icon:after {
-  transform: translateY(-8px) rotate(-45deg); }
 
 .forum-main {
   margin-bottom: 1rem; }
@@ -195,35 +66,6 @@ textarea {
   align-items: center; }
   .form-container > .btn {
     font-size: 1.3rem; }
-
-.signup-page {
-  margin: 1rem 10vw;
-  display: flex;
-  flex-direction: column; }
-  .signup-page .form {
-    margin: 1rem auto;
-    border-radius: 1rem;
-    border: 2px solid #1b2432;
-    min-height: min-content;
-    min-width: min-content; }
-  .signup-page .title {
-    text-align: center; }
-  .signup-page .form-icon {
-    margin: 1rem auto 0.5rem;
-    align-self: center; }
-  .signup-page .form-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; }
-    .signup-page .form-container > * {
-      margin: 0.4rem; }
-    .signup-page .form-container .account-msg {
-      text-align: center; }
-    .signup-page .form-container .account-msg > a {
-      color: #bdbdc3; }
-      .signup-page .form-container .account-msg > a:hover {
-        color: white; }
 
 /* Index */
 .index-showcase {
@@ -321,57 +163,14 @@ textarea {
 
 .synth-pad:active {
   color: #d8d8db;
-  background: #000; }
+  background: #f4f4f4;
+  border: 15px solid #b0dce9;
+  transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1); }
 
-/* login */
-.login h1 {
-  text-align: center;
-  margin: 1rem 0; }
+.active:nth-child() {
+  background: #f4f4f4; }
 
-.form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid #d8d8db;
-  border-radius: 1rem;
-  width: 40vw;
-  height: 40vh;
-  min-height: 15rem;
-  min-width: 15rem;
-  margin: 1rem auto; }
-  .form > * {
-    margin: 0.4rem auto; }
-
-.active:nth-child(even) {
-  background: #808000; }
-
-.active:nth-child(odd) {
-  background: #6568ff; }
-
-.burger-menu > * > *:not(.menu-button) {
-  transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
-  display: flex; }
-
-.burger-menu > *:nth-last-child(1) {
-  display: none; }
-
-@media screen and (max-width: 768px) {
-  .burger-menu > *:nth-last-child(1) {
-    display: flex; }
-  .burger-menu > * > *:not(.menu-button) {
-    display: none;
-    transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1); }
-  .index-main-nav {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    background: #d8d8db;
-    font-size: 2.2rem; }
-  .index-main-nav-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0 5vw; } }
+.register-container {
+  width: 100%; }
 
 /*# sourceMappingURL=style.css.map */

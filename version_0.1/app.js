@@ -1,118 +1,105 @@
-require("dotenv").config();
+require('dotenv').config();
 
-const bodyParser = require("body-parser");
-const cookieParser = require("cookie-parser");
-const express = require("express");
-const favicon = require("serve-favicon");
-const hbs = require("hbs");
-const mongoose = require("mongoose");
-const logger = require("morgan");
-const path = require("path");
-const session = require("express-session");
-const bcrypt = require("bcrypt");
-const passport = require("passport");
-const LocalStrategy = require("passport-local").Strategy;
-const User = require("./models/User");
-const index = require("./routes/index");
-const apiSoundBankRouter = require("./routes/api_sound_bank");
-const authRoutes = require("./routes/auto-routes");
-//
-mongoose
-  .connect("mongodb://localhost/minks", { useNewUrlParser: true })
-  .then(x => {
-    console.log(`Connected to Mongo! Database name: `);
-  })
-  .catch(err => {
-    console.error("Error connecting to mongo", err);
-  });
-
-const app_name = require("./package.json").name;
-const debug = require("debug")(
-  `${app_name}:${path.basename(__filename).split(".")[0]}`
-);
+const cookieParser = require('cookie-parser');
+const express = require('express');
+const expressLayouts = require('express-ejs-layouts');
+const flash = require('connect-flash');
+const favicon = require('serve-favicon');
+const mongoose = require('mongoose');
+const logger = require('morgan');
+const path = require('path');
+const session = require('express-session');
+const passport = require('passport');
+const apiSoundBankRouter = require('./routes/api_sound_bank');
 
 const app = express();
 
+// Passport config
+require('./config/passport')(passport);
+
+// DB config
+const db = require;
+// connect to mongo
+
+mongoose
+  .connect('mongodb://localhost/minksDB', { useNewUrlParser: true })
+  .then(x => {
+    console.log(
+      `Connected to Mongo! Database name: "${x.connections[0].name}"`
+    );
+  })
+  .catch(err => {
+    console.error('Error connecting to mongo', err);
+  });
+
+//
+
+const app_name = require('./package.json').name;
+const debug = require('debug')(
+  `${app_name}:${path.basename(__filename).split('.')[0]}`
+);
+
 // Middleware Setup
-app.use(logger("dev"));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(logger('dev'));
 app.use(cookieParser());
 app.use(
   session({
-    secret: "our-passport-local-strategy-app",
+    secret: 'our-passport-local-strategy-app',
+    resave: true,
+    saveUninitialized: true
+  })
+);
+// EJS
+app.use(expressLayouts);
+app.set('view engine', 'ejs');
+
+// Bodyparser (no installation needed )
+app.use(express.urlencoded({ extended: false }));
+// SASS
+app.use(
+  require('node-sass-middleware')({
+    src: path.join(__dirname, 'public'),
+    dest: path.join(__dirname, 'public'),
+    sourceMap: true
+  })
+);
+// views config
+app.set('views', path.join(__dirname, 'views'));
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
+
+// app.use('/', index);
+app.use('/api/soundbank', apiSoundBankRouter);
+// app.use('/', authRoutes);
+// default value for title local
+app.locals.title = 'Minks';
+
+// Express session
+app.use(
+  session({
+    secret: 'secret',
     resave: true,
     saveUninitialized: true
   })
 );
 
-hbs.registerPartials(__dirname + "/views/partials");
-hbs.registerHelper("confirmation", (test, yes, no) => (test ? yes : no));
-
-// Initialize Passport
+// Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.serializeUser((user, cb) => {
-  cb(null, user._id);
+// Connect flash
+app.use(flash());
+
+// global vars
+app.use((req, res, next) => {
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  res.locals.error = req.flash('error');
+  next();
 });
 
-passport.deserializeUser((id, cb) => {
-  User.findById(
-    id
-      .then(user => {
-        cb(null, user);
-      })
-      .catch(err => cb(err))
-  );
-});
-
-passport.use(
-  new LocalStrategy((username, password, next) => {
-    User.findOne({ username }, (err, user) => {
-      console.log(username);
-      if (err) {
-        return next(err);
-      }
-      if (!user) {
-        return next(null, false, { msg: "Incorrect username" });
-      }
-      if (!bcrypt.compareSync(password, user.password)) {
-        return next(null, false, { msg: "Incorrect password" });
-      }
-      return next(null, user);
-    });
-  })
-);
-
-// Express View engine setup
-
-app.use(
-  require("node-sass-middleware")({
-    src: path.join(__dirname, "public"),
-    dest: path.join(__dirname, "public"),
-    sourceMap: true
-  })
-);
-
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "hbs");
-app.use(express.static(path.join(__dirname, "public")));
-app.use(favicon(path.join(__dirname, "public", "images", "favicon.ico")));
-
-app.use("/", index);
-app.use("/api/soundbank", apiSoundBankRouter);
-app.use("/", authRoutes);
-// default value for title local
-app.locals.title = "Minks";
+//Routes
+app.use('/', require('./routes/index'));
+app.use('/users', require('./routes/users'));
 
 module.exports = app;
-// Mongoose config
-mongoose.Promise = Promise;
-mongoose
-  .connect("mongodb://localhost/minks", {
-    userMongoClient: true,
-    useNewUrlParser: true
-  })
-  .then(() => console.log("connected to the database"))
-  .catch(err => console.error("Error connecting to mongo ", err));
