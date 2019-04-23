@@ -22,7 +22,7 @@ const db = require;
 // connect to mongo
 
 mongoose
-  .connect('mongodb://localhost/minksDB', { useNewUrlParser: true })
+  .connect('mongodb://localhost/minks', { useNewUrlParser: true })
   .then(x => {
     console.log(
       `Connected to Mongo! Database name: "${x.connections[0].name}"`

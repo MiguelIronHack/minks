@@ -45,6 +45,7 @@
 }
 .drum-section {
   background-size: cover;
+
   & > * {
     & > * {
       display: flex;
@@ -63,9 +64,7 @@
     }
   }
 }
-.synth-section {
-  background-size: cover;
-}
+
 .pad-section {
   display: flex;
   flex-direction: column;
@@ -83,39 +82,38 @@
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   grid-gap: 1rem;
+  .drum-pad {
+    padding: 2.2rem 0;
+  }
 }
 .synth-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 1rem;
-  margin: 2vh 0;
+  margin: auto 0;
 
   & > * {
     display: flex;
     justify-content: center;
-    padding: 5vh 3vw;
     border: 2px solid $dcolor;
     border-radius: 1rem;
-    margin: 2vh 0;
     cursor: pointer;
-    &:hover {
-      background: $click;
-    }
-    &:active {
-      background: lighten($color: $click, $amount: 10);
-    }
   }
 }
 
+.synth-pad {
+  background: $pad-bg;
+  color: $pad-c;
+  padding: 3rem;
+  border: 0.6rem solid $pad-bg;
+}
 .synth-pad:active {
-  color: $dcolor;
-  background: #f4f4f4;
-  border: 15px solid #b0dce9;
   @include easeOut;
 }
 
-.active:nth-child() {
-  background: #f4f4f4;
+.active {
+  background: $pad-bg-click;
+  border-color: $pad-b-click;
 }
 // Register
 .register-container {
