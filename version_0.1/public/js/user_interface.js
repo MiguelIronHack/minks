@@ -1,8 +1,8 @@
 export class KeyBoard {
   constructor(notes) {
     this.noteScale = notes;
-    this.synthType = "fmsquare";
-    this.modulationType = "sawtooth";
+    this.synthType = "triangle8";
+
     this.synthArray = this.createSynths();
     this.keyState = new Object();
   }
@@ -35,7 +35,6 @@ export class KeyBoard {
       let synth = new Tone.Synth({
         oscillator: {
           type: this.synthType,
-          modulationType: this.modulationType,
           modulationIndex: 3,
           harmonicity: 3.4
         },
@@ -46,7 +45,7 @@ export class KeyBoard {
           release: 4
         }
       }).toMaster();
-      synth.volume.value = -5;
+      synth.volume.value = 0;
       synthArray.push(synth);
     }
     return synthArray;

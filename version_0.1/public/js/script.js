@@ -9,28 +9,54 @@ const kickNode = document.getElementById("kick-section");
 const snareNode = document.getElementById("snare-section");
 // const kickNode = document.getElementById("kick-section");
 // const kickNode = document.getElementById("kick-section");
-const url = "http://localhost:3434";
+const serverUrl = "http://localhost:3434";
 
 const noteScale = [
-  "C2",
-  "C#2",
-  "D2",
-  "D#2",
-  "E2",
-  "F2",
-  "F#2",
-  "G2",
-  "G#2",
-  "A2",
-  "A#2",
-  "B2",
   "C3",
   "C#3",
   "D3",
-  "D#3"
+  "D#3",
+  "E3",
+  "F3",
+  "F#3",
+  "G3",
+  "G#3",
+  "A3",
+  "A#3",
+  "B3",
+  "C4",
+  "C#4",
+  "D4",
+  "D#4"
 ];
 
 const keyBoard = new KeyBoard(noteScale);
+
+function createDrumElements(name, url) {
+  axios
+    .post(serverUrl + "/api/soundbank/create", { name, url })
+    .then(serverRes => {
+      console.log(serverRes.data);
+    })
+    .catch(err => console.log(err));
+}
+
+createDrumElements(
+  "KICK",
+  "https://ia801507.us.archive.org/18/items/909KICK/909_KICK.wav"
+);
+createDrumElements(
+  "SNARE",
+  "https://ia601408.us.archive.org/34/items/909Snare/909_snare.wav"
+);
+createDrumElements(
+  "HI-HAT",
+  "https://ia601400.us.archive.org/4/items/909HighHat/909_HighHat.wav"
+);
+createDrumElements(
+  "Clap",
+  "https://ia801501.us.archive.org/31/items/909Clap/909_clap.wav"
+);
 
 keyBoard.setKeyListeners(window);
 keyBoard.setMouseListener(synthNode.children);
@@ -42,7 +68,7 @@ midiController
   );
 
 function getDrumSound() {
-  return axios.get(url + "/api/soundbank/drumkit");
+  return axios.get(serverUrl + "/api/soundbank/all");
 }
 
 getDrumSound()
