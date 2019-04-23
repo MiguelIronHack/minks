@@ -18,6 +18,6 @@ export class Drums {
       if (step > 7) step = 0;
       if (this.DOMItems[step].classList.contains("active")) this.playSound();
       step++;
-    }, 300);
+    }, 60000 / bpm);
   }
 }

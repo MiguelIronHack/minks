@@ -1,12 +1,18 @@
 export class Oscillator {
-  constructor(type, audioCtx, gain) {
-    this.audioCtx = audioCtx;
-    this.gainNode = gain;
-    this.osc = this.audioCtx.createOscillator();
+  constructor() {
+    this.synth = new Tone.Synth().toMaster();
+    // this.audioCtx = audioCtx;
+    // this.gainNode = gain;
+    // this.osc = this.audioCtx.createOscillator();
     // this.biquadFilter = audioCtx.createBiquadFilter();
-    this.osc.type = type;
+    // this.osc.type = type;
     this.isStarted = false;
   }
+
+  play(note) {
+    this.synth.triggerAttackRelease(note, "4n");
+  }
+
   start(freq) {
     this.osc.connect(this.gainNode);
     // this.biquadFilter.connect(this.gainNode);
