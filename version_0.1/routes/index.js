@@ -1,26 +1,36 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const SoundBank = require("../models/Sound_Bank");
+const { ensureAuth } = require('../config/auth');
+const SoundBank = require('../models/Sound_Bank');
 
-router.get("/", (req, res, next) => {
-  res.render("index");
+// Index
+router.get('/', (req, res, next) => {
+  res.render('index', {
+    script: ['index.js']
+  });
 });
-
-router.get("/play", (req, res, next) => {
-  res.render("play", {
+// Play are
+router.get('/play', (req, res, next) => {
+  res.render('play', {
     script: [
-      "user_keyboard.js",
-      "play.js",
-      "oscillator.js",
-      "MIDI_controller.js",
-      "drum_machine.js",
-      "script.js"
+      'user_keyboard.js',
+      'play.js',
+      'oscillator.js',
+      'MIDI_controller.js',
+      'drum_machine.js',
+      'script.js'
     ]
   });
 });
-
-router.get("/forum", (req, res, next) => {
-  res.render("forum", { script: ["forum.js"] });
+// Dashboard
+router.get('/dashboard', ensureAuth, (req, res) =>
+  res.render('dashboard', {
+    name: req.user.name
+  })
+);
+// Forum
+router.get('/forum', (req, res, next) => {
+  res.render('forum', { script: ['forum.js'] });
 });
 
 module.exports = router;
