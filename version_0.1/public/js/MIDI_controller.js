@@ -1,5 +1,3 @@
-import { Oscillator } from "./oscillator.js";
-
 export class MIDIController {
   constructor() {
     this.data = null;
