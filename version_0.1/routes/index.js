@@ -13,7 +13,7 @@ router.get("/play", (req, res, next) => {
       "play.js",
       "oscillator.js",
       "MIDI_controller.js",
-      "drumMachine.js",
+      "drum_machine.js",
       "script.js"
     ]
   });

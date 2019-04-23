@@ -1,6 +1,6 @@
 export class Drums {
   constructor(DOMItems, url, name, context) {
-    this.DOMItems = DOMItems;
+    this.DOMItems = DOMItems.children;
     this.url = url;
     this.name = name || "drum Element";
     this.context = context;
@@ -8,5 +8,16 @@ export class Drums {
     this.filter = null;
   }
 
-  playSound() {}
+  playSound() {
+    let audio = new Audio(this.url);
+    audio.play();
+  }
+  startSequence(bpm) {
+    let step = 0;
+    setInterval(() => {
+      if (step > 7) step = 0;
+      if (this.DOMItems[step].classList.contains("active")) this.playSound();
+      step++;
+    }, 300);
+  }
 }

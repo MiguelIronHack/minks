@@ -1,14 +1,14 @@
 export class Oscillator {
-  constructor(type, audioCtx) {
+  constructor(type, audioCtx, gain) {
     this.audioCtx = audioCtx;
-    // this.gainNode = this.audioCtx.createGain();
+    this.gainNode = gain;
     this.osc = this.audioCtx.createOscillator();
     // this.biquadFilter = audioCtx.createBiquadFilter();
     this.osc.type = type;
     this.isStarted = false;
   }
-  start(freq, gainNode) {
-    this.osc.connect(gainNode);
+  start(freq) {
+    this.osc.connect(this.gainNode);
     // this.biquadFilter.connect(this.gainNode);
     // this.gainNode.connect(this.audioCtx.destination);
     this.isStarted = true;
@@ -17,6 +17,7 @@ export class Oscillator {
   }
   stop() {
     this.osc.stop();
+    this.isStarted = false;
   }
   // setGain(val) {
   //   this.gainNode.gain.setValueAtTime(val, this.audioCtx.currentTime);

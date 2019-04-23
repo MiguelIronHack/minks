@@ -1,12 +1,15 @@
 import { MIDIController } from "./MIDI_controller.js";
 import { KeyBoard } from "./user_keyboard.js";
-
+import { Drums } from "./drum_machine.js";
 const audioCtx = new AudioContext();
 const synthNode = document.getElementById("synth-parent");
 const midiController = new MIDIController(audioCtx);
 const keyBoard = new KeyBoard(audioCtx);
+const kickNode = document.getElementById("kick-section");
+const snareNode = document.getElementById("snare-section");
+// const kickNode = document.getElementById("kick-section");
+// const kickNode = document.getElementById("kick-section");
 const url = "http://localhost:3434";
-
 keyBoard.setKeyListeners(window);
 keyBoard.setMouseListener(synthNode.children);
 
@@ -23,8 +26,16 @@ function getDrumSound() {
 
 getDrumSound()
   .then(servRes => {
-    let audio = new Audio(servRes.data[1].url);
-    audio.play();
+    try {
+      const kickUrl = servRes.data[0].url;
+      const kick = new Drums(kickNode, kickUrl, "kick", audioCtx);
+      kick.startSequence(120);
+      const snareUrl = servRes.data[1].url;
+      const snare = new Drums(snareNode, snareUrl, "snare", audioCtx);
+      snare.startSequence(120);
+    } catch (e) {
+      console.log(e);
+    }
   })
   .catch(err => console.log(err));
 

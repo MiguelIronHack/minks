@@ -1,7 +1,7 @@
 import { Oscillator } from "./oscillator.js";
 
 export class KeyBoard {
-  constructor(audioContext, gain) {
+  constructor(audioContext) {
     this.azerty = false;
     this.qwerty = true;
     this.audioContext = audioContext;
@@ -13,7 +13,7 @@ export class KeyBoard {
     this.gainNode.connect(audioContext.destination);
     const oscArr = [];
     for (let i = 0; i < 16; i++) {
-      oscArr[i] = new Oscillator("sine", audioContext);
+      oscArr[i] = new Oscillator("sine", audioContext, this.gainNode);
     }
     return oscArr;
   }
@@ -117,119 +117,122 @@ export class KeyBoard {
     ];
 
     context.onkeyup = evt => {
+      const { oscArr, gainNode, audioContext } = this;
       if (evt.code === "KeyA") {
-        this.oscArr[0].stop();
-        this.oscArr[0] = new Oscillator("triangle", this.audioContext);
+        oscArr[0].stop();
       }
       if (evt.code === "KeyW") {
-        this.oscArr[1].stop();
-        this.oscArr[1] = new Oscillator("triangle", this.audioContext);
+        oscArr[1].stop();
+        oscArr[1] = new Oscillator("sine", audioContext);
       }
       if (evt.code === "KeyS") {
-        this.oscArr[2].stop();
-        this.oscArr[2] = new Oscillator("triangle", this.audioContext);
+        oscArr[2].stop();
+        oscArr[2] = new Oscillator("sine", audioContext);
       }
       if (evt.code === "KeyE") {
-        this.oscArr[3].stop();
-        this.oscArr[3] = new Oscillator("triangle", this.audioContext);
+        oscArr[3].stop();
+        oscArr[3] = new Oscillator("sine", audioContext);
       }
       if (evt.code === "KeyD") {
-        this.oscArr[4].stop();
-        this.oscArr[4] = new Oscillator("triangle", this.audioContext);
+        oscArr[4].stop();
+        oscArr[4] = new Oscillator("sine", audioContext);
       }
       if (evt.code === "KeyF") {
-        this.oscArr[5].stop();
-        this.oscArr[5] = new Oscillator("triangle", this.audioContext);
+        oscArr[5].stop();
+        oscArr[5] = new Oscillator("sine", audioContext);
       }
       if (evt.code === "KeyT") {
-        this.oscArr[6].stop();
-        this.oscArr[6] = new Oscillator("triangle", this.audioContext);
+        oscArr[6].stop();
+        oscArr[6] = new Oscillator("sine", audioContext);
       }
       if (evt.code === "KeyG") {
-        this.oscArr[7].stop();
-        this.oscArr[7] = new Oscillator("triangle", this.audioContext);
+        oscArr[7].stop();
+        oscArr[7] = new Oscillator("sine", audioContext);
       }
       if (evt.code === "KeyY") {
-        this.oscArr[8].stop();
-        this.oscArr[8] = new Oscillator("triangle", this.audioContext);
+        oscArr[8].stop();
+        oscArr[8] = new Oscillator("sine", audioContext);
       }
       if (evt.code === "KeyH") {
-        this.oscArr[9].stop();
-        this.oscArr[9] = new Oscillator("triangle", this.audioContext);
+        oscArr[9].stop();
+        oscArr[9] = new Oscillator("sine", audioContext);
       }
       if (evt.code === "KeyU") {
-        this.oscArr[10].stop();
-        this.oscArr[10] = new Oscillator("triangle", this.audioContext);
+        oscArr[10].stop();
+        oscArr[10] = new Oscillator("sine", audioContext);
       }
       if (evt.code === "KeyJ") {
-        this.oscArr[11].stop();
-        this.oscArr[11] = new Oscillator("triangle", this.audioContext);
+        oscArr[11].stop();
+        oscArr[11] = new Oscillator("sine", audioContext);
       }
       if (evt.code === "KeyK") {
-        this.oscArr[12].stop();
-        this.oscArr[12] = new Oscillator("triangle", this.audioContext);
+        oscArr[12].stop();
+        oscArr[12] = new Oscillator("sine", audioContext);
       }
       if (evt.code === "KeyO") {
-        this.oscArr[13].stop();
-        this.oscArr[13] = new Oscillator("triangle", this.audioContext);
+        oscArr[13].stop();
+        oscArr[13] = new Oscillator("sine", audioContext);
       }
       if (evt.code === "KeyL") {
-        this.oscArr[14].stop();
-        this.oscArr[14] = new Oscillator("triangle", this.audioContext);
+        oscArr[14].stop();
+        oscArr[14] = new Oscillator("sine", audioContext);
       }
       if (evt.code === "KeyP") {
-        this.oscArr[15].stop();
-        this.oscArr[15] = new Oscillator("triangle", this.audioContext);
+        oscArr[15].stop();
+        oscArr[15] = new Oscillator("sine", audioContext);
       }
     };
     context.onkeydown = evt => {
-      if (evt.code === "KeyA" && !this.oscArr[0].isStarted) {
-        this.oscArr[0].start(notesFromC2[0], this.gainNode);
+      const { oscArr, gainNode, audioContext } = this;
+      if (evt.code === "KeyA" && !oscArr[0].isStarted) {
+        oscArr[0] = new Oscillator("sine", audioContext, gainNode);
+        oscArr[0].start(notesFromC2[0]);
       }
-      if (evt.code === "KeyW" && !this.oscArr[1].isStarted) {
-        this.oscArr[1].start(notesFromC2[1], this.gainNode);
+
+      if (evt.code === "KeyW" && !oscArr[1].isStarted) {
+        oscArr[1].start(notesFromC2[1], gainNode);
       }
-      if (evt.code === "KeyS" && !this.oscArr[2].isStarted) {
-        this.oscArr[2].start(notesFromC2[2], this.gainNode);
+      if (evt.code === "KeyS" && !oscArr[2].isStarted) {
+        oscArr[2].start(notesFromC2[2], gainNode);
       }
-      if (evt.code === "KeyE" && !this.oscArr[3].isStarted) {
-        this.oscArr[3].start(notesFromC2[3], this.gainNode);
+      if (evt.code === "KeyE" && !oscArr[3].isStarted) {
+        oscArr[3].start(notesFromC2[3], gainNode);
       }
-      if (evt.code === "KeyD" && !this.oscArr[4].isStarted) {
-        this.oscArr[4].start(notesFromC2[4], this.gainNode);
+      if (evt.code === "KeyD" && !oscArr[4].isStarted) {
+        oscArr[4].start(notesFromC2[4], gainNode);
       }
-      if (evt.code === "KeyF" && !this.oscArr[5].isStarted) {
-        this.oscArr[5].start(notesFromC2[5], this.gainNode);
+      if (evt.code === "KeyF" && !oscArr[5].isStarted) {
+        oscArr[5].start(notesFromC2[5], gainNode);
       }
-      if (evt.code === "KeyT" && !this.oscArr[6].isStarted) {
-        this.oscArr[6].start(notesFromC2[6], this.gainNode);
+      if (evt.code === "KeyT" && !oscArr[6].isStarted) {
+        oscArr[6].start(notesFromC2[6], gainNode);
       }
-      if (evt.code === "KeyG" && !this.oscArr[7].isStarted) {
-        this.oscArr[7].start(notesFromC2[7], this.gainNode);
+      if (evt.code === "KeyG" && !oscArr[7].isStarted) {
+        oscArr[7].start(notesFromC2[7], gainNode);
       }
-      if (evt.code === "KeyY" && !this.oscArr[8].isStarted) {
-        this.oscArr[8].start(notesFromC2[8], this.gainNode);
+      if (evt.code === "KeyY" && !oscArr[8].isStarted) {
+        oscArr[8].start(notesFromC2[8], gainNode);
       }
-      if (evt.code === "KeyH" && !this.oscArr[9].isStarted) {
-        this.oscArr[9].start(notesFromC2[9], this.gainNode);
+      if (evt.code === "KeyH" && !oscArr[9].isStarted) {
+        oscArr[9].start(notesFromC2[9], gainNode);
       }
-      if (evt.code === "KeyU" && !this.oscArr[10].isStarted) {
-        this.oscArr[10].start(notesFromC2[10], this.gainNode);
+      if (evt.code === "KeyU" && !oscArr[10].isStarted) {
+        oscArr[10].start(notesFromC2[10], gainNode);
       }
-      if (evt.code === "KeyJ" && !this.oscArr[11].isStarted) {
-        this.oscArr[11].start(notesFromC2[11], this.gainNode);
+      if (evt.code === "KeyJ" && !oscArr[11].isStarted) {
+        oscArr[11].start(notesFromC2[11], gainNode);
       }
-      if (evt.code === "KeyK" && !this.oscArr[12].isStarted) {
-        this.oscArr[12].start(notesFromC2[12], this.gainNode);
+      if (evt.code === "KeyK" && !oscArr[12].isStarted) {
+        oscArr[12].start(notesFromC2[12], gainNode);
       }
-      if (evt.code === "KeyO" && !this.oscArr[13].isStarted) {
-        this.oscArr[13].start(notesFromC2[13], this.gainNode);
+      if (evt.code === "KeyO" && !oscArr[13].isStarted) {
+        oscArr[13].start(notesFromC2[13], gainNode);
       }
-      if (evt.code === "KeyL" && !this.oscArr[14].isStarted) {
-        this.oscArr[14].start(notesFromC2[14], this.gainNode);
+      if (evt.code === "KeyL" && !oscArr[14].isStarted) {
+        oscArr[14].start(notesFromC2[14], gainNode);
       }
-      if (evt.code === "KeyP" && !this.oscArr[15].isStarted) {
-        this.oscArr[15].start(notesFromC2[15], this.gainNode);
+      if (evt.code === "KeyP" && !oscArr[15].isStarted) {
+        oscArr[15].start(notesFromC2[15], gainNode);
       }
     };
   }
