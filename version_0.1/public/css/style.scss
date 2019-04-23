@@ -1,5 +1,5 @@
-@import 'config';
-@import 'forum';
+@import "config";
+@import "forum";
 
 /* Index */
 .index-showcase {
@@ -128,4 +128,14 @@
 /* Forum */
 .forum-header {
   text-align: center;
+}
+.card {
+  margin: 3rem 15vw;
+}
+
+.form-group {
+  display: none;
+}
+#form-display :hover {
+  cursor: pointer;
 }

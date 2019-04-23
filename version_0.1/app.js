@@ -11,6 +11,8 @@ const path = require("path");
 const session = require("express-session");
 const passport = require("passport");
 const apiSoundBankRouter = require("./routes/api_sound_bank");
+const apiThread = require("./routes/api_thread");
+const apiPost = require("./routes/api_post");
 const bodyParser = require("body-parser");
 
 const app = express();
@@ -72,6 +74,8 @@ app.use(favicon(path.join(__dirname, "public", "images", "favicon.ico")));
 
 // app.use('/', index);
 app.use("/api/soundbank", apiSoundBankRouter);
+app.use("/api/post", apiPost);
+app.use("/api/thread", apiThread);
 // app.use('/', authRoutes);
 // default value for title local
 app.locals.title = "Minks";

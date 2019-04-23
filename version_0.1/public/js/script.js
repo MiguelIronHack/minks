@@ -31,6 +31,7 @@ const noteScale = [
 ];
 
 const keyBoard = new KeyBoard(noteScale);
+<<<<<<< HEAD
 // function createDrumElements(name, url) {
 //   axios
 //     .post(serverUrl + "/api/soundbank/create", { name, url })
@@ -39,6 +40,16 @@ const keyBoard = new KeyBoard(noteScale);
 //     })
 //     .catch(err => console.log(err));
 // }
+=======
+function createDrumElements(name, url) {
+  axios
+    .post(serverUrl + "/api/soundbank/create", { name, url })
+    .then(serverRes => {
+      console.log(serverRes.data);
+    })
+    .catch(err => console.log(err));
+}
+>>>>>>> de2ec3f572515275a8e0c7577f11d9c89567efdd
 
 // createDrumElements(
 //   'KICK',
