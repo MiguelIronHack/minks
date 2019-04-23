@@ -25,6 +25,7 @@ router.get("/play", (req, res, next) => {
 // Dashboard
 router.get("/dashboard", ensureAuth, (req, res) =>
   res.render("dashboard", {
+    script: ["dashboard.js"],
     name: req.user.name
   })
 );

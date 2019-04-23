@@ -1,9 +1,13 @@
 @import url('http://overpass-30e2.kxcdn.com/overpass.css');
 
 $tcolor: #1b2432;
-$dcolor: #d8d8db;
+$dcolor: #fbfbfb;
 $pcolor: #121420;
 $click: #8080008c;
+$pad-b-click: #a1a1cc;
+$pad-bg-click: #50507e;
+$pad-bg: #fbfbfb;
+$pad-c: #313131;
 
 @mixin easeOut {
   transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
