@@ -31,7 +31,6 @@ const noteScale = [
 ];
 
 const keyBoard = new KeyBoard(noteScale);
-
 function createDrumElements(name, url) {
   axios
     .post(serverUrl + "/api/soundbank/create", { name, url })

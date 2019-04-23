@@ -11,9 +11,10 @@ const path = require("path");
 const session = require("express-session");
 const passport = require("passport");
 const apiSoundBankRouter = require("./routes/api_sound_bank");
+const bodyParser = require("body-parser");
 
 const app = express();
-
+app.use(bodyParser());
 // Passport config
 require("./config/passport")(passport);
 

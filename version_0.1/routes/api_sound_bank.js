@@ -15,6 +15,7 @@ router.get("/all", (req, res) => {
 });
 
 router.post("/create", (req, res) => {
+  console.log(req.body);
   create(req.body)
     .then(dbRes => res.status(200).json(dbRes))
     .catch(dbErr => res.send(dbErr));
