@@ -1,18 +1,39 @@
 import { MIDIController } from "./MIDI_controller.js";
-import { KeyBoard } from "./user_keyboard.js";
+import { KeyBoard } from "./user_interface.js";
 import { Drums } from "./drum_machine.js";
 const audioCtx = new AudioContext();
 const synthNode = document.getElementById("synth-parent");
 const midiController = new MIDIController(audioCtx);
-const keyBoard = new KeyBoard(audioCtx);
+
 const kickNode = document.getElementById("kick-section");
 const snareNode = document.getElementById("snare-section");
 // const kickNode = document.getElementById("kick-section");
 // const kickNode = document.getElementById("kick-section");
 const url = "http://localhost:3434";
+
+const noteScale = [
+  "C2",
+  "C#2",
+  "D2",
+  "D#2",
+  "E2",
+  "F2",
+  "F#2",
+  "G2",
+  "G#2",
+  "A2",
+  "A#2",
+  "B2",
+  "C3",
+  "C#3",
+  "D3",
+  "D#3"
+];
+
+const keyBoard = new KeyBoard(noteScale);
+
 keyBoard.setKeyListeners(window);
 keyBoard.setMouseListener(synthNode.children);
-
 midiController
   .init(window.navigator)
   .then(
@@ -23,11 +44,6 @@ midiController
 function getDrumSound() {
   return axios.get(url + "/api/soundbank/drumkit");
 }
-var synth = new Tone.Synth().toMaster();
-var loop = new Tone.Loop(function(time) {
-  synth.triggerAttackRelease("C2", "8n", time);
-}, "4n");
-loop.start("1m").stop("4m");
 
 getDrumSound()
   .then(servRes => {
