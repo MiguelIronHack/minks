@@ -8,8 +8,7 @@ const getOne = id => Thread.findById(id);
 const deleteOne = id => Thread.deleteOne({ _id: id });
 const updateOne = id => Thread.updateOne(id);
 
-router.get("/all/:page/:count", (req, res) => {
-  console.log(req.params.page, req.params.count);
+router.get("/all", (req, res) => {
   getAll()
     .then(dbRes => res.status(200).json(dbRes))
     .catch(dbErr => res.send(dbErr));
@@ -38,5 +37,4 @@ router.patch("/:id", (req, res) => {
     .then(dbRes => res.status(200).json(dbRes))
     .catch(dbErr => res.send(dbErr));
 });
-
-module.exports = [router, getAll, create, updateOne, getOne, deleteOne];
+module.exports = [router, getAll, create, getOne, updateOne, getOne, deleteOne];
