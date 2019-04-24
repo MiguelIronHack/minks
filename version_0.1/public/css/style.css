@@ -206,6 +206,8 @@ textarea {
     .forum .form-content textarea {
       padding: 2rem;
       color: white; }
+      .forum .form-content textarea::placeholder {
+        color: #e2e2e2; }
   .forum .btn {
     margin: 1rem 0; }
   .forum .new-thread {
