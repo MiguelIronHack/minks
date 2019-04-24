@@ -7,6 +7,7 @@ const User = require('../models/User');
 
 // Login page
 router.get('/login', (req, res) => res.render('login', { script: ['nav.js'] }));
+
 // register page
 router.get('/register', (req, res) =>
   res.render('register', { script: ['nav.js'] })
@@ -37,21 +38,19 @@ router.post('/register', (req, res) => {
       name,
       email,
       password,
-      password2,
-      script: ['nav.js']
+      password2
     });
   } else {
     // validation passed
-    User.findOne({ email: email }).then(email => {
-      if (email) {
+    User.findOne({ email: email }).then(user => {
+      if (user) {
         errors.push({ msg: 'Email is already registered' });
         res.render('register', {
           errors,
           name,
           email,
           password,
-          password2,
-          script: ['nav.js']
+          password2
         });
       } else {
         const newUser = new User({
