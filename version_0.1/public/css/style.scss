@@ -129,6 +129,10 @@
   .forum-header {
     text-align: center;
   }
+  .new-thread-header:hover {
+    color: darken($color: $dcolor, $amount: 10);
+    @include easeOut();
+  }
   .form-content {
     flex-direction: column;
     align-items: center;
