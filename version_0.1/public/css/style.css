@@ -188,12 +188,17 @@ textarea {
     margin: 0.3rem 0; }
     .forum .form-content input {
       border: 0;
-      border-radius: 1rem;
+      border-radius: 2px;
       text-align: center;
       padding: 0.4rem 1rem; }
     .forum .form-content select {
       padding: 0.4rem 1rem;
       text-align-last: center; }
+      .forum .form-content select > option {
+        color: #121420; }
+      .forum .form-content select:hover {
+        background: #eeeeee;
+        color: #121420; }
     .forum .form-content textarea {
       padding: 2rem; }
   .forum .btn {
@@ -206,5 +211,7 @@ textarea {
       display: none; }
   .forum #form-display:hover {
     cursor: pointer; }
+  .forum .forum-card {
+    margin: 2rem auto; }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,16 +1,15 @@
 <section class="forum">
   <h1 class="forum-header m-5">Forum</h1>
-  <!-- Cards -->
   <div class="container">
     <div class="row ml-5" id="form-display">
-      <i class="fab fa-wpforms new-thread-header fa-3x"></i>
+      <i class="fas fa-3x fa-plus new-thread-header"></i>
       <h2 class="ml-3 new-thread-header">New Thread</h2>
     </div>
     <form class="container new-thread">
       <div class="form-group form-content ">
         <label for="new-post-forum-title">Title</label>
         <input
-          class="bg-dark
+          class="bg-dark 
           "
           type="text"
           name="new-post-forum-title"
@@ -32,7 +31,7 @@
       </div>
       <div class="form-group form-content">
         <label for="form-message">Message</label>
-        <textarea class="form-control btn-dark" id="form-message"></textarea>
+        <textarea class="form-control bg-dark" id="form-message"></textarea>
         <button class="btn-primary btn" id="create-thread">
           Create Thread
         </button>
@@ -44,7 +43,7 @@
  <%# Thread population %>
 
   <% for(let thread of threads){%>
-  <div class="card text-white bg-light mx-5">
+  <div class="card text-white bg-light mx-5 forum-card">
     <div class="card-header">User</div>
     <div class="card-body">
       <h5 class="card-title"><%= thread.title%></h5>
@@ -57,18 +56,19 @@
 
 
   <!--  -->
+  
+
+  
   <div class="container m-5">
     <nav aria-label="...">
       <ul class="pagination pagination-sm">
+<%  for(let i = 0; i < pages; i++){ %>
         <li class="page-item active" aria-current="page">
-          <span class="page-link">
-            1
-            <span class="sr-only">(current)</span>
-          </span>
+    <li class="page-item"><a class="page-link" href="#"><%= i %></a></li>
         </li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <% } %>
       </ul>
     </nav>
+    
   </div>
 </section>
