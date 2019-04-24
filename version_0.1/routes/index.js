@@ -54,8 +54,9 @@ router.get("/forum", ensureAuth, (req, res) => {
   getAllThreads()
     .then(result => {
       const pageSize = 3;
-      const pages = Math.ceil(threads / pageSize);
+      const pages = Math.ceil(result.length / pageSize);
       const items = paginate(result, 1, pageSize);
+      // console.log(items);
       res.render("forum", {
         userName: req.user.name,
         pages,
