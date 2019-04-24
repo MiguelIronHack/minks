@@ -53,6 +53,7 @@ function paginate(items, pageNumber, pageSize) {
 router.get("/forum", ensureAuth, (req, res) => {
   getAllThreads()
     .then(result => {
+      console.log(result[1].owner.name);
       const pageSize = 3;
       const pages = Math.ceil(result.length / pageSize);
       const items = paginate(result, 1, pageSize);

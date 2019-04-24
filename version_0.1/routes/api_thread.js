@@ -2,7 +2,7 @@ const express = require("express");
 const router = new express.Router();
 const Thread = require("../models/Thread");
 
-const getAll = () => Thread.find();
+const getAll = () => Thread.find().populate("owner");
 const create = data => Thread.create(data);
 const getOne = id => Thread.findById(id);
 const deleteOne = id => Thread.deleteOne({ _id: id });

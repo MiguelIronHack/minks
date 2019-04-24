@@ -30,13 +30,15 @@ function createThread(evt) {
   //Get user id from somewhere;
   const ele = document.getElementById("form-category");
   const category = ele.options[ele.selectedIndex].value;
-  const userName = document.getElementById("username");
+  const userId = document.getElementById("username").getAttribute("user-id");
+  const userName = document.getElementById("username").innerHTML;
+
   //Action to display error messages if the message is empty
   //return if requirements are not met
   if (category && message && title) {
     clearInputs([titleElement, formTextArea]);
     axios
-      .post("api/thread/create", { owner: userName, category, message, title })
+      .post("api/thread/create", { owner: userId, category, message, title })
       .then(response => {
         appendThread(threadNode, userName, message, title);
       })
