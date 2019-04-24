@@ -38,7 +38,7 @@ function createThread(evt) {
       .post("api/thread/create", { category, message, title })
       .then(response => {
         console.log(response);
-        appendThread(forumNode, "User", message, title);
+        appendThread(threadNode, "User", message, title);
       })
       .catch(err => displayError(err));
   }
