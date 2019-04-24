@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const PostSchema = new Schema({
+const ThreadSchema = new Schema({
   message: String,
   posts: [{ type: Schema.Types.ObjectId, ref: "Post" }],
   title: String,
@@ -13,5 +13,5 @@ const PostSchema = new Schema({
   }
 });
 
-const Post = mongoose.model("Post", PostSchema);
-module.exports = Post;
+const Thread = mongoose.model("Thread", ThreadSchema);
+module.exports = Thread;
