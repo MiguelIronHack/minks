@@ -1,50 +1,66 @@
-<h1 class="forum-header mt-5">Forum</h1>
-<!-- Cards -->
-<div class="container" id="form-display">
-  <i class="fab fa-wpforms  fa-3x"></i>
-</div>
-<form class="container">
-<div class="form-group">
- <label for="new-post-forum-title">Title</label>
-  <input type="text" name="new-post-forum-title" id="new-post-forum-title" placeholder="new title">
-</div>
-  <div class="form-group">
-    <label for="form-category">Category</label>
-    <select class="form-category" id="form-category">
-      <option value="Synth">Synth</option>
-      <option value="Drum">Drum</option>
-      <option value="Songs">Songs</option>
-      <option value="bug reports">Bug Reports</option>
-    </select>
+<section class="forum">
+  <h1 class="forum-header m-5">Forum</h1>
+  <!-- Cards -->
+  <div class="container">
+    <div class="row ml-5" id="form-display">
+      <i class="fab fa-wpforms  fa-3x"></i>
+      <h2 class="ml-3">New Thread</h2>
+    </div>
+    <form class="container new-thread">
+      <div class="form-group form-content ">
+        <label for="new-post-forum-title">Title</label>
+        <input
+          class="btn-dark"
+          type="text"
+          name="new-post-forum-title"
+          id="new-post-forum-title"
+          placeholder="new title"
+        />
+      </div>
+      <div class="form-group form-content">
+        <label for="form-category">Category</label>
+        <select
+          class="form-category btn btn-dark btn-sm dropdown-toggle"
+          id="form-category"
+        >
+          <option value="Synth">Synth</option>
+          <option value="Drum">Drum</option>
+          <option value="Songs">Songs</option>
+          <option value="bug reports">Bug Reports</option>
+        </select>
+      </div>
+      <div class="form-group form-content">
+        <label for="form-message">Message</label>
+        <textarea class="form-control btn-dark" id="form-message"></textarea>
+        <button class="btn-primary btn" id="create-thread">
+          Create Thread
+        </button>
+      </div>
+    </form>
   </div>
-  <div class="form-group">
-    <label for="form-message">Message</label>
-    <textarea class="form-control" id="form-message" rows="3"></textarea>
-    <button id="create-thread">Create Thread</button>
+  <div class="card text-white bg-light mx-5">
+    <div class="card-header">Username</div>
+    <div class="card-body">
+      <h5 class="card-title">Dark card title</h5>
+      <p class="card-text">
+        Some quick example text to build on the card title and make up the bulk
+        of the card's content.
+      </p>
+    </div>
   </div>
-</form>
-<div class="card text-white bg-light">
-  <div class="card-header">Username</div>
-  <div class="card-body">
-    <h5 class="card-title">Dark card title</h5>
-    <p class="card-text">
-      Some quick example text to build on the card title and make up the bulk of
-      the card's content.
-    </p>
+  <!--  -->
+  <div class="container m-5">
+    <nav aria-label="...">
+      <ul class="pagination pagination-sm">
+        <li class="page-item active" aria-current="page">
+          <span class="page-link">
+            1
+            <span class="sr-only">(current)</span>
+          </span>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+      </ul>
+    </nav>
   </div>
-</div>
-<!--  -->
-<div class="container">
-  <nav aria-label="...">
-    <ul class="pagination pagination-sm">
-      <li class="page-item active" aria-current="page">
-        <span class="page-link">
-          1
-          <span class="sr-only">(current)</span>
-        </span>
-      </li>
-      <li class="page-item"><a class="page-link" href="#">2</a></li>
-      <li class="page-item"><a class="page-link" href="#">3</a></li>
-    </ul>
-  </nav>
-</div>
+</section>

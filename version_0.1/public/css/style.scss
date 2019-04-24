@@ -1,5 +1,5 @@
-@import "config";
-@import "forum";
+@import 'config';
+@import 'forum';
 
 /* Index */
 .index-showcase {
@@ -40,7 +40,7 @@
 /* Play */
 .main {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr));
   grid-row-gap: 5vw;
 }
 .drum-section {
@@ -51,6 +51,7 @@
   }
   & > * {
     & > * {
+      //drum pads
       display: flex;
       justify-content: center;
       padding: 5vh 1vw;
@@ -84,9 +85,6 @@
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   grid-gap: 1rem;
-  .drum-pad {
-    padding: 2.2rem 0;
-  }
 }
 .synth-section {
   .dropdown {
@@ -126,16 +124,43 @@
   width: 100%;
 }
 /* Forum */
-.forum-header {
-  text-align: center;
-}
-.card {
-  margin: 3rem 15vw;
-}
+.forum {
+  margin: 0 15vw;
+  .forum-header {
+    text-align: center;
+  }
+  .form-content {
+    flex-direction: column;
+    align-items: center;
+    margin: 0.3rem 0;
+    & input {
+      border: 0;
+      border-radius: 1rem;
+      text-align: center;
+      padding: 0.4rem 1rem;
+    }
+    & select {
+      padding: 0.4rem 1rem;
+      text-align-last: center;
+    }
+    & textarea {
+      padding: 2rem;
+    }
+  }
+  .btn {
+    margin: 1rem 0;
+  }
 
-.form-group {
-  display: none;
-}
-#form-display :hover {
-  cursor: pointer;
+  .new-thread {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .form-group {
+      display: none;
+    }
+  }
+
+  #form-display:hover {
+    cursor: pointer;
+  }
 }

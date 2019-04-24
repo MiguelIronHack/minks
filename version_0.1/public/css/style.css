@@ -105,7 +105,7 @@ textarea {
 /* Play */
 .main {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr));
   grid-row-gap: 5vw; }
 
 .drum-section {
@@ -143,8 +143,6 @@ textarea {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   grid-gap: 1rem; }
-  .drum-pad-row-container .drum-pad {
-    padding: 2.2rem 0; }
 
 .synth-section .dropdown {
   padding: 1rem;
@@ -177,16 +175,33 @@ textarea {
   width: 100%; }
 
 /* Forum */
-.forum-header {
-  text-align: center; }
-
-.card {
-  margin: 3rem 15vw; }
-
-.form-group {
-  display: none; }
-
-#form-display :hover {
-  cursor: pointer; }
+.forum {
+  margin: 0 15vw; }
+  .forum .forum-header {
+    text-align: center; }
+  .forum .form-content {
+    flex-direction: column;
+    align-items: center;
+    margin: 0.3rem 0; }
+    .forum .form-content input {
+      border: 0;
+      border-radius: 1rem;
+      text-align: center;
+      padding: 0.4rem 1rem; }
+    .forum .form-content select {
+      padding: 0.4rem 1rem;
+      text-align-last: center; }
+    .forum .form-content textarea {
+      padding: 2rem; }
+  .forum .btn {
+    margin: 1rem 0; }
+  .forum .new-thread {
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
+    .forum .new-thread .form-group {
+      display: none; }
+  .forum #form-display:hover {
+    cursor: pointer; }
 
 /*# sourceMappingURL=style.css.map */

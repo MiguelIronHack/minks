@@ -6,12 +6,10 @@ const passport = require('passport');
 const User = require('../models/User');
 
 // Login page
-router.get('/login', (req, res) =>
-  res.render('login', { script: ['login.js'] })
-);
+router.get('/login', (req, res) => res.render('login', { script: ['nav.js'] }));
 // register page
 router.get('/register', (req, res) =>
-  res.render('register', { script: ['register.js'] })
+  res.render('register', { script: ['nav.js'] })
 );
 // register handle
 router.post('/register', (req, res) => {
@@ -39,19 +37,21 @@ router.post('/register', (req, res) => {
       name,
       email,
       password,
-      password2
+      password2,
+      script: ['nav.js']
     });
   } else {
     // validation passed
-    User.findOne({ email: email }).then(user => {
-      if (user) {
+    User.findOne({ email: email }).then(email => {
+      if (email) {
         errors.push({ msg: 'Email is already registered' });
         res.render('register', {
           errors,
           name,
           email,
           password,
-          password2
+          password2,
+          script: ['nav.js']
         });
       } else {
         const newUser = new User({
