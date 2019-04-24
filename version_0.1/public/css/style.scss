@@ -162,6 +162,9 @@
     & textarea {
       padding: 2rem;
       color: lighten($color: $dcolor, $amount: 10);
+      &::placeholder {
+        color: darken($color: $dcolor, $amount: 10);
+      }
     }
   }
   .btn {
