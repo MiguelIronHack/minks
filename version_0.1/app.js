@@ -10,7 +10,9 @@ const logger = require("morgan");
 const path = require("path");
 const session = require("express-session");
 const passport = require("passport");
-
+const apiSoundBankRouter = require("./routes/api_sound_bank");
+const apiThread = require("./routes/api_thread");
+const apiPost = require("./routes/api_post");
 const bodyParser = require("body-parser");
 
 const app = express();
@@ -68,17 +70,9 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(favicon(path.join(__dirname, "public", "images", "favicon.ico")));
 
 // app.use('/', index);
-const userRouter = require("./routes/users");
-const indexRouter = require("./routes/index");
-const apiSoundBankRouter = require("./routes/api_sound_bank");
-const apiThread = require("./routes/api_thread");
-const apiPost = require("./routes/api_post");
-app.use("/", indexRouter);
-app.use("/users", userRouter);
 app.use("/api/soundbank", apiSoundBankRouter);
 app.use("/api/post", apiPost);
 app.use("/api/thread", apiThread);
-
 // app.use('/', authRoutes);
 // default value for title local
 app.locals.title = "Minks";
@@ -108,5 +102,7 @@ app.use((req, res, next) => {
 });
 
 //Routes
+app.use("/", require("./routes/index"));
+app.use("/users", require("./routes/users"));
 
 module.exports = app;

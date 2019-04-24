@@ -4,6 +4,7 @@ const { ensureAuth } = require("../config/auth");
 const apiThread = require("./api_thread");
 
 const getAllThreads = apiThread[1];
+
 getAllThreads()
   .then(result => {
     console.log(result);
