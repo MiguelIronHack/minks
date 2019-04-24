@@ -55,6 +55,7 @@ router.get("/forum", ensureAuth, (req, res) => {
     .then(result => {
       const pageSize = 3;
       const pages = Math.ceil(result.length / pageSize);
+      console.log(pages);
       const items = paginate(result, 1, pageSize);
       // console.log(items);
       res.render("forum", {

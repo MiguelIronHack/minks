@@ -1,6 +1,7 @@
 const formButton = document.getElementById("form-display");
 const form = document.getElementsByClassName("form-group");
 const createButton = document.getElementById("create-thread");
+const threadNode = document.getElementById("thread-container");
 const url = "http://localhost:3434";
 
 formButton.onclick = displayForm;
@@ -35,10 +36,14 @@ function createThread(evt) {
     clearInputs([titleElement, formTextArea]);
     axios
       .post("api/thread/create", { category, message, title })
-      .then(response => displaySuccess())
+      .then(response => {
+        console.log(response);
+        appendThread(forumNode, "User", message, title);
+      })
       .catch(err => displayError(err));
   }
 }
+
 function getThreads(page, count) {
   axios
     .get(url + "/api/thread/all")
@@ -54,4 +59,21 @@ function displaySuccess() {
 }
 function displayError(dbMessage) {
   console.log("There was and error: ", dbMessage);
+}
+
+function appendThread(parentNode, userName, message, title) {
+  parentNode.insertAdjacentHTML(
+    "afterbegin",
+    `
+  <div class="card text-white bg-light mx-5 forum-card">
+      <div class="card-header">${userName}</div>
+      <div class="card-body">
+        <h5 class="card-title">${title}</h5>
+        <p class="card-text">
+           ${message}
+        </p>
+      </div>
+    </div>
+  `
+  );
 }
