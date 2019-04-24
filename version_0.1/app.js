@@ -80,7 +80,7 @@ app.locals.title = "Minks";
 // Express session
 app.use(
   session({
-    secret: "secret",
+    secret: "secgzdaet",
     resave: true,
     saveUninitialized: true
   })
@@ -104,5 +104,4 @@ app.use((req, res, next) => {
 //Routes
 app.use("/", require("./routes/index"));
 app.use("/users", require("./routes/users"));
-
 module.exports = app;
