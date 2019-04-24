@@ -38,7 +38,8 @@ router.post("/register", (req, res) => {
       name,
       email,
       password,
-      password2
+      password2,
+      script: ['nav.js']
     });
   } else {
     // validation passed
