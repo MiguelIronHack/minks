@@ -185,16 +185,18 @@ textarea {
   .forum .form-content {
     flex-direction: column;
     align-items: center;
-    margin: 0.3rem 0; }
+    margin: 0.3rem 0;
+    width: 100%; }
     .forum .form-content input {
       border: 0;
       border-radius: 2px;
       text-align: center;
-      padding: 0.4rem 1rem; }
+      padding: 0.6rem 1.5rem;
+      color: white; }
       .forum .form-content input::placeholder {
         color: #fbfbfb; }
     .forum .form-content select {
-      padding: 0.4rem 1rem;
+      padding: 0.6rem 1.5rem;
       text-align-last: center; }
       .forum .form-content select > option {
         color: #121420; }
@@ -202,7 +204,8 @@ textarea {
         background: #eeeeee;
         color: #121420; }
     .forum .form-content textarea {
-      padding: 2rem; }
+      padding: 2rem;
+      color: white; }
   .forum .btn {
     margin: 1rem 0; }
   .forum .new-thread {
