@@ -39,16 +39,23 @@
       </div>
     </form>
   </div>
+
+
+
+
+  <% for(let thread of threads){%>
   <div class="card text-white bg-light mx-5">
-    <div class="card-header">Username</div>
+    <div class="card-header">User</div>
     <div class="card-body">
-      <h5 class="card-title">Dark card title</h5>
+      <h5 class="card-title"><%= thread.title%></h5>
       <p class="card-text">
-        Some quick example text to build on the card title and make up the bulk
-        of the card's content.
+          <%= thread.message %>
       </p>
     </div>
   </div>
+<% } %>
+
+
   <!--  -->
   <div class="container m-5">
     <nav aria-label="...">

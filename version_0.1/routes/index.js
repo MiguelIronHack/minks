@@ -5,12 +5,6 @@ const apiThread = require("./api_thread");
 
 const getAllThreads = apiThread[1];
 
-getAllThreads()
-  .then(result => {
-    console.log(result);
-  })
-  .catch(err => console.log(err));
-
 // Index
 router.get("/", (req, res, next) => {
   res.render("index", {
@@ -41,7 +35,11 @@ router.get("/dashboard", ensureAuth, (req, res) =>
 // Forum
 
 router.get("/forum", (req, res, next) => {
-  res.render("forum", { script: ["forum.js"] });
+  getAllThreads()
+    .then(result => {
+      res.render("forum", { threads: result, script: ["forum.js"] });
+    })
+    .catch(err => console.log(err));
 });
 
 module.exports = router;
