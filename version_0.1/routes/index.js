@@ -2,7 +2,7 @@ const express = require("express");
 const router = new express.Router();
 const { ensureAuth } = require("../config/auth");
 const apiThread = require("./api_thread");
-
+const _ = require("lodash");
 const getAllThreads = apiThread[1];
 
 // Index
@@ -33,14 +33,33 @@ router.get("/dashboard", ensureAuth, (req, res) =>
   })
 );
 // Forum
+router.post("/forum", ensureAuth, (req, res) => {
+  console.log(req.body.page, req.body.pageSize);
+});
+
+// const pagination = (pagesCount,items, ) => {
+//   if (pagesCount === 1) return null;
+//   const pages = _.range(1, pagesCount + 1);
+
+// };
+function paginate(items, pageNumber, pageSize) {
+  const startIndex = (pageNumber - 1) * pageSize;
+  return _(items)
+    .slice(startIndex)
+    .take(pageSize)
+    .value();
+}
 
 router.get("/forum", ensureAuth, (req, res) => {
-  console.log(req.user);
   getAllThreads()
     .then(result => {
+      const pageSize = 3;
+      const pages = Math.ceil(threads / pageSize);
+      const items = paginate(result, 1, pageSize);
       res.render("forum", {
         userName: req.user.name,
-        threads: result,
+        pages,
+        threads: items,
         script: ["forum.js"]
       });
     })

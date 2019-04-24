@@ -1,7 +1,7 @@
-const formButton = document.getElementById('form-display');
-const form = document.getElementsByClassName('form-group');
-const createButton = document.getElementById('create-thread');
-const url = 'http://localhost:3434';
+const formButton = document.getElementById("form-display");
+const form = document.getElementsByClassName("form-group");
+const createButton = document.getElementById("create-thread");
+const url = "http://localhost:3434";
 
 formButton.onclick = displayForm;
 createButton.onclick = createThread;
@@ -14,44 +14,44 @@ createButton.onclick = createThread;
 
 function displayForm() {
   for (let item of form) {
-    if (!item.style.display || item.style.display === 'none')
-      item.style.display = 'flex';
-    else item.style.display = 'none';
+    if (!item.style.display || item.style.display === "none")
+      item.style.display = "flex";
+    else item.style.display = "none";
   }
 }
 
 function createThread(evt) {
   evt.preventDefault();
-  const formTextArea = document.getElementById('form-message');
-  const titleElement = document.getElementById('new-post-forum-title');
+  const formTextArea = document.getElementById("form-message");
+  const titleElement = document.getElementById("new-post-forum-title");
   const title = titleElement.value;
   const message = formTextArea.value;
   //Get user id from somewhere;
-  const ele = document.getElementById('form-category');
+  const ele = document.getElementById("form-category");
   const category = ele.options[ele.selectedIndex].value;
   //Action to display error messages if the message is empty
   //return if requirements are not met
   if (category && message && title) {
     clearInputs([titleElement, formTextArea]);
     axios
-      .post('api/thread/create', { category, message, title })
+      .post("api/thread/create", { category, message, title })
       .then(response => displaySuccess())
       .catch(err => displayError(err));
   }
 }
 function getThreads(page, count) {
   axios
-    .get(url + '/api/thread/all' + `/${page}/${count}`)
+    .get(url + "/api/thread/all")
     .then(response => displaySuccess())
     .catch(err => displayError(err));
 }
 
 function clearInputs(elements) {
-  for (let ele of elements) ele.value = '';
+  for (let ele of elements) ele.value = "";
 }
 function displaySuccess() {
-  console.log('Success');
+  console.log("Success");
 }
 function displayError(dbMessage) {
-  console.log('There was and error: ', dbMessage);
+  console.log("There was and error: ", dbMessage);
 }
