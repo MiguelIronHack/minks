@@ -7,6 +7,11 @@
     </div>
     <form class="container new-thread">
       <div class="form-group form-content ">
+        <div class="text-dark">
+          <%= userName%>
+        </div>
+      </div>
+      <div class="form-group form-content ">
         <label for="new-post-forum-title">Title</label>
         <input
           class="bg-dark 
@@ -56,15 +61,8 @@
 <% } %>
 
   <!--  -->
-</section>
-  <div class="container m-5">
-    <nav aria-label="...">
-      <ul class="pagination pagination-sm">
-<%  for(let i = 1; i <= pages; i++){ %>
-
-
-    <li class="page-item"><a class="page-link" href="#"><%=  i %></a></li>
-        <% }; %>
-      </ul>
-    </nav>
+  <div>
+    <%= userName%>
   </div>
+</section>
+ 

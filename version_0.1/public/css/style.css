@@ -213,7 +213,8 @@ textarea {
       display: none; }
   .forum #form-display:hover {
     cursor: pointer; }
-  .forum .forum-card {
-    margin: 2rem auto; }
+
+.thread-container .forum-card {
+  margin: 2rem auto; }
 
 /*# sourceMappingURL=style.css.map */
