@@ -34,10 +34,15 @@ router.get("/dashboard", ensureAuth, (req, res) =>
 );
 // Forum
 
-router.get("/forum", (req, res, next) => {
+router.get("/forum", ensureAuth, (req, res) => {
+  console.log(req.user);
   getAllThreads()
     .then(result => {
-      res.render("forum", { threads: result, script: ["forum.js"] });
+      res.render("forum", {
+        userName: req.user.name,
+        threads: result,
+        script: ["forum.js"]
+      });
     })
     .catch(err => console.log(err));
 });
