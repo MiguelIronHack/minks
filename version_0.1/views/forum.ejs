@@ -53,21 +53,16 @@
     </div>
   </div>
 <% } %>
-
   <!--  -->
-  
-
-  
   <div class="container m-5">
     <nav aria-label="...">
       <ul class="pagination pagination-sm">
-<%  for(let i = 0; i < pages; i++){ %>
-        <li class="page-item active" aria-current="page">
-    <li class="page-item"><a class="page-link" href="#"><%= i %></a></li>
-        </li>
-        <% } %>
+<%  for(let i = 1; i <= pages; i++){ %>
+
+
+    <li class="page-item"><a class="page-link" href="#"><%=  i %></a></li>
+        <% }; %>
       </ul>
     </nav>
-    
   </div>
 </section>

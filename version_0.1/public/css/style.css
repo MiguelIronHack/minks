@@ -191,6 +191,8 @@ textarea {
       border-radius: 2px;
       text-align: center;
       padding: 0.4rem 1rem; }
+      .forum .form-content input::placeholder {
+        color: #fbfbfb; }
     .forum .form-content select {
       padding: 0.4rem 1rem;
       text-align-last: center; }
