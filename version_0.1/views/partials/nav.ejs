@@ -16,10 +16,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="/forum">Forum</a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link" href="/play">Play Minks</a>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link" href="/forum">Forum</a>
         </li>
         <li class="nav-item dropdown">
           <a
@@ -39,13 +39,10 @@
             <a class="dropdown-item" href="/users/register">Register</a>
           </div>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/forum">About Minks</a>
-        </li>
       </ul>
-      <a class="account" href="/dashboard">Account <span class="badge badge-secondary">
+      <a class="account mr-3" href="/dashboard"><h4><span class="badge badge-secondary">
      <%= user ? user.name : 'login' %>
-      </span></a>
+      </span></h4></a>
     </div>
   </nav>
 </header>
