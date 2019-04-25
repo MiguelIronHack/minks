@@ -1,12 +1,28 @@
 const express = require("express");
 const router = new express.Router();
 const Thread = require("../models/Thread");
+const UserPost = require("../models/UserPost");
 
 const getAll = () => Thread.find().populate("owner");
 const create = data => Thread.create(data);
-const getOne = id => Thread.findById(id);
+const getOne = id =>
+  Thread.findById(id)
+    .populate({
+      path: "posts",
+      populate: { path: "owner" }
+    })
+    .populate("owner");
+
 const deleteOne = id => Thread.deleteOne({ _id: id });
-const updateOne = id => Thread.updateOne(id);
+const updateOne = (id, data) => Thread.updateOne({ _id: id }, data);
+
+// const postOwner =
+// function populatePosts(){
+//   const result = Thread.findById(id).populate("posts");
+//   for(let post of result.posts){
+//     posts.
+//   }
+// }
 
 router.get("/all", (req, res) => {
   getAll()

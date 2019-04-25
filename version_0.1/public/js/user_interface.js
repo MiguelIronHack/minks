@@ -122,7 +122,7 @@ export class KeyBoard {
     }
   }
 
-  setModulationType(type) {
+  setAttack(type) {
     for (let synth of this.synthArray) synth.modulationType = type;
   }
 }

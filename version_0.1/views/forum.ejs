@@ -54,12 +54,12 @@
   
   <div class="card text-white bg-light mx-5 forum-card">
  <a href="/thread/<%= thread.id%>"> 
-    <div class="card-header"><%= thread.owner.name%></div>
+  <h5 class="card-header text-white card-title"><%= thread.title%></h5>
      </a>
     <div class="card-body">
-      <h5 class="card-title"><%= thread.title%></h5>
-      <p class="card-text">
-          <%= thread.message %>
+      <p><%= thread.message%></p>
+      <p class="badge badge-success card-text">
+          <%= thread.owner.name %>
       </p>
     </div>
   </div>

@@ -40,7 +40,7 @@
           </div>
         </li>
       </ul>
-      <a class="account mr-3" href="/dashboard"><h4><span class="badge badge-secondary">
+      <a  id="user" user-id="<%= user ? user.id : 'none' %>"class="account mr-3" href="/dashboard"><h4><span class="badge badge-secondary">
      <%= user ? user.name : 'login' %>
       </span></h4></a>
     </div>

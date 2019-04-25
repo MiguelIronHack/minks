@@ -4,7 +4,7 @@ const { ensureAuth } = require("../config/auth");
 const apiThread = require("./api_thread");
 const _ = require("lodash");
 const getAllThreads = apiThread[1];
-
+const getOneThread = apiThread[3];
 // Index
 router.get("/", (req, res, next) => {
   res.render("index", {
@@ -32,9 +32,9 @@ router.get("/dashboard", ensureAuth, (req, res) =>
   })
 );
 // Forum
-router.post("/forum", ensureAuth, (req, res) => {
-  console.log(req.body.page, req.body.pageSize);
-});
+// router.post("/forum", ensureAuth, (req, res) => {
+//   console.log(req.body.page, req.body.pageSize);
+// });
 
 // const pagination = (pagesCount,items, ) => {
 //   if (pagesCount === 1) return null;
@@ -68,13 +68,13 @@ router.get("/forum", ensureAuth, (req, res) => {
 });
 
 router.get("/thread/:id", (req, res, next) => {
-  apiThread[3](req.params.id)
-    .then(thread =>
+  getOneThread(req.params.id)
+    .then(thread => {
       res.render("thread", {
         thread,
-        script: ["nav.js"]
-      })
-    )
+        script: ["post.js"]
+      });
+    })
     .catch(err => console.error(err));
 });
 module.exports = router;
