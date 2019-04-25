@@ -1,0 +1,14 @@
+<div class="card m-5">
+  <div class="card-body">
+    <h5 class="card-title"><%= thread.title %></h5>
+    <h6 class="card-subtitle mb-2 text-muted"><%= thread.category%></h6>
+    <p class="card-text"><%= thread.message%></p>
+  </div>
+</div>
+<div class="form-group container form-content">
+  <label for="form-message">Message</label>
+  <textarea class="form-control bg-dark" id="post-message" placeholder="input your text here..."></textarea>
+  <button class="btn-primary btn mt-3" id="create-post">
+    Create Thread
+  </button>
+</div>

@@ -49,8 +49,11 @@
  <%# Thread population %>
 
   <% for(let thread of threads){%>
+  
   <div class="card text-white bg-light mx-5 forum-card">
+ <a href="/thread/<%= thread.id%>"> 
     <div class="card-header"><%= thread.owner.name%></div>
+     </a>
     <div class="card-body">
       <h5 class="card-title"><%= thread.title%></h5>
       <p class="card-text">

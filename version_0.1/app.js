@@ -33,6 +33,12 @@ mongoose
   });
 
 //
+function checkLogin(req, res, next) {
+  res.locals.isLoggedIn = req.isAuthenticated();
+  res.locals.user = req.user;
+  console.log(res.locals, res.locals.user);
+  next();
+}
 
 const app_name = require("./package.json").name;
 const debug = require("debug")(
@@ -89,7 +95,7 @@ app.use(
 // Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
-
+app.use(checkLogin);
 // Connect flash
 app.use(flash());
 

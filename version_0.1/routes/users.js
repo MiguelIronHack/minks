@@ -2,11 +2,16 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const passport = require("passport");
+const { ensureAuth } = require("../config/auth");
 // User model
 const User = require("../models/User");
 
 // Login page
-router.get("/login", (req, res) => res.render("login", { script: ["nav.js"] }));
+router.get("/login", (req, res) =>
+  res.render("login", {
+    script: ["nav.js"]
+  })
+);
 
 // register page
 router.get("/register", (req, res) =>
@@ -39,7 +44,7 @@ router.post("/register", (req, res) => {
       email,
       password,
       password2,
-      script: ['nav.js']
+      script: ["nav.js"]
     });
   } else {
     // validation passed
