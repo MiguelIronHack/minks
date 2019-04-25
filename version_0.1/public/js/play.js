@@ -17,26 +17,7 @@ const c1 = document.getElementById("synth-m").classList;
 const c$1 = document.getElementById("synth-n").classList;
 const d1 = document.getElementById("synth-o").classList;
 const d$1 = document.getElementById("synth-p").classList;
-const volumeKnob = document.getElementById("volume-knob");
-const modulationKnob = document.getElementById("modulation-knob");
-const filterKnob = document.getElementById("filter-knob");
 
-function createKnob(parentNode, value, min, max) {
-  let knob = pureknob.createKnob(100, 100);
-  knob.setProperty("angleStart", -0.75 * Math.PI);
-  knob.setProperty("angleEnd", 0.75 * Math.PI);
-  knob.setProperty("colorFG", "#88ff88");
-  knob.setProperty("trackWidth", 0.4);
-  knob.setProperty("valMin", 0);
-  knob.setProperty("valMax", 100);
-  knob.setValue(10);
-  var node = knob.node();
-  parentNode.appendChild(node);
-}
-let gain = createKnob(volumeKnob, 0.5, 0.1, 1);
-createKnob(modulationKnob, 100, 10, 1000);
-createKnob(filterKnob, 200, 50, 1000);
-console.log(gain);
 synthPads.forEach(pad => {
   pad.addEventListener("mousedown", () => {
     pad.classList.add("active");
@@ -45,6 +26,17 @@ synthPads.forEach(pad => {
     pad.classList.remove("active");
   });
 });
+
+const synthTypeNode = document.getElementById("synth-type");
+// let synthType = synthTypeNode.options[synthTypeNode.selectedIndex].value;
+const newstuff = Array.from(synthTypeNode.children);
+newstuff.forEach(c => (c.onselect = getSynthType));
+
+// synthTypeNode.onclick = getSynthType;
+
+function getSynthType(e) {
+  console.log("hey");
+}
 
 document.addEventListener("keydown", e => {
   if (e.code == "KeyA") {

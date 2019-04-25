@@ -2,7 +2,6 @@ export class KeyBoard {
   constructor(notes) {
     this.noteScale = notes;
     this.synthType = "sawtooth";
-
     this.synthArray = this.createSynths();
     this.keyState = new Object();
   }
@@ -45,7 +44,7 @@ export class KeyBoard {
           release: 4
         }
       }).toMaster();
-      synth.volume.value = 0;
+
       synthArray.push(synth);
     }
     return synthArray;
@@ -104,6 +103,7 @@ export class KeyBoard {
   setVolume(val) {
     for (let synth of this.synthArray) synth.volume.value = val;
   }
+
   setType(type) {
     for (let synth of this.synthArray) synth.oscillator.type = type;
   }

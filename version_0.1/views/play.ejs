@@ -53,27 +53,18 @@
 
   <section id="synth" class="pad-section synth-section">
     <h2 class="pad-header">Synth</h2>
-    <div class="dropdown">
-      <button
-        class="btn btn-secondary dropdown-toggle"
-        type="button"
-        id="dropdownMenuButton"
-        data-toggle="dropdown"
-        aria-haspopup="true"
-        aria-expanded="false"
-      >
-        Sound Type
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item">Triangle</a>
-        <a class="dropdown-item">Sine</a>
-        <a class="dropdown-item">Square</a>
-        <a class="dropdown-item">Sawtooth</a>
+
+    <select class="dropdown" id="synth-type">
+        <option class="dropdown-item">Sine</option>
+        <option class="dropdown-item">Sawtooth</option>
+        <option class="dropdown-item">Square</option>
+    </select>
+
+      <div class="knobs knobs-container">
+        <div class="knob" id="volume-knob">Volume</div>
+        <div class="knob" id="filter-knob">Filter</div>
+        <div class="knob" id="modulation-knob">Modulation</div>
       </div>
-      <div class="knob" id="volume-knob"></div>
-      <div class="knob" id="filter-knob"></div>
-      <div class="knob" id="modulation-knob"></div>
-    </div>
     <div class="synth-container m-auto" id="synth-parent">
       <div id="synth-a" class="synth-pad">C</div>
       <div id="synth-b" class="synth-pad">C#</div>

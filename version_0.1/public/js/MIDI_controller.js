@@ -35,7 +35,6 @@ export class MIDIController {
   }
 
   onMIDISuccess(midiAccess) {
-    console.log(`Midi Success: ${midiAccess}`);
     this.midi = midiAccess; // this is our raw MIDI data, inputs, outputs, and sysex status
     let inputs = this.midi.inputs.values();
 

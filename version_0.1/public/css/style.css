@@ -222,4 +222,8 @@ textarea {
 .thread-container .forum-card {
   margin: 2rem auto; }
 
+.knobs {
+  display: flex;
+  justify-content: space-evenly; }
+
 /*# sourceMappingURL=style.css.map */

@@ -20,8 +20,7 @@ router.get("/play", (req, res, next) => {
       "oscillator.js",
       "MIDI_controller.js",
       "drum_machine.js",
-      "script.js",
-      "knob.js"
+      "script.js"
     ]
   });
 });
