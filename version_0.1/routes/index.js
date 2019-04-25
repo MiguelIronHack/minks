@@ -28,7 +28,8 @@ router.get("/play", (req, res, next) => {
 router.get("/dashboard", ensureAuth, (req, res) =>
   res.render("dashboard", {
     script: ["nav.js"],
-    name: req.user.name
+    name: req.user.name,
+    data: req.user._id
   })
 );
 // Forum
