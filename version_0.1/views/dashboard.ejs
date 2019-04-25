@@ -1,4 +1,29 @@
-<h1 class="mt-4">Profile</h1>
-<p class="lead mb-3">Welcome <%= name %></p>
-<a href="/users/logout" class="btn btn-secondary">Logout</a>
-<%= data %>
+<section class="container">
+  <h1 class="mt-4">Profile</h1>
+  <p class="lead mb-3">Welcome <%= name %></p>
+  <a href="/users/logout" class="btn btn-secondary">Logout</a>
+  
+  <table class="table table-hover table-dark container mt-5">
+    <thead>
+      <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Message</th>
+        <th scope="col">Category</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% for(let i of data){%>
+      <tr>
+        <td thread-id="<%= i._id %>"><%= i.title%></td>
+        <td><%= i.message%></td>
+        <td><%= i.category %></td>
+        <td id="delete-post-btn">
+        <span class="delete-post-btn">
+        <i class="fas fa-times"></i>
+        </span>
+        </td>
+      </tr>
+    <% } %>
+    </tbody>
+  </table>
+</section>

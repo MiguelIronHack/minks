@@ -169,7 +169,7 @@
 .synth-pad {
   background: $pad-bg;
   color: $pad-c;
-  padding: 3rem;
+  padding: 2.6rem;
   border: 0.6rem solid $pad-bg;
   &:active {
     @include easeOut;
@@ -246,6 +246,17 @@
     margin: 2rem auto;
   }
 }
+// profile
+.delete-post-btn > * {
+  cursor: pointer;
+  transform: rotate(-90deg);
+  @include easeOut();
+  &:hover {
+    transform: rotate(90deg);
+    @include easeOut();
+  }
+}
+//
 @include mediaLg {
   .synth-pad {
     padding: 1rem;

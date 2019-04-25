@@ -25,13 +25,17 @@ router.get("/play", (req, res, next) => {
   });
 });
 // Dashboard
-router.get("/dashboard", ensureAuth, (req, res) =>
-  res.render("dashboard", {
-    script: ["nav.js"],
-    name: req.user.name,
-    data: req.user._id
-  })
-);
+router.get("/dashboard", ensureAuth, (req, res) => {
+  getAllThreads(req.params.id)
+    .then(data =>
+      res.render("dashboard", {
+        script: ["profile.js"],
+        name: req.user.name,
+        data: data
+      })
+    )
+    .catch(err => console.error(err));
+});
 // Forum
 // router.post("/forum", ensureAuth, (req, res) => {
 //   console.log(req.body.page, req.body.pageSize);
