@@ -1,12 +1,24 @@
 @import "config";
 @import "forum";
 
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+/* Navbar */
+
 /* Index */
 .index-showcase {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 0 10vw;
+  animation: fadeIn 1.5s ease-in-out both;
 }
 .showcase-header {
   margin: 1rem 0;
@@ -26,12 +38,18 @@
     url(/images/a.jpg) no-repeat;
   background-size: cover;
   background-position: center;
+  border: 2px solid $dcolor;
+  border-radius: 1rem;
   width: 100%;
-  height: 40vh;
+  height: 70vh;
   margin: 1rem auto;
   display: flex;
   justify-content: center;
   align-items: center;
+  animation: fadeIn 1.5s ease-in-out 1.5s both;
+  & > * {
+    animation: fadeIn 0.5s ease-in-out 2.5s both;
+  }
 }
 .play-icon {
   color: $dcolor;
@@ -42,9 +60,15 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr));
   grid-row-gap: 5vw;
+  margin: 4vh 2vw;
 }
 .drum-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
   background-size: cover;
+  max-width: 90vw;
   .active {
     background: $dcolor;
     color: $pcolor;
@@ -54,7 +78,8 @@
       //drum pads
       display: flex;
       justify-content: center;
-      padding: 5vh 1vw;
+      padding: 4vh 1vw;
+      font-size: 1rem;
       border: 2px solid $dcolor;
       border-radius: 1rem;
       margin: 2vh 0;
@@ -76,20 +101,43 @@
   margin: 0 5vw;
 }
 .pad-header {
-  align-self: center;
-  margin-top: 1rem;
   margin-bottom: auto;
+  align-self: center;
   text-transform: capitalize;
 }
 .drum-pad-row-container {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
-  grid-gap: 1rem;
+  grid-gap: 1vh 1vw;
 }
 .synth-section {
+  max-width: 100vw;
   .dropdown {
-    padding: 1rem;
+    padding: 0.4rem 1rem;
     margin: 1rem auto;
+    & > * {
+      color: $tcolor;
+    }
+  }
+  .synth-type {
+    border: 2px solid $dcolor;
+    border-radius: 1rem;
+    &:hover {
+      color: $pcolor;
+    }
+  }
+
+  .knobs {
+    display: flex;
+    justify-content: center;
+    margin: 2vh 0;
+    .knob {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 0 2vw;
+    }
   }
 }
 .synth-container {
@@ -189,7 +237,30 @@
     margin: 2rem auto;
   }
 }
-.knobs {
-  display: flex;
-  justify-content: space-evenly;
+
+@include mediaMd {
+  .main {
+    margin: 0 auto;
+  }
+  .pad-section {
+    max-width: 90vw;
+  }
+  .synth-section {
+    max-width: 90vw;
+  }
+  .synth-pad {
+    padding: 0.3rem;
+  }
+  .drum-pad {
+    padding: 3vh 2vw;
+  }
+  .knobs {
+    & > * {
+      & > * > canvas {
+        display: flex;
+        height: 5vh;
+        width: 5vw;
+      }
+    }
+  }
 }
