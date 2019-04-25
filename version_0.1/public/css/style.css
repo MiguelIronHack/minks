@@ -13,6 +13,8 @@ body {
 
 a {
   text-decoration: none; }
+  a:hover {
+    text-decoration: none; }
 
 ol,
 ul {
@@ -73,7 +75,6 @@ textarea {
   100% {
     opacity: 1; } }
 
-/* Navbar */
 /* Index */
 .index-showcase {
   display: flex;
@@ -96,7 +97,7 @@ textarea {
   text-align: center; }
 
 .img-container {
-  background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url(/images/a.jpg) no-repeat;
+  background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url(/images/a.png) no-repeat;
   background-size: cover;
   background-position: center;
   border: 2px solid #fbfbfb;
@@ -105,11 +106,18 @@ textarea {
   height: 70vh;
   margin: 1rem auto;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   animation: fadeIn 1.5s ease-in-out 1.5s both; }
   .img-container > * {
     animation: fadeIn 0.5s ease-in-out 2.5s both; }
+  .img-container .start {
+    margin: 1rem auto;
+    animation: fadeIn 0.5s ease-in-out 3.5s both;
+    background: #fbfbfb;
+    padding: 0.4rem;
+    border-radius: 1rem; }
 
 .play-icon {
   color: #fbfbfb;
@@ -205,7 +213,7 @@ textarea {
 .synth-pad {
   background: #fbfbfb;
   color: #313131;
-  padding: 3rem;
+  padding: 2.6rem;
   border: 0.6rem solid #fbfbfb; }
   .synth-pad:active {
     transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1); }
@@ -261,13 +269,29 @@ textarea {
 .thread-container .forum-card {
   margin: 2rem auto; }
 
+.delete-post-btn > * {
+  cursor: pointer;
+  transform: rotate(-90deg);
+  transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1); }
+  .delete-post-btn > *:hover {
+    transform: rotate(90deg);
+    transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1); }
+
 @media screen and (min-width: 769px) and (max-width: 1170px) {
   .synth-pad {
     padding: 1rem; } }
 
 @media screen and (max-width: 768px) {
+  h1 {
+    font-size: 2rem; }
+  h2 {
+    font-size: 1.8rem; }
+  h3 {
+    font-size: 1.6rem; }
   textarea {
     width: 45vw; }
+  .img-container {
+    height: 60vh; }
   .form-display,
   .new-thread-header {
     font-size: 1.6rem; }

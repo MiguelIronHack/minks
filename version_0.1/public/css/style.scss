@@ -10,7 +10,6 @@
     opacity: 1;
   }
 }
-/* Navbar */
 
 /* Index */
 .index-showcase {
@@ -35,7 +34,7 @@
 }
 .img-container {
   background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
-    url(/images/a.jpg) no-repeat;
+    url(/images/a.png) no-repeat;
   background-size: cover;
   background-position: center;
   border: 2px solid $dcolor;
@@ -44,11 +43,19 @@
   height: 70vh;
   margin: 1rem auto;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   animation: fadeIn 1.5s ease-in-out 1.5s both;
   & > * {
     animation: fadeIn 0.5s ease-in-out 2.5s both;
+  }
+  .start {
+    margin: 1rem auto;
+    animation: fadeIn 0.5s ease-in-out 3.5s both;
+    background: $dcolor;
+    padding: 0.4rem;
+    border-radius: 1rem;
   }
 }
 .play-icon {
@@ -162,7 +169,7 @@
 .synth-pad {
   background: $pad-bg;
   color: $pad-c;
-  padding: 3rem;
+  padding: 2.6rem;
   border: 0.6rem solid $pad-bg;
   &:active {
     @include easeOut;
@@ -239,14 +246,37 @@
     margin: 2rem auto;
   }
 }
+// profile
+.delete-post-btn > * {
+  cursor: pointer;
+  transform: rotate(-90deg);
+  @include easeOut();
+  &:hover {
+    transform: rotate(90deg);
+    @include easeOut();
+  }
+}
+//
 @include mediaLg {
   .synth-pad {
     padding: 1rem;
   }
 }
 @include mediaMd {
+  h1 {
+    font-size: 2rem;
+  }
+  h2 {
+    font-size: 1.8rem;
+  }
+  h3 {
+    font-size: 1.6rem;
+  }
   textarea {
     width: 45vw;
+  }
+  .img-container {
+    height: 60vh;
   }
   .form-display,
   .new-thread-header {
