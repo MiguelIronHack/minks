@@ -154,6 +154,7 @@ textarea {
   margin: 0 5vw; }
 
 .pad-header {
+  margin-top: 1rem;
   margin-bottom: auto;
   align-self: center;
   text-transform: capitalize; }

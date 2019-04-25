@@ -7,8 +7,8 @@ const midiController = new MIDIController(audioCtx);
 
 const kickNode = document.getElementById("kick-section");
 const snareNode = document.getElementById("snare-section");
-// const kickNode = document.getElementById("kick-section");
-// const kickNode = document.getElementById("kick-section");
+const hiHatNode = document.getElementById("hi-hat-section");
+const clapNode = document.getElementById("clap-section");
 const volumeKnob = document.getElementById("volume-knob");
 const modulationKnob = document.getElementById("modulation-knob");
 const filterKnob = document.getElementById("filter-knob");
@@ -33,12 +33,13 @@ const noteScale = [
   "D4",
   "D#4"
 ];
+let attack = 1;
+let sustain = 1;
 const keyBoard = new KeyBoard(noteScale);
 synthTypeNode.onchange = function() {
   let type = synthTypeNode.value;
-  keyBoard.setType(type.toLowerCase());
+  keyBoard.setType(type.toLowerCase(), attack, sustain);
 };
-
 function createKnob(parentNode, value, min, max, type) {
   let knob = pureknob.createKnob(60, 60);
   knob.setProperty("angleStart", -0.75 * Math.PI);
@@ -50,8 +51,8 @@ function createKnob(parentNode, value, min, max, type) {
   knob.setValue(value);
   let listener = (knob, value) => {
     if (type === "volume") keyBoard.setVolume(value);
-    // if(type === "filter")
-    // if(type === "modulation")
+    if (type === "attack") keyBoard.setAttack(value / 10);
+    if (type === "sustain") keyBoard.setSustain(value / 100);
   };
   knob.addListener(listener);
   var node = knob.node();
@@ -59,8 +60,8 @@ function createKnob(parentNode, value, min, max, type) {
 }
 
 createKnob(volumeKnob, 5, 0, 10, "volume");
-createKnob(modulationKnob, 100, 10, 1000, "modulation");
-createKnob(filterKnob, 200, 50, 1000, "filter");
+createKnob(modulationKnob, 5, 1, 10, "attack");
+createKnob(filterKnob, 5, 1, 10, "sustain");
 function createDrumElements(name, url) {
   axios
     .post(serverUrl + "/api/soundbank/create", { name, url })
@@ -106,9 +107,15 @@ getDrumSound()
       const kickUrl = servRes.data[0].url;
       const kick = new Drums(kickNode, kickUrl, "kick", audioCtx);
       kick.startSequence(120);
-      const snareUrl = servRes.data[1].url;
+      const snareUrl = servRes.data[2].url;
       const snare = new Drums(snareNode, snareUrl, "snare", audioCtx);
       snare.startSequence(120);
+      const clapUrl = servRes.data[3].url;
+      const clap = new Drums(clapNode, clapUrl, "clap", audioCtx);
+      clap.startSequence(120);
+      const hiHatUrl = servRes.data[1].url;
+      const hiHat = new Drums(hiHatNode, hiHatUrl, "hiHat", audioCtx);
+      hiHat.startSequence(120);
     } catch (e) {
       console.log(e);
     }
