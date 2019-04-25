@@ -1,7 +1,7 @@
 export class KeyBoard {
   constructor(notes) {
     this.noteScale = notes;
-    this.synthType = "sawtooth";
+    this.synthType = "sine";
     this.synthArray = this.createSynths();
     this.keyState = new Object();
   }
@@ -38,9 +38,9 @@ export class KeyBoard {
           harmonicity: 3.4
         },
         envelope: {
-          attack: 0.001,
-          decay: 0.1,
-          sustain: 0.1,
+          attack: 0.01,
+          decay: 0.2,
+          sustain: 0.3,
           release: 4
         }
       }).toMaster();
@@ -103,7 +103,7 @@ export class KeyBoard {
     for (let synth of this.synthArray) synth.volume.value = val;
   }
 
-  setType(type) {
+  setType(type, attack, sustain) {
     for (let i = 0; i < 20; i++) {
       let synth = new Tone.Synth({
         oscillator: {
@@ -112,9 +112,9 @@ export class KeyBoard {
           harmonicity: 3.4
         },
         envelope: {
-          attack: 0.001,
-          decay: 0.1,
-          sustain: 0.1,
+          attack: attack,
+          decay: 0.4,
+          sustain: sustain,
           release: 4
         }
       }).toMaster();
@@ -124,5 +124,13 @@ export class KeyBoard {
 
   setAttack(type) {
     for (let synth of this.synthArray) synth.modulationType = type;
+  }
+  setAttack(val) {
+    for (let synth of this.synthArray) {
+      synth.envelope.attack = val;
+    }
+  }
+  setSustain(val) {
+    for (let synth of this.synthArray) synth.envelope.sustain = val;
   }
 }

@@ -23,7 +23,7 @@ require("./config/passport")(passport);
 
 // connect to mongo
 mongoose
-  .connect("mongodb://localhost/minks", { useNewUrlParser: true })
+  .connect(process.env.MONGODB_URI, { useNewUrlParser: true })
   .then(x => {
     console.log(
       `Connected to Mongo! Database name: "${x.connections[0].name}"`
