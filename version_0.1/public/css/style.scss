@@ -185,7 +185,6 @@
   .form-content {
     flex-direction: column;
     align-items: center;
-    margin: 0.3rem 0;
     width: 100%;
     & input {
       border: 0;
@@ -210,7 +209,9 @@
     }
     & textarea {
       padding: 2rem;
+      width: 45vw;
       color: lighten($color: $pcolor, $amount: 10);
+
       &::placeholder {
         color: darken($color: $dcolor, $amount: 10);
       }
@@ -244,33 +245,30 @@
   }
 }
 @include mediaMd {
+  textarea {
+    width: 45vw;
+  }
   .form-display,
   .new-thread-header {
     font-size: 1.6rem;
   }
 
   .main {
-    margin: 0 auto;
+    margin: 2vh auto;
   }
   .pad-section {
     max-width: 90vw;
+    height: 85vh;
   }
   .synth-section {
     max-width: 90vw;
+    height: 100vh;
   }
   .synth-pad {
     padding: 0.7rem;
   }
   .drum-pad {
     padding: 3vh 2vw;
-  }
-  .knobs {
-    & > * {
-      & > * > canvas {
-        display: flex;
-        height: 5vh;
-        width: 5vw;
-      }
-    }
+    margin: 0 1vw;
   }
 }
