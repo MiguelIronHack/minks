@@ -31,7 +31,7 @@ function createThread(evt) {
   const ele = document.getElementById("form-category");
   const category = ele.options[ele.selectedIndex].value;
   const userId = document.getElementById("username").getAttribute("user-id");
-  const userName = document.getElementById("username").innerHTML;
+  const userName = document.getElementById("username").textContent.trim();
 
   //Action to display error messages if the message is empty
   //return if requirements are not met
@@ -66,16 +66,14 @@ function displayError(dbMessage) {
 function appendThread(parentNode, userName, message, title) {
   parentNode.insertAdjacentHTML(
     "afterbegin",
-    `
-  <div class="card text-white bg-light mx-5 forum-card">
-      <div class="card-header">${userName}</div>
-      <div class="card-body">
-        <h5 class="card-title">${title}</h5>
-        <p class="card-text">
-           ${message}
-        </p>
-      </div>
-    </div>
-  `
+    `<div class="card text-white bg-light mx-5 forum-card">
+    <a> 
+     <h5 class="card-header text-white card-title">hffhf</h5>
+        </a>
+       <div class="card-body">
+         <p>${message}</p>
+         <p class="badge badge-success card-text">${userName}</p>
+       </div>
+     </div>`
   );
 }

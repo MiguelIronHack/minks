@@ -49,17 +49,10 @@ function paginate(items, pageNumber, pageSize) {
     .value();
 }
 
-router.get("/forum", ensureAuth, (req, res) => {
+router.get("/forum", (req, res) => {
   getAllThreads()
     .then(result => {
-      // console.log(result[1].owner.name);
-      // const pageSize = 3;
-      // const pages = Math.ceil(result.length / pageSize);
-      // const items = paginate(result, 1, pageSize);
-      // console.log(items);
       res.render("forum", {
-        _id: req.user._id,
-        userName: req.user.name,
         threads: result.sort((a, b) => b.date - a.date),
         script: ["forum.js"]
       });

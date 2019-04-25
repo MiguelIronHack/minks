@@ -4,8 +4,14 @@ const serverUrl = document.getElementById("site-url").content;
 const threadID = document.getElementById("topic").getAttribute("thread-id");
 const threadWrapper = document.getElementById("thread-wrapper");
 const userName = document.getElementById("user").textContent;
-console.log(threadWrapper);
+
+if (userName.trim() == "login") {
+  postButton.setAttribute("data-toggle", "modal");
+  postButton.setAttribute("data-target", "#error-modal");
+}
+
 function postMessage() {
+  document.getElementById;
   if (userName.trim() == "login") {
     console.log("error");
     return;
