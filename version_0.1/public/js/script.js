@@ -12,6 +12,8 @@ const snareNode = document.getElementById("snare-section");
 const volumeKnob = document.getElementById("volume-knob");
 const modulationKnob = document.getElementById("modulation-knob");
 const filterKnob = document.getElementById("filter-knob");
+const synthTypeNode = document.getElementById("synth-type");
+
 const serverUrl = "http://localhost:3434";
 
 const noteScale = [
@@ -33,6 +35,10 @@ const noteScale = [
   "D#4"
 ];
 const keyBoard = new KeyBoard(noteScale);
+synthTypeNode.onchange = function() {
+  let type = synthTypeNode.value;
+  keyBoard.setType(type.toLowerCase());
+};
 
 function createKnob(parentNode, value, min, max, type) {
   let knob = pureknob.createKnob(100, 100);

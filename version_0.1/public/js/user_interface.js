@@ -44,7 +44,6 @@ export class KeyBoard {
           release: 4
         }
       }).toMaster();
-
       synthArray.push(synth);
     }
     return synthArray;
@@ -105,8 +104,24 @@ export class KeyBoard {
   }
 
   setType(type) {
-    for (let synth of this.synthArray) synth.oscillator.type = type;
+    for (let i = 0; i < 20; i++) {
+      let synth = new Tone.Synth({
+        oscillator: {
+          type: type,
+          modulationIndex: 3,
+          harmonicity: 3.4
+        },
+        envelope: {
+          attack: 0.001,
+          decay: 0.1,
+          sustain: 0.1,
+          release: 4
+        }
+      }).toMaster();
+      this.synthArray[i] = synth;
+    }
   }
+
   setModulationType(type) {
     for (let synth of this.synthArray) synth.modulationType = type;
   }

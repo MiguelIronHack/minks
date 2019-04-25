@@ -27,17 +27,6 @@ synthPads.forEach(pad => {
   });
 });
 
-const synthTypeNode = document.getElementById("synth-type");
-// let synthType = synthTypeNode.options[synthTypeNode.selectedIndex].value;
-const newstuff = Array.from(synthTypeNode.children);
-newstuff.forEach(c => (c.onselect = getSynthType));
-
-// synthTypeNode.onclick = getSynthType;
-
-function getSynthType(e) {
-  console.log("hey");
-}
-
 document.addEventListener("keydown", e => {
   if (e.code == "KeyA") {
     c1.add("active");
