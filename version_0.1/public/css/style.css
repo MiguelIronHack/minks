@@ -230,7 +230,7 @@ textarea {
       border-radius: 2px;
       text-align: center;
       padding: 0.6rem 1.5rem;
-      color: white; }
+      color: #242841; }
       .forum .form-content input::placeholder {
         color: #fbfbfb; }
     .forum .form-content select {
@@ -243,7 +243,7 @@ textarea {
         color: #121420; }
     .forum .form-content textarea {
       padding: 2rem;
-      color: white; }
+      color: #242841; }
       .forum .form-content textarea::placeholder {
         color: #e2e2e2; }
   .forum .btn {
@@ -260,7 +260,14 @@ textarea {
 .thread-container .forum-card {
   margin: 2rem auto; }
 
+@media screen and (min-width: 769px) and (max-width: 1170px) {
+  .synth-pad {
+    padding: 1rem; } }
+
 @media screen and (max-width: 768px) {
+  .form-display,
+  .new-thread-header {
+    font-size: 1.6rem; }
   .main {
     margin: 0 auto; }
   .pad-section {
@@ -268,7 +275,7 @@ textarea {
   .synth-section {
     max-width: 90vw; }
   .synth-pad {
-    padding: 0.3rem; }
+    padding: 0.7rem; }
   .drum-pad {
     padding: 3vh 2vw; }
   .knobs > * > * > canvas {

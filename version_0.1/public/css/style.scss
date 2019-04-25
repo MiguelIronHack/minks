@@ -191,7 +191,7 @@
       border-radius: 2px;
       text-align: center;
       padding: 0.6rem 1.5rem;
-      color: lighten($color: $dcolor, $amount: 10);
+      color: lighten($color: $pcolor, $amount: 10);
       &::placeholder {
         color: $dcolor;
       }
@@ -209,7 +209,7 @@
     }
     & textarea {
       padding: 2rem;
-      color: lighten($color: $dcolor, $amount: 10);
+      color: lighten($color: $pcolor, $amount: 10);
       &::placeholder {
         color: darken($color: $dcolor, $amount: 10);
       }
@@ -237,8 +237,17 @@
     margin: 2rem auto;
   }
 }
-
+@include mediaLg {
+  .synth-pad {
+    padding: 1rem;
+  }
+}
 @include mediaMd {
+  .form-display,
+  .new-thread-header {
+    font-size: 1.6rem;
+  }
+
   .main {
     margin: 0 auto;
   }
@@ -249,7 +258,7 @@
     max-width: 90vw;
   }
   .synth-pad {
-    padding: 0.3rem;
+    padding: 0.7rem;
   }
   .drum-pad {
     padding: 3vh 2vw;
