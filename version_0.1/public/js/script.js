@@ -13,8 +13,7 @@ const volumeKnob = document.getElementById("volume-knob");
 const modulationKnob = document.getElementById("modulation-knob");
 const filterKnob = document.getElementById("filter-knob");
 const synthTypeNode = document.getElementById("synth-type");
-
-const serverUrl = "http://localhost:3434";
+const serverUrl = document.getElementById("site-url").content;
 
 const noteScale = [
   "C3",
@@ -71,22 +70,22 @@ function createDrumElements(name, url) {
     .catch(err => console.log(err));
 }
 
-// createDrumElements(
-//   'KICK',
-//   'https://ia801507.us.archive.org/18/items/909KICK/909_KICK.wav'
-// );
-// createDrumElements(
-//   'SNARE',
-//   'https://ia601408.us.archive.org/34/items/909Snare/909_snare.wav'
-// );
-// createDrumElements(
-//   'HI-HAT',
-//   'https://ia601400.us.archive.org/4/items/909HighHat/909_HighHat.wav'
-// );
-// createDrumElements(
-//   'Clap',
-//   'https://ia801501.us.archive.org/31/items/909Clap/909_clap.wav'
-// );
+createDrumElements(
+  "KICK",
+  "https://ia801507.us.archive.org/18/items/909KICK/909_KICK.wav"
+);
+createDrumElements(
+  "SNARE",
+  "https://ia601408.us.archive.org/34/items/909Snare/909_snare.wav"
+);
+createDrumElements(
+  "HI-HAT",
+  "https://ia601400.us.archive.org/4/items/909HighHat/909_HighHat.wav"
+);
+createDrumElements(
+  "Clap",
+  "https://ia801501.us.archive.org/31/items/909Clap/909_clap.wav"
+);
 
 keyBoard.setKeyListeners(window);
 keyBoard.setMouseListener(synthNode.children);

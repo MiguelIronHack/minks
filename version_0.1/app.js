@@ -17,6 +17,7 @@ const bodyParser = require("body-parser");
 
 const app = express();
 app.use(bodyParser());
+app.locals.site_url = process.env.SITE_URL;
 // Passport config
 require("./config/passport")(passport);
 

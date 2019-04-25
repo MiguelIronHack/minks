@@ -2,7 +2,7 @@ const formButton = document.getElementById("form-display");
 const form = document.getElementsByClassName("form-group");
 const createButton = document.getElementById("create-thread");
 const threadNode = document.getElementById("thread-container");
-const url = "http://localhost:3434";
+const url = document.getElementById("site-url").content;
 
 formButton.onclick = displayForm;
 createButton.onclick = createThread;
