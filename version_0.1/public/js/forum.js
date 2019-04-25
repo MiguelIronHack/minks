@@ -49,7 +49,7 @@ function createThread(evt) {
 function getThreads(page, count) {
   axios
     .get(url + "/api/thread/all")
-    .then(response => displaySuccess())
+    .then(response => displaySuccess(response))
     .catch(err => displayError(err));
 }
 

@@ -57,10 +57,10 @@ export class MIDIController {
     if (velocity > 1) this.keyState[note] = true; // NOTE ON
     if (!velocity) this.keyState[note] = false; //NOTE OFF
 
-    if (!this.keyState[note]) {
+    if (this.keyState[note]) {
       this.synthArray[note].triggerAttack(this.noteToFrequence(note));
     }
-    if (this.keyState[note]) {
+    if (!this.keyState[note]) {
       this.synthArray[note].triggerRelease();
     }
   }
