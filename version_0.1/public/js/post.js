@@ -12,10 +12,7 @@ if (userName.trim() == "login") {
 
 function postMessage() {
   document.getElementById;
-  if (userName.trim() == "login") {
-    console.log("error");
-    return;
-  }
+  if (userName.trim() == "login") return;
   const formTextArea = document.getElementById("post-message");
   const message = formTextArea.value;
   axios

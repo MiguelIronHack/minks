@@ -3,15 +3,16 @@ const form = document.getElementsByClassName("form-group");
 const createButton = document.getElementById("create-thread");
 const threadNode = document.getElementById("thread-container");
 const url = document.getElementById("site-url").content;
-
+console.log(url);
+const userId = document.getElementById("user").getAttribute("user-id") || null;
+const userName = document.getElementById("user").textContent.trim();
 formButton.onclick = displayForm;
 createButton.onclick = createThread;
 
-//It took me more time than expected
-//The page rendering will be done client side and server side
-// Server side > Rendering the first part of the data
-// Client side we need a templating function for all the html Markup
-// To dynamically display html elements
+if (userId === "none" || userName === "login") {
+  createButton.setAttribute("data-toggle", "modal");
+  createButton.setAttribute("data-target", "#error-modal");
+}
 
 function displayForm() {
   for (let item of form) {
@@ -23,6 +24,7 @@ function displayForm() {
 
 function createThread(evt) {
   evt.preventDefault();
+  if (userId === "none" || userName === "login") return;
   const formTextArea = document.getElementById("form-message");
   const titleElement = document.getElementById("new-post-forum-title");
   const title = titleElement.value;
@@ -30,17 +32,19 @@ function createThread(evt) {
   //Get user id from somewhere;
   const ele = document.getElementById("form-category");
   const category = ele.options[ele.selectedIndex].value;
-  const userId = document.getElementById("username").getAttribute("user-id");
-  const userName = document.getElementById("username").textContent.trim();
 
-  //Action to display error messages if the message is empty
-  //return if requirements are not met
   if (category && message && title) {
     clearInputs([titleElement, formTextArea]);
     axios
-      .post("api/thread/create", { owner: userId, category, message, title })
+      .post(url + "/api/thread/create", {
+        owner: userId,
+        category,
+        message,
+        title
+      })
       .then(response => {
-        appendThread(threadNode, userName, message, title);
+        const threadId = response.data._id;
+        appendThread(threadNode, userName, message, title, threadId);
       })
       .catch(err => displayError(err));
   }
@@ -63,12 +67,12 @@ function displayError(dbMessage) {
   console.log("There was and error: ", dbMessage);
 }
 
-function appendThread(parentNode, userName, message, title) {
+function appendThread(parentNode, userName, message, title, threadId) {
   parentNode.insertAdjacentHTML(
     "afterbegin",
     `<div class="card text-white bg-light mx-5 forum-card">
-    <a> 
-     <h5 class="card-header text-white card-title">hffhf</h5>
+    <a href="/thread/${threadId}"> 
+     <h5 class="card-header text-white card-title">${title}</h5>
         </a>
        <div class="card-body">
          <p>${message}</p>
