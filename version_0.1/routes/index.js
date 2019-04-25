@@ -68,4 +68,14 @@ router.get("/forum", ensureAuth, (req, res) => {
     .catch(err => console.log(err));
 });
 
+router.get("/thread/:id", (req, res, next) => {
+  apiThread[3](req.params.id)
+    .then(thread =>
+      res.render("thread", {
+        thread,
+        script: ["nav.js"]
+      })
+    )
+    .catch(err => console.error(err));
+});
 module.exports = router;
