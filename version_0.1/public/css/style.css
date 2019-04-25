@@ -224,7 +224,6 @@ textarea {
   .forum .form-content {
     flex-direction: column;
     align-items: center;
-    margin: 0.3rem 0;
     width: 100%; }
     .forum .form-content input {
       border: 0;
@@ -244,6 +243,7 @@ textarea {
         color: #121420; }
     .forum .form-content textarea {
       padding: 2rem;
+      width: 45vw;
       color: #242841; }
       .forum .form-content textarea::placeholder {
         color: #e2e2e2; }
@@ -266,22 +266,23 @@ textarea {
     padding: 1rem; } }
 
 @media screen and (max-width: 768px) {
+  textarea {
+    width: 45vw; }
   .form-display,
   .new-thread-header {
     font-size: 1.6rem; }
   .main {
-    margin: 0 auto; }
+    margin: 2vh auto; }
   .pad-section {
-    max-width: 90vw; }
+    max-width: 90vw;
+    height: 85vh; }
   .synth-section {
-    max-width: 90vw; }
+    max-width: 90vw;
+    height: 100vh; }
   .synth-pad {
     padding: 0.7rem; }
   .drum-pad {
-    padding: 3vh 2vw; }
-  .knobs > * > * > canvas {
-    display: flex;
-    height: 5vh;
-    width: 5vw; } }
+    padding: 3vh 2vw;
+    margin: 0 1vw; } }
 
 /*# sourceMappingURL=style.css.map */
