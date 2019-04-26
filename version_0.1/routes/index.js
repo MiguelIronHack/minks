@@ -3,12 +3,14 @@ const router = new express.Router();
 const { ensureAuth } = require("../config/auth");
 const apiThread = require("./api_thread");
 const userAPI = require("./api_user");
+const newsAPI = require("./api_news");
 const _ = require("lodash");
 const moment = require("moment");
 const getAllThreads = apiThread[1];
 const getOneThread = apiThread[3];
 const getAllUsers = userAPI[2];
 
+const getAllNews = newsAPI[1];
 // Index
 router.get("/", (req, res, next) => {
   res.render("index", {
@@ -83,6 +85,18 @@ router.get("/forum", (req, res) => {
       });
     })
     .catch(err => console.log(err));
+});
+
+router.get("/news", (req, res) => {
+  getAllNews()
+    .then(allNews => {
+      res.render("news", {
+        script: ["nav.js"],
+        allNews,
+        moment
+      });
+    })
+    .catch(err => console.error(err));
 });
 
 router.get("/thread/:id", (req, res, next) => {

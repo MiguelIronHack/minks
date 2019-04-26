@@ -6,7 +6,7 @@ const toggleInstrumentForm = document.getElementById("instrument-add");
 const instrumentForm = document.getElementById("instrument-form");
 const toggleNewsForm = document.getElementById("news-add");
 const newsForm = document.getElementById("news-form");
-
+const adminList = document.getElementById("admin-list");
 //LISTENERS
 toggleAdminForm.onclick = showAdminForm;
 toggleInstrumentForm.onclick = showInstrumentForm;
@@ -44,22 +44,21 @@ function createAdmin() {
   const userName = document.getElementById("username-input").value;
   console.log(password, email, userName);
   if (!password || !email || !userName) {
-    console.log("me");
     return;
   }
   axios
     .post(serverUrl + "/api/user/create", { password, userName, email })
-    .then(res => appendAdminHTML())
+    .then(res => appendAdminHTML(adminList, userName, email, "admin"))
     .catch(err => console.log(err));
 }
 
-function appendAdminHTML(node) {
+function appendAdminHTML(node, username, email, role) {
   node.insertAdjacentHTML(
     "beforeend",
     `      <tr>
-  <td><%= user.name%></td>
-  <td><%= user.email%></td>
-  <td><%= user.role%></td>
+  <td>${username}</td>
+  <td>${email}</td>
+  <td>${role}</td>
   <td id="delete-post-btn">
   <span class="delete-post-btn">
   <i class="fas fa-times"></i>
