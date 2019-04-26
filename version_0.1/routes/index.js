@@ -8,6 +8,7 @@ const moment = require("moment");
 const getAllThreads = apiThread[1];
 const getOneThread = apiThread[3];
 const getAllUsers = userAPI[2];
+
 // Index
 router.get("/", (req, res, next) => {
   res.render("index", {

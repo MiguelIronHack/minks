@@ -14,6 +14,7 @@ const apiSoundBankRouter = require("./routes/api_sound_bank");
 const apiThread = require("./routes/api_thread");
 const apiPost = require("./routes/api_post");
 const userAPI = require("./routes/api_user");
+const newsAPI = require("./routes/api_news");
 const bodyParser = require("body-parser");
 
 const app = express();
@@ -82,6 +83,7 @@ app.use("/api/soundbank", apiSoundBankRouter);
 app.use("/api/post", apiPost);
 app.use("/api/thread", apiThread);
 app.use("/api/user", userAPI);
+app.use("/api/news", newsAPI);
 // app.use('/', authRoutes);
 // default value for title local
 app.locals.title = "Minks";
