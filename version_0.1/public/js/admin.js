@@ -1,18 +1,19 @@
 const createAdminBtn = document.getElementById("create-admin");
 const serverUrl = document.getElementById("site-url").content;
-createAdminBtn.onclick = createAdmin;
-
 const toggleAdminForm = document.getElementById("admin-add");
 const adminForm = document.getElementById("admin-form");
 const toggleInstrumentForm = document.getElementById("instrument-add");
 const instrumentForm = document.getElementById("instrument-form");
 const toggleNewsForm = document.getElementById("news-add");
 const newsForm = document.getElementById("news-form");
+
+//LISTENERS
 toggleAdminForm.onclick = showAdminForm;
 toggleInstrumentForm.onclick = showInstrumentForm;
-toggleNewsForm = showNewsForm;
+toggleNewsForm.onclick = showNewsForm;
+createAdminBtn.onclick = createAdmin;
 
-function showNEWSForm() {
+function showNewsForm() {
   newsForm.classList.toggle("hide");
 }
 function showAdminForm() {
