@@ -13,6 +13,21 @@ toggleInstrumentForm.onclick = showInstrumentForm;
 toggleNewsForm.onclick = showNewsForm;
 createAdminBtn.onclick = createAdmin;
 
+const createNewsBtn = document.getElementById("create-news");
+
+createNewsBtn.onclick = postNews;
+
+function postNews(evt) {
+  evt.preventDefault();
+  const newsTitle = document.getElementById("news-title").value;
+  const newsMessage = document.getElementById("news-message").value;
+
+  axios
+    .post(serverUrl + "/api/news/create", { newsTitle, newsMessage })
+    .then(res => console.log(res))
+    .catch(err => console.log(err));
+}
+
 function showNewsForm() {
   newsForm.classList.toggle("hide");
 }
@@ -34,6 +49,22 @@ function createAdmin() {
   }
   axios
     .post(serverUrl + "/api/user/create", { password, userName, email })
-    .then(res => console.log(res))
+    .then(res => appendAdminHTML())
     .catch(err => console.log(err));
+}
+
+function appendAdminHTML(node) {
+  node.insertAdjacentHTML(
+    "beforeend",
+    `      <tr>
+  <td><%= user.name%></td>
+  <td><%= user.email%></td>
+  <td><%= user.role%></td>
+  <td id="delete-post-btn">
+  <span class="delete-post-btn">
+  <i class="fas fa-times"></i>
+  </span>
+  </td>
+</tr>`
+  );
 }
