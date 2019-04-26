@@ -150,7 +150,8 @@ textarea {
   align-items: center;
   justify-content: flex-start;
   background-size: cover;
-  max-width: 90vw; }
+  max-width: 90vw;
+  min-height: 100vh; }
   .drum-section .active {
     background: #fbfbfb;
     color: #121420; }
@@ -339,7 +340,8 @@ textarea {
   h2 {
     font-size: 1.8rem; }
   h3 {
-    font-size: 1.6rem; }
+    font-size: 1.6rem;
+    margin: 1rem 0; }
   textarea {
     width: 45vw; }
   .knobs-container {
@@ -364,8 +366,7 @@ textarea {
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 90vw;
-    height: 100vh; }
+    min-height: 120vh; }
   .synth-pad {
     padding: 2.4rem; }
     .synth-pad:active {
