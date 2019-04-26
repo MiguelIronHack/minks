@@ -12,6 +12,9 @@
 }
 
 /* Index */
+.index-main {
+  height: 100vh;
+}
 .index-showcase {
   display: flex;
   flex-direction: column;
@@ -76,6 +79,7 @@
   justify-content: flex-start;
   background-size: cover;
   max-width: 90vw;
+  min-height: 100vh;
   .active {
     background: $dcolor;
     color: $pcolor;
@@ -315,6 +319,7 @@
   }
   h3 {
     font-size: 1.6rem;
+    margin: 1rem 0;
   }
   textarea {
     width: 45vw;
@@ -349,8 +354,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 90vw;
-    height: 100vh;
+    min-height: 120vh;
   }
   .synth-pad {
     padding: 2.4rem;

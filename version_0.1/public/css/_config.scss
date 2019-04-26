@@ -23,7 +23,9 @@ $pad-c: #313131;
   padding: 0;
   margin: 0;
 }
-
+html {
+  scroll-behavior: smooth;
+}
 body {
   font-family: "overpass";
   width: 100%;
@@ -50,7 +52,8 @@ textarea {
 }
 .thread-container,
 .admin-dashboard,
-.dashboard {
+.dashboard,
+.news-section {
   height: 100vh;
 }
 // Media Query Mixins
