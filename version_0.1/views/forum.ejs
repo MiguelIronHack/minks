@@ -54,6 +54,10 @@
       <p class="badge badge-success card-text">
           <%= thread.owner.name %>
       </p>
+        <p class="card-text">
+          <%= moment(thread.date).format("MMMM Do YYYY, h:mm") %>
+      </p>
+     
     </div>
   </div>
 <% } %>

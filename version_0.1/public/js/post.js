@@ -3,7 +3,7 @@ const userId = document.getElementById("user").getAttribute("user-id");
 const serverUrl = document.getElementById("site-url").content;
 const threadID = document.getElementById("topic").getAttribute("thread-id");
 const threadWrapper = document.getElementById("thread-wrapper");
-const userName = document.getElementById("user").textContent;
+const userName = document.getElementById("user").getAttribute("user-name");
 
 if (userName.trim() == "login") {
   postButton.setAttribute("data-toggle", "modal");

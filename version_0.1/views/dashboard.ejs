@@ -1,4 +1,36 @@
 <section class="container">
+
+<% if(role == "admin"){ %>
+  <h1 class="mt-4">Admin</h1>
+  <p class="lead mb-3">Welcome <%= name %></p>
+  <a href="/users/logout" class="btn btn-secondary">Logout</a>
+   <% include ./partials/admin-form %>
+
+ <table class="table table-hover table-dark container mt-5">
+    <thead>
+      <tr>
+        <th scope="col">Username</th>
+        <th scope="col">email</th>
+        <th scope="col">role</th>
+      </tr>
+    </thead>
+    <tbody>
+   <% for(let user of data){ %>
+      <tr>
+        <td><%= user.name%></td>
+        <td><%= user.email%></td>
+        <td><%= user.role%></td>
+        <td id="delete-post-btn">
+        <span class="delete-post-btn">
+        <i class="fas fa-times"></i>
+        </span>
+        </td>
+      </tr>
+    </tbody>
+    <% } %>
+  </table>
+
+<% }else { %>
   <h1 class="mt-4">Profile</h1>
   <p class="lead mb-3">Welcome <%= name %></p>
   <a href="/users/logout" class="btn btn-secondary">Logout</a>
@@ -26,4 +58,5 @@
     <% } %>
     </tbody>
   </table>
+  <% } %>
 </section>
