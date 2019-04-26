@@ -309,4 +309,7 @@ textarea {
     padding: 3vh 2vw;
     margin: 0 1vw; } }
 
+.hide {
+  display: none; }
+
 /*# sourceMappingURL=style.css.map */
