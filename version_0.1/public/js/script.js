@@ -52,7 +52,7 @@ function createKnob(parentNode, value, min, max, type) {
   let listener = (knob, value) => {
     if (type === "volume") keyBoard.setVolume(value);
     if (type === "attack") keyBoard.setAttack(value / 10);
-    if (type === "sustain") keyBoard.setSustain(value / 100);
+    if (type === "sustain") keyBoard.setSustain(value / 1000);
   };
   knob.addListener(listener);
   var node = knob.node();
@@ -60,8 +60,8 @@ function createKnob(parentNode, value, min, max, type) {
 }
 
 createKnob(volumeKnob, 5, 0, 10, "volume");
-createKnob(modulationKnob, 5, 1, 10, "attack");
-createKnob(filterKnob, 5, 1, 10, "sustain");
+createKnob(modulationKnob, 5, 0.1, 10, "attack");
+createKnob(filterKnob, 5, 0.11, 1000, "sustain");
 function createDrumElements(name, url) {
   axios
     .post(serverUrl + "/api/soundbank/create", { name, url })
