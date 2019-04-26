@@ -51,15 +51,13 @@
 
   <section id="synth" class="pad-section synth-section">
     <h2 class="pad-header">Synth</h2>
-
-    <select class="dropdown synth-type" id="synth-type">
+      <div class="knobs knobs-container">
+        <select class="dropdown synth-type select" id="synth-type">
         <option class="dropdown-item">Sine</option>
         <option class="dropdown-item">Triangle8</option>
         <option class="dropdown-item">Sawtooth</option>
         <option class="dropdown-item">Square</option>
     </select>
-
-      <div class="knobs knobs-container">
         <div class="knob" id="filter-knob" data-toggle="tooltip" data-placement="top" title="change the synthetizer volume" >Attack</div>
         <div class="knob" id="volume-knob" data-toggle="tooltip" data-placement="top" title="change the attack interval">Volume</div>
         <div class="knob" data-toggle="tooltip" data-placement="top" title="change the sustain duration" id="modulation-knob">Sustain</div>

@@ -98,9 +98,9 @@ textarea {
 
 .img-container {
   background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url(/images/a.png) no-repeat;
+  border: 2px solid #fbfbfb;
   background-size: cover;
   background-position: center;
-  border: 2px solid #fbfbfb;
   border-radius: 1rem;
   width: 100%;
   height: 70vh;
@@ -162,7 +162,6 @@ textarea {
   margin: 0 5vw; }
 
 .pad-header {
-  margin-top: 1rem;
   margin-bottom: auto;
   align-self: center;
   text-transform: capitalize; }
@@ -180,10 +179,15 @@ textarea {
     .synth-section .dropdown > * {
       color: #1b2432; }
   .synth-section .synth-type {
-    border: 2px solid #fbfbfb;
-    border-radius: 1rem; }
+    padding: 0.3rem 1rem;
+    background: #fbfbfb;
+    color: #313131;
+    border: 0.2rem solid #fbfbfb;
+    transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1); }
     .synth-section .synth-type:hover {
-      color: #121420; }
+      color: #121420;
+      border: 0.2rem solid #50507e;
+      transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1); }
   .synth-section .knobs {
     display: flex;
     justify-content: center;
@@ -194,6 +198,11 @@ textarea {
       align-items: center;
       justify-content: center;
       margin: 0 2vw; }
+    .synth-section .knobs .select {
+      border-top-left-radius: 1.3rem;
+      border-bottom-right-radius: 1.3rem;
+      border-top-right-radius: 2px;
+      border-bottom-left-radius: 2px; }
 
 .synth-container {
   display: grid;
@@ -233,14 +242,6 @@ textarea {
     flex-direction: column;
     align-items: center;
     width: 100%; }
-    .forum .form-content input {
-      border: 0;
-      border-radius: 2px;
-      text-align: center;
-      padding: 0.6rem 1.5rem;
-      color: #242841; }
-      .forum .form-content input::placeholder {
-        color: #fbfbfb; }
     .forum .form-content select {
       padding: 0.6rem 1.5rem;
       text-align-last: center; }
@@ -249,12 +250,6 @@ textarea {
       .forum .form-content select:hover {
         background: #eeeeee;
         color: #121420; }
-    .forum .form-content textarea {
-      padding: 2rem;
-      width: 45vw;
-      color: #242841; }
-      .forum .form-content textarea::placeholder {
-        color: #e2e2e2; }
   .forum .btn {
     margin: 1rem 0; }
   .forum .new-thread {
@@ -277,6 +272,35 @@ textarea {
     transform: rotate(90deg);
     transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1); }
 
+.form-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  .form-content > textarea {
+    padding: 2rem;
+    width: 45vw;
+    color: #242841;
+    border-top-left-radius: 1.3rem;
+    border-bottom-right-radius: 1.3rem; }
+    .form-content > textarea::placeholder {
+      color: #fbfbfb; }
+  .form-content input {
+    border: 0;
+    border-top-left-radius: 1.3rem;
+    border-bottom-right-radius: 1.3rem;
+    border-top-right-radius: 2px;
+    border-bottom-left-radius: 2px;
+    text-align: center;
+    padding: 0.6rem 1.5rem;
+    color: #242841; }
+    .form-content input::placeholder {
+      color: #fbfbfb; }
+  .form-content .select {
+    border-top-left-radius: 1.3rem;
+    border-bottom-right-radius: 1.3rem;
+    border-top-right-radius: 2px;
+    border-bottom-left-radius: 2px; }
+
 @media screen and (min-width: 769px) and (max-width: 1170px) {
   .synth-pad {
     padding: 1rem; } }
@@ -291,7 +315,7 @@ textarea {
   textarea {
     width: 45vw; }
   .img-container {
-    height: 60vh; }
+    height: 70vh; }
   .form-display,
   .new-thread-header {
     font-size: 1.6rem; }
