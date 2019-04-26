@@ -304,13 +304,20 @@
     width: 45vw;
   }
   .img-container {
-    height: 70vh;
+    height: 60vh;
   }
   .form-display,
   .new-thread-header {
     font-size: 1.6rem;
   }
-
+  // play area
+  .pad-header {
+    margin-bottom: 0;
+  }
+  .knobs {
+    display: flex;
+    flex-direction: column;
+  }
   .main {
     margin: 2vh auto;
   }
