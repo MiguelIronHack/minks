@@ -283,6 +283,10 @@
     border-bottom-left-radius: 2px;
   }
 }
+.form-wrapper > div {
+  display: flex;
+  flex-direction: column;
+}
 
 //
 @include mediaLg {

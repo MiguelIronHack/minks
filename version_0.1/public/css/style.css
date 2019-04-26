@@ -301,6 +301,10 @@ textarea {
     border-top-right-radius: 2px;
     border-bottom-left-radius: 2px; }
 
+.form-wrapper > * {
+  display: flex;
+  flex-direction: column; }
+
 @media screen and (min-width: 769px) and (max-width: 1170px) {
   .synth-pad {
     padding: 1rem; } }
