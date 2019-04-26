@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const News = new Schema({
   // Post ID will be stored in the Thread Collection as an Array of Id's
-  owner: { type: Schema.Types.ObjectId, ref: "User" },
+  title: String,
   message: String,
   date: {
     type: Date,

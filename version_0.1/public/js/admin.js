@@ -6,17 +6,22 @@ const toggleAdminForm = document.getElementById("admin-add");
 const adminForm = document.getElementById("admin-form");
 const toggleInstrumentForm = document.getElementById("instrument-add");
 const instrumentForm = document.getElementById("instrument-form");
-
+const toggleNewsForm = document.getElementById("news-add");
+const newsForm = document.getElementById("news-form");
 toggleAdminForm.onclick = showAdminForm;
 toggleInstrumentForm.onclick = showInstrumentForm;
-// const toggleInstrumentForm =
-// const toggleNewsForm =
+toggleNewsForm = showNewsForm;
+
+function showNEWSForm() {
+  newsForm.classList.toggle("hide");
+}
 function showAdminForm() {
   adminForm.classList.toggle("hide");
 }
 function showInstrumentForm() {
   instrumentForm.classList.toggle("hide");
 }
+
 function createAdmin() {
   const password = document.getElementById("password-input").value;
   const email = document.getElementById("email-input").value;
