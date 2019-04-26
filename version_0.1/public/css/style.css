@@ -83,6 +83,9 @@ textarea {
     opacity: 1; } }
 
 /* Index */
+.index-main {
+  height: 100vh; }
+
 .index-showcase {
   display: flex;
   flex-direction: column;
