@@ -301,7 +301,7 @@ textarea {
     border-top-right-radius: 2px;
     border-bottom-left-radius: 2px; }
 
-.form-wrapper > * {
+.form-wrapper > div {
   display: flex;
   flex-direction: column; }
 
