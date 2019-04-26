@@ -52,13 +52,22 @@
   animation: fadeIn 1.5s ease-in-out 1.5s both;
   & > * {
     animation: fadeIn 0.5s ease-in-out 2.5s both;
+    &:hover {
+      color: darken($color: $dcolor, $amount: 10);
+    }
   }
   .start {
-    margin: 1rem auto;
+    margin: 2rem auto;
     animation: fadeIn 0.5s ease-in-out 3.5s both;
     background: $dcolor;
-    padding: 0.4rem;
+    padding: 0.6rem;
     border-radius: 1rem;
+    font-size: 1rem;
+    &:hover {
+      background: darken($color: $dcolor, $amount: 10);
+      color: $pcolor;
+      @include easeOut();
+    }
   }
 }
 .play-icon {
