@@ -334,3 +334,7 @@
 .hide {
   display: none;
 }
+#admin-add,
+#instrument-add :hover {
+  cursor: pointer;
+}
