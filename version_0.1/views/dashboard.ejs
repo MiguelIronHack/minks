@@ -24,7 +24,7 @@
    <% include ./partials/form_news %>
 
 
- <table class="table table-hover table-dark container mt-5">
+ <table  class="table table-hover table-dark container mt-5">
     <thead>
       <tr>
         <th scope="col">Username</th>
@@ -32,7 +32,7 @@
         <th scope="col">role</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody id="admin-list" >
    <% for(let user of data){ %>
       <tr>
         <td><%= user.name%></td>
@@ -44,8 +44,8 @@
         </span>
         </td>
       </tr>
-    </tbody>
     <% } %>
+    </tbody>
   </table>
 
 <% }else { %>

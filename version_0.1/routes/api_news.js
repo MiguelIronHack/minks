@@ -1,12 +1,12 @@
 const express = require("express");
 const router = new express.Router();
-const Post = require("../models/News");
+const News = require("../models/News");
 
-const getAll = () => Post.find().populate("owner");
-const create = item => Post.create(item);
-const getOne = id => Post.findById(id).populate("owner");
-const deleteOne = id => Post.deleteOne({ _id: id });
-const updateOne = id => Post.updateOne(id).populate("owner");
+const getAll = () => News.find();
+const create = item => News.create(item);
+const getOne = id => News.findById(id);
+const deleteOne = id => News.deleteOne({ _id: id });
+const updateOne = id => News.updateOne(id);
 
 router.get("/all", (req, res) => {
   getAll()

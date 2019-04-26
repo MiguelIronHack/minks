@@ -1,0 +1,16 @@
+<h1 class="text-center">News</h1>
+<% for(let news of allNews){%>
+<div class="card text-white bg-light m-5 forum-card">
+ <a> 
+  <h5 class="card-header text-white card-title"><%= news.title%> <span class="badge badge-success mr-auto ">News</span></h5>
+     </a>
+   
+    <div class="card-body">
+      <p><%= news.message%></p>
+        <p class="card-text">
+          <%= moment(news.date).format("MMMM Do YYYY, h:mm") %>
+      </p>
+    </div>
+    
+  </div>
+<% } %>
