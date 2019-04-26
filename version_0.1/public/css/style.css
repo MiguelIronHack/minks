@@ -127,6 +127,8 @@ textarea {
   .img-container > * {
     animation: fadeIn 0.5s ease-in-out 2.5s both; }
     .img-container > *:hover {
+      font-size: 5rem;
+      transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
       color: #e2e2e2; }
   .img-container .start {
     margin: 2rem auto;
@@ -138,6 +140,7 @@ textarea {
     .img-container .start:hover {
       background: #e2e2e2;
       color: #121420;
+      font-size: 1.2rem;
       transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1); }
 
 .play-icon {
