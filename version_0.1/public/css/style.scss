@@ -195,7 +195,7 @@
 .synth-pad {
   background: $pad-bg;
   color: $pad-c;
-  padding: 2.6rem;
+  padding: 2.4rem;
   border: 0.6rem solid $pad-bg;
   &:active {
     @include easeOut;
@@ -318,7 +318,10 @@
 //
 @include mediaLg {
   .synth-pad {
-    padding: 1rem;
+    padding: 5vh 1vw;
+  }
+  .drum-pad {
+    margin: 0 1vw;
   }
 }
 @include mediaMd {
@@ -355,7 +358,7 @@
     margin-bottom: 0;
   }
   .main {
-    margin: 2vh auto;
+    margin: 1vh auto 4vh;
   }
   .pad-section {
     max-width: 90vw;
