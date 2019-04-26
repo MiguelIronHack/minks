@@ -310,7 +310,8 @@ textarea {
 
 .add-container {
   display: flex;
-  justify-content: space-evenly; }
+  justify-content: space-evenly;
+  margin: 1rem 0; }
   .add-container > div {
     cursor: pointer; }
 
