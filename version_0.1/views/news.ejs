@@ -6,10 +6,15 @@
   <h5 class="card-header text-white card-title"><%= news.title%> <span class="badge badge-success mr-auto ">News</span></h5>
      </a>
      <% if(user && user.role === "admin"){%>
+      <button class="btn text-info ml-auto btn-edit">Edit</button>
   <button class="btn text-danger ml-auto btn-delete">Delete</button>
   <% }%>
     <div class="card-body">
-      <p><%= news.message%></p>
+     <% if(user && user.role === "admin"){%>
+      <p class="editable-message"><%= news.message%></p>
+        <% }else{%>
+         <p class="editable-message"><%= news.message%></p>
+          <% } %>
         <p class="card-text">
           <%= moment(news.date).format("MMMM Do YYYY, h:mm") %>
       </p>
