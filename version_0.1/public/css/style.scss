@@ -283,9 +283,14 @@
     border-bottom-left-radius: 2px;
   }
 }
-.form-wrapper > div {
+.form-wrapper {
   display: flex;
   flex-direction: column;
+  align-items: center;
+}
+.add-container {
+  display: flex;
+  justify-content: space-evenly;
 }
 
 //
@@ -339,6 +344,11 @@
   .drum-pad {
     padding: 3vh 2vw;
     margin: 0 1vw;
+  }
+  // admin dash
+  .form-wrapper > div {
+    display: flex;
+    flex-direction: column;
   }
 }
 
