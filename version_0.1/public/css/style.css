@@ -126,12 +126,22 @@ textarea {
   animation: fadeIn 1.5s ease-in-out 1.5s both; }
   .img-container > * {
     animation: fadeIn 0.5s ease-in-out 2.5s both; }
+    .img-container > *:hover {
+      font-size: 5rem;
+      transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+      color: #e2e2e2; }
   .img-container .start {
-    margin: 1rem auto;
+    margin: 2rem auto;
     animation: fadeIn 0.5s ease-in-out 3.5s both;
     background: #fbfbfb;
-    padding: 0.4rem;
-    border-radius: 1rem; }
+    padding: 0.6rem;
+    border-radius: 1rem;
+    font-size: 1rem; }
+    .img-container .start:hover {
+      background: #e2e2e2;
+      color: #121420;
+      font-size: 1.2rem;
+      transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1); }
 
 .play-icon {
   color: #fbfbfb;
@@ -237,7 +247,7 @@ textarea {
 .synth-pad {
   background: #fbfbfb;
   color: #313131;
-  padding: 2.6rem;
+  padding: 2.4rem;
   border: 0.6rem solid #fbfbfb; }
   .synth-pad:active {
     transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1); }
@@ -332,7 +342,9 @@ textarea {
 
 @media screen and (min-width: 769px) and (max-width: 1170px) {
   .synth-pad {
-    padding: 1rem; } }
+    padding: 5vh 1vw; }
+  .drum-pad {
+    margin: 0 1vw; } }
 
 @media screen and (max-width: 768px) {
   h1 {
@@ -358,7 +370,7 @@ textarea {
   .pad-header {
     margin-bottom: 0; }
   .main {
-    margin: 2vh auto; }
+    margin: 1vh auto 4vh; }
   .pad-section {
     max-width: 90vw;
     height: 85vh; }
