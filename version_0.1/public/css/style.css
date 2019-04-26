@@ -208,7 +208,7 @@ textarea {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 1rem;
-  margin: auto 0; }
+  margin: 1rem; }
   .synth-container > * {
     display: flex;
     justify-content: center;
@@ -305,12 +305,14 @@ textarea {
   display: flex;
   flex-direction: column;
   align-items: center; }
-  .form-wrapper h5 {
-    margin: 5rem auto; }
+  .form-wrapper .new-thread {
+    margin: 1rem; }
 
 .add-container {
   display: flex;
   justify-content: space-evenly; }
+  .add-container > div {
+    cursor: pointer; }
 
 @media screen and (min-width: 769px) and (max-width: 1170px) {
   .synth-pad {
@@ -325,6 +327,12 @@ textarea {
     font-size: 1.6rem; }
   textarea {
     width: 45vw; }
+  .knobs-container {
+    display: flex;
+    flex-wrap: wrap; }
+    .knobs-container .synth-type {
+      border-radius: 1rem !important;
+      padding: 0 !important; }
   .img-container {
     height: 60vh; }
   .form-display,
@@ -332,9 +340,6 @@ textarea {
     font-size: 1.6rem; }
   .pad-header {
     margin-bottom: 0; }
-  .knobs {
-    display: flex;
-    flex-direction: column; }
   .main {
     margin: 2vh auto; }
   .pad-section {
@@ -344,7 +349,7 @@ textarea {
     max-width: 90vw;
     height: 100vh; }
   .synth-pad {
-    padding: 0.7rem; }
+    padding: 0.4rem; }
   .drum-pad {
     padding: 3vh 2vw;
     margin: 0 1vw; }
@@ -354,9 +359,5 @@ textarea {
 
 .hide {
   display: none; }
-
-#admin-add,
-#instrument-add :hover {
-  cursor: pointer; }
 
 /*# sourceMappingURL=style.css.map */
