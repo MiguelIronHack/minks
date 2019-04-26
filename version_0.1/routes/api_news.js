@@ -6,7 +6,7 @@ const getAll = () => News.find();
 const create = item => News.create(item);
 const getOne = id => News.findById(id);
 const deleteOne = id => News.deleteOne({ _id: id });
-const updateOne = id => News.updateOne(id);
+const updateOne = (id, data) => News.updateOne({ _id: id }, data);
 
 router.get("/all", (req, res) => {
   getAll()
@@ -33,6 +33,7 @@ router.delete("/:id", (req, res) => {
 });
 
 router.patch("/:id", (req, res) => {
+  console.log(req.body);
   updateOne(req.params.id, req.body)
     .then(dbRes => res.status(200).json(dbRes))
     .catch(dbErr => res.send(dbErr));

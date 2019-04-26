@@ -5,13 +5,14 @@ const UserPost = require("../models/UserPost");
 
 const getAll = () => Thread.find().populate("owner");
 const create = data => Thread.create(data);
-const getOne = id =>
-  Thread.findById(id)
+const getOne = id => {
+  return Thread.findById(id)
     .populate({
       path: "posts",
       populate: { path: "owner" }
     })
     .populate("owner");
+};
 
 const deleteOne = id => Thread.deleteOne({ _id: id });
 const updateOne = (id, data) => Thread.updateOne({ _id: id }, data);
