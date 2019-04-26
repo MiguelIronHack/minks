@@ -294,6 +294,7 @@
 .add-container {
   display: flex;
   justify-content: space-evenly;
+  margin: 1rem 0;
   & > div {
     cursor: pointer;
   }
@@ -345,11 +346,18 @@
     height: 85vh;
   }
   .synth-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     max-width: 90vw;
     height: 100vh;
   }
   .synth-pad {
-    padding: 0.4rem;
+    padding: 2.4rem;
+    &:active {
+      background: $pad-bg-click;
+      border-color: $pad-b-click;
+    }
   }
   .drum-pad {
     padding: 3vh 2vw;
@@ -363,4 +371,15 @@
 }
 .hide {
   display: none;
+}
+@include mediaSm {
+  .synth-pad {
+    padding: 1rem;
+  }
+}
+
+@include mediaXs {
+  .synth-pad {
+    padding: 0.4rem;
+  }
 }

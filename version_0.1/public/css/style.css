@@ -6,7 +6,13 @@
 
 body {
   font-family: "overpass";
+<<<<<<< HEAD
   width: 100%; }
+=======
+  width: 100%;
+  background: linear-gradient(#111, #333);
+  height: 100%; }
+>>>>>>> 47c26e2edcaec523646acce6cb73e805c3cd454d
 
 .display {
   display: flex; }
@@ -22,6 +28,14 @@ ul {
 
 textarea {
   resize: none; }
+<<<<<<< HEAD
+=======
+
+.thread-container,
+.admin-dashboard,
+.dashboard {
+  height: 100vh; }
+>>>>>>> 47c26e2edcaec523646acce6cb73e805c3cd454d
 
 .forum-main {
   margin-bottom: 1rem; }
@@ -310,7 +324,12 @@ textarea {
 
 .add-container {
   display: flex;
+<<<<<<< HEAD
   justify-content: space-evenly; }
+=======
+  justify-content: space-evenly;
+  margin: 1rem 0; }
+>>>>>>> 47c26e2edcaec523646acce6cb73e805c3cd454d
   .add-container > div {
     cursor: pointer; }
 
@@ -346,10 +365,20 @@ textarea {
     max-width: 90vw;
     height: 85vh; }
   .synth-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     max-width: 90vw;
     height: 100vh; }
   .synth-pad {
+<<<<<<< HEAD
     padding: 0.4rem; }
+=======
+    padding: 2.4rem; }
+    .synth-pad:active {
+      background: #50507e;
+      border-color: #a1a1cc; }
+>>>>>>> 47c26e2edcaec523646acce6cb73e805c3cd454d
   .drum-pad {
     padding: 3vh 2vw;
     margin: 0 1vw; }
@@ -359,5 +388,16 @@ textarea {
 
 .hide {
   display: none; }
+<<<<<<< HEAD
+=======
+
+@media screen and (max-width: 500px) {
+  .synth-pad {
+    padding: 1rem; } }
+
+@media screen and (max-width: 350px) {
+  .synth-pad {
+    padding: 0.4rem; } }
+>>>>>>> 47c26e2edcaec523646acce6cb73e805c3cd454d
 
 /*# sourceMappingURL=style.css.map */

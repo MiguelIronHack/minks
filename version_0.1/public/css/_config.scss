@@ -27,7 +27,8 @@ $pad-c: #313131;
 body {
   font-family: "overpass";
   width: 100%;
-  // font-size: 1.6rem;
+  background: linear-gradient(#111, #333);
+  height: 100%;
 }
 .display {
   display: flex;
@@ -46,6 +47,11 @@ ul {
 
 textarea {
   resize: none;
+}
+.thread-container,
+.admin-dashboard,
+.dashboard {
+  height: 100vh;
 }
 // Media Query Mixins
 @mixin mediaXs {
