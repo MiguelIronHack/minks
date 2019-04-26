@@ -16,14 +16,6 @@ const getOne = id =>
 const deleteOne = id => Thread.deleteOne({ _id: id });
 const updateOne = (id, data) => Thread.updateOne({ _id: id }, data);
 
-// const postOwner =
-// function populatePosts(){
-//   const result = Thread.findById(id).populate("posts");
-//   for(let post of result.posts){
-//     posts.
-//   }
-// }
-
 router.get("/all", (req, res) => {
   getAll()
     .then(dbRes => res.status(200).json(dbRes))

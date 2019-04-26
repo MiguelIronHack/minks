@@ -5,6 +5,7 @@
     <h6 class="card-subtitle mb-2 text-muted"><%= thread.category%></h6>
     <p class="card-text"><%= thread.message%></p>
     <p class="badge badge-info "><%= thread.owner.name%></p>
+    <p class="card-text"><%= moment(thread.date).format("MMMM Do YYYY, h:mm")%></p>
   </div>
 </div>
 
@@ -13,8 +14,8 @@
   <div class="card-body">
     <h5 class="badge badge-success card-title"><%= post.owner.name%></h5>
     <p class="card-text"><%= post.message%></p>
+    <p class="card-text"><%= moment(post.date).format("MMMM Do YYYY, h:mm") %> </p>
     <h6 class="card-subtitle mb-2 text-muted"></h6>
-    <p class="card-text"></p>
   </div>
   </div>
   <%}%>

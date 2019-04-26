@@ -5,7 +5,8 @@ const threadNode = document.getElementById("thread-container");
 const url = document.getElementById("site-url").content;
 console.log(url);
 const userId = document.getElementById("user").getAttribute("user-id") || null;
-const userName = document.getElementById("user").textContent.trim();
+const userName = document.getElementById("user").getAttribute("user-name");
+console.log(userName);
 formButton.onclick = displayForm;
 createButton.onclick = createThread;
 
@@ -43,8 +44,9 @@ function createThread(evt) {
         title
       })
       .then(response => {
+        let date = moment(response.data.date).format("MMMM Do YYYY, h:mm");
         const threadId = response.data._id;
-        appendThread(threadNode, userName, message, title, threadId);
+        appendThread(threadNode, userName, message, title, threadId, date);
       })
       .catch(err => displayError(err));
   }
@@ -67,7 +69,7 @@ function displayError(dbMessage) {
   console.log("There was and error: ", dbMessage);
 }
 
-function appendThread(parentNode, userName, message, title, threadId) {
+function appendThread(parentNode, userName, message, title, threadId, date) {
   parentNode.insertAdjacentHTML(
     "afterbegin",
     `<div class="card text-white bg-light mx-5 forum-card">
@@ -77,6 +79,7 @@ function appendThread(parentNode, userName, message, title, threadId) {
        <div class="card-body">
          <p>${message}</p>
          <p class="badge badge-success card-text">${userName}</p>
+         <p class="card-text">${date}</p>
        </div>
      </div>`
   );
