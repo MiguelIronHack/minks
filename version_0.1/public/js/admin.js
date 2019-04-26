@@ -4,12 +4,18 @@ createAdminBtn.onclick = createAdmin;
 
 const toggleAdminForm = document.getElementById("admin-add");
 const adminForm = document.getElementById("admin-form");
+const toggleInstrumentForm = document.getElementById("instrument-add");
+const instrumentForm = document.getElementById("instrument-form");
 
-toggleAdminForm.onclick = showForm;
+toggleAdminForm.onclick = showAdminForm;
+toggleInstrumentForm.onclick = showInstrumentForm;
 // const toggleInstrumentForm =
 // const toggleNewsForm =
-function showForm() {
+function showAdminForm() {
   adminForm.classList.toggle("hide");
+}
+function showInstrumentForm() {
+  instrumentForm.classList.toggle("hide");
 }
 function createAdmin() {
   const password = document.getElementById("password-input").value;
