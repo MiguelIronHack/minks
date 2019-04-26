@@ -4,7 +4,7 @@
   <h1 class="mt-4">Admin</h1>
   <p class="lead mb-3">Welcome <%= name %></p>
   <a href="/users/logout" class="btn btn-secondary">Logout</a>
-
+<div class="add-container">
     <div id="admin-add">
    <span>Add an admin
   <i class="fas fa-user-plus"></i></span>
@@ -13,6 +13,11 @@
      <div id="instrument-add">
    <span>Add drumkit
   <i class="fas fa-user-plus"></i></span>
+  </div>
+     <div id="news-add">
+   <span>Post news
+  <i class="fas fa-user-plus"></i></span>
+  </div>
   </div>
    <% include ./partials/admin-form %>
    <% include ./partials/form_instrument %>
