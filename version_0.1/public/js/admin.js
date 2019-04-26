@@ -24,7 +24,10 @@ function postNews(evt) {
 
   axios
     .post(serverUrl + "/api/news/create", { newsTitle, newsMessage })
-    .then(res => console.log(res))
+    .then(res => {
+      document.getElementById("news-title").value = "";
+      document.getElementById("news-message").value = "";
+    })
     .catch(err => console.log(err));
 }
 
@@ -48,7 +51,12 @@ function createAdmin() {
   }
   axios
     .post(serverUrl + "/api/user/create", { password, userName, email })
-    .then(res => appendAdminHTML(adminList, userName, email, "admin"))
+    .then(res => {
+      document.getElementById("password-input").value = "";
+      document.getElementById("email-input").value = "";
+      document.getElementById("username-input").value = "";
+      appendAdminHTML(adminList, userName, email, "admin");
+    })
     .catch(err => console.log(err));
 }
 

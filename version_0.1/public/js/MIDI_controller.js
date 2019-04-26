@@ -35,7 +35,9 @@ export class MIDIController {
   }
 
   onMIDISuccess(midiAccess) {
-    this.midi = midiAccess; // this is our raw MIDI data, inputs, outputs, and sysex status
+    console.log("here");
+    this.midi = midiAccess;
+    console.log(this.midi); // this is our raw MIDI data, inputs, outputs, and sysex status
     let inputs = this.midi.inputs.values();
 
     for (let input of inputs) {
@@ -51,6 +53,7 @@ export class MIDIController {
 
   onMIDIMessage(message) {
     this.data = message.data; //  [Command, note, velocity]
+    console.log(this.data);
     let velocity = this.data[2];
     let note = this.data[1];
     if (velocity > 1) this.keyState[note] = true; // NOTE ON
