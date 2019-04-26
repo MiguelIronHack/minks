@@ -1,11 +1,13 @@
 <section class="news-section">
 <h1 class="text-center">News</h1>
 <% for(let news of allNews){%>
-<div class="card text-white bg-light m-5 forum-card">
+<div news-id="<%= news._id%>" id="news_id-<%=news._id%>" class="card text-white bg-light m-5 forum-card">
  <a> 
   <h5 class="card-header text-white card-title"><%= news.title%> <span class="badge badge-success mr-auto ">News</span></h5>
      </a>
-   
+     <% if(user && user.role === "admin"){%>
+  <button class="btn text-danger ml-auto btn-delete">Delete</button>
+  <% }%>
     <div class="card-body">
       <p><%= news.message%></p>
         <p class="card-text">

@@ -91,7 +91,7 @@ router.get("/news", (req, res) => {
   getAllNews()
     .then(allNews => {
       res.render("news", {
-        script: ["nav.js"],
+        script: ["nav.js", "news.js"],
         allNews,
         moment
       });
