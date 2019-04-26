@@ -1,3 +1,4 @@
+<section class="news-section">
 <h1 class="text-center">News</h1>
 <% for(let news of allNews){%>
 <div class="card text-white bg-light m-5 forum-card">
@@ -11,6 +12,6 @@
           <%= moment(news.date).format("MMMM Do YYYY, h:mm") %>
       </p>
     </div>
-    
   </div>
 <% } %>
+</section>
