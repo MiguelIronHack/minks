@@ -1,7 +1,7 @@
 export class KeyBoard {
   constructor(notes) {
     this.noteScale = notes;
-    this.synthType = "sine";
+    this.synthType = "triangle8";
     this.synthArray = this.createSynths();
     this.keyState = new Object();
   }
@@ -39,7 +39,7 @@ export class KeyBoard {
         },
         envelope: {
           attack: 0.01,
-          decay: 0.2,
+          decay: 0.01,
           sustain: 0.3,
           release: 4
         }
