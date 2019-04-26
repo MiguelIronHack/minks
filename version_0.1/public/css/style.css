@@ -30,7 +30,8 @@ textarea {
 
 .thread-container,
 .admin-dashboard,
-.dashboard {
+.dashboard,
+.news-section {
   height: 100vh; }
 
 .forum-main {
