@@ -301,9 +301,8 @@ textarea {
     border-top-right-radius: 2px;
     border-bottom-left-radius: 2px; }
 
-.form-wrapper > div {
-  display: flex;
-  flex-direction: column; }
+.add-container {
+  display: flex; }
 
 @media screen and (min-width: 769px) and (max-width: 1170px) {
   .synth-pad {
@@ -340,7 +339,10 @@ textarea {
     padding: 0.7rem; }
   .drum-pad {
     padding: 3vh 2vw;
-    margin: 0 1vw; } }
+    margin: 0 1vw; }
+  .form-wrapper > div {
+    display: flex;
+    flex-direction: column; } }
 
 .hide {
   display: none; }
