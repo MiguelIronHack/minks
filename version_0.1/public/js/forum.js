@@ -47,9 +47,26 @@ function createThread(evt) {
         let date = moment(response.data.date).format("MMMM Do YYYY, h:mm");
         const threadId = response.data._id;
         appendThread(threadNode, userName, message, title, threadId, date);
+        document.querySelector(
+          `button[thread-id="${threadId}"]`
+        ).onclick = deleteThreadAXIOS;
+        console.log(e);
       })
       .catch(err => displayError(err));
   }
+}
+
+const buttons = document.querySelectorAll(".btn-danger");
+for (let button of buttons) button.onclick = deleteThreadAXIOS;
+
+function deleteThreadAXIOS(evt) {
+  const threadId = evt.target.getAttribute("thread-id");
+  axios
+    .delete(url + "/api/thread/" + threadId)
+    .then(res => {
+      evt.target.parentElement.parentElement.remove();
+    })
+    .catch(err => console.log(err));
 }
 
 function getThreads(page, count) {
@@ -80,6 +97,7 @@ function appendThread(parentNode, userName, message, title, threadId, date) {
          <p>${message}</p>
          <p class="badge badge-success card-text">${userName}</p>
          <p class="card-text">${date}</p>
+         <button thread-id="${threadId}" class="btn btn-danger">Delete own thread</button>
        </div>
      </div>`
   );

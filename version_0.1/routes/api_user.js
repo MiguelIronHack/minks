@@ -10,7 +10,6 @@ const deleteOne = id => User.deleteOne({ _id: id });
 const updateOne = id => User.updateOne(id);
 
 router.post("/create", (req, res) => {
-  console.log("what happened");
   let { password, email } = req.body;
   let name = req.body.userName;
   let role = "admin";

@@ -57,7 +57,12 @@
         <p class="card-text">
           <%= moment(thread.date).format("MMMM Do YYYY, h:mm") %>
       </p>
-     
+      <p> Comments: <span> <%=  thread.posts.length%> </span> </p> 
+     <% if(user){ %>
+        <% if(user._id.equals(thread.owner._id)){%>
+        <button thread-id="<%= thread.id %>"class="btn btn-danger">Delete own thread</button>
+        <% } %>
+      <% } %>
     </div>
   </div>
 <% } %>

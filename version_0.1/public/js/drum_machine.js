@@ -12,6 +12,7 @@ export class Drums {
     let audio = new Audio(this.url);
     audio.play();
   }
+
   startSequence(bpm) {
     let step = 0;
     setInterval(() => {
