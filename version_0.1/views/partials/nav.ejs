@@ -18,10 +18,10 @@
         <li class="nav-item">
           <a class="nav-link" href="/play">Play Minks</a>
         </li>
-         <li class="nav-item">
+        <li class="nav-item">
           <a class="nav-link" href="/forum">Forum</a>
         </li>
-           <li class="nav-item">
+        <li class="nav-item">
           <a class="nav-link" href="/news">News</a>
         </li>
         <li class="nav-item dropdown">
@@ -43,10 +43,26 @@
           </div>
         </li>
       </ul>
-      <a user-role="<%= user ? user.role: "user"%>" id="user" user-name="<%= user ? user.name : 'login' %>" user-id="<%= user ? user.id : 'none' %>"class="account mr-3" href="/dashboard"><h4>
-      <span><%= user ? 'Profile' : ''  %></span>
-      <span class="badge badge-secondary" data-toggle="tooltip" data-placement="top" title="Access your profile or login">
-     <%= user ? user.name : 'login' %></span></h4></a>
+      <a
+        user-role="<%= user ? user.role: 'user'%>"
+        id="user"
+        user-name="<%= user ? user.name : 'login' %>"
+        user-id="<%= user ? user.id : 'none' %>"
+        class="account mr-3"
+        href="/dashboard"
+      >
+        <h4>
+          <span><%= user ? 'Profile' : '' %></span>
+          <span
+            class="badge badge-secondary"
+            data-toggle="tooltip"
+            data-placement="top"
+            title="Access your profile or login"
+          >
+            <%= user ? user.name : 'login' %></span
+          >
+        </h4>
+      </a>
     </div>
   </nav>
 </header>
