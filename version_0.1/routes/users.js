@@ -6,16 +6,10 @@ const passport = require("passport");
 const User = require("../models/User");
 
 // Login page
-router.get("/login", (req, res) =>
-  res.render("login", {
-    script: ["nav.js"]
-  })
-);
+router.get("/login", (req, res) => res.render("login"));
 
 // register page
-router.get("/register", (req, res) =>
-  res.render("register", { script: ["nav.js"] })
-);
+router.get("/register", (req, res) => res.render("register"));
 // register handle
 router.post("/register", (req, res) => {
   const { name, email, password, password2 } = req.body;
@@ -42,8 +36,7 @@ router.post("/register", (req, res) => {
       name,
       email,
       password,
-      password2,
-      script: ["nav.js"]
+      password2
     });
   } else {
     // validation passed
@@ -55,8 +48,7 @@ router.post("/register", (req, res) => {
           name,
           email,
           password,
-          password2,
-          script: ["nav.js"]
+          password2
         });
       } else {
         const newUser = new User({
