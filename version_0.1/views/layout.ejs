@@ -17,13 +17,12 @@
 
     <script src="/js/pureknob.js"></script>
     <script src="/js/nav.js" type="module"></script>
-  
     <% for(let i = 0; i < script.length; i++) { %>
-      <script type="module" src="<%= "/js/" + script[i]%>" ></script>
-      <% }%>
+    <script type="module" src="<%= '/js/' + script[i]%>"></script>
+    <% }%>
     <title><%= title %></title>
     <link rel="stylesheet" href="/css/style.css" />
-    <meta  content="<%= site_url%>" name="identifier-url" id="site-url">
+    <meta content="<%= site_url%>" name="identifier-url" id="site-url" />
   </head>
 
   <body>
@@ -43,14 +42,10 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"
     ></script>
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/tone/13.0.1/Tone.min.js"
-    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/13.0.1/Tone.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
   </body>
 </html>

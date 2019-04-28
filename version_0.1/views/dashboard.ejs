@@ -1,30 +1,24 @@
 <section class="container admin-dashboard">
-
-<% if(role == "admin"){ %>
+  <% if(role == "admin"){ %>
   <h1 class="mt-4">Admin</h1>
   <p class="lead mb-3">Welcome <%= name %></p>
   <a href="/users/logout" class="btn btn-secondary">Logout</a>
-<div class="add-container">
+  <div class="add-container">
     <div id="admin-add">
-   <span>Add an admin
-  <i class="fas fa-user-plus"></i></span>
-  </div>
+      <span>Add an admin <i class="fas fa-user-plus"></i></span>
+    </div>
 
-     <div id="instrument-add">
-   <span>Add drumkit
-  <i class="fas fa-user-plus"></i></span>
+    <div id="instrument-add">
+      <span>Add drumkit <i class="fas fa-user-plus"></i></span>
+    </div>
+    <div id="news-add">
+      <span>Post news <i class="fas fa-user-plus"></i></span>
+    </div>
   </div>
-     <div id="news-add">
-   <span>Post news
-  <i class="fas fa-user-plus"></i></span>
-  </div>
-  </div>
-   <% include ./partials/admin-form %>
-   <% include ./partials/form_instrument %>
-   <% include ./partials/form_news %>
+  <% include ./partials/admin-form %> <% include ./partials/form_instrument %>
+  <% include ./partials/form_news %>
 
-
- <table  class="table table-hover table-dark container mt-5">
+  <table class="table table-hover table-dark container mt-5">
     <thead>
       <tr>
         <th scope="col">Username</th>
@@ -32,23 +26,23 @@
         <th scope="col">role</th>
       </tr>
     </thead>
-    <tbody id="admin-list" >
-   <% for(let user of data){ %>
+    <tbody id="admin-list">
+      <% for(let user of data){ %>
       <tr>
         <td><%= user.name%></td>
         <td><%= user.email%></td>
         <td><%= user.role%></td>
         <td id="delete-post-btn">
-        <span class="delete-post-btn">
-        <i class="fas fa-times"></i>
-        </span>
+          <span class="delete-post-btn">
+            <i class="fas fa-times"></i>
+          </span>
         </td>
       </tr>
-    <% } %>
+      <% } %>
     </tbody>
   </table>
 
-<% }else { %>
+  <% }else { %>
   <h1 class="mt-4">Profile</h1>
   <p class="lead mb-3">Welcome <%= name %></p>
   <a href="/users/logout" class="btn btn-secondary">Logout</a>
@@ -57,7 +51,7 @@
       <h5>All threads</h5>
     </div>
     <div class="col-2">
-     <h5>All posts</h5>
+      <h5>All posts</h5>
     </div>
   </div>
   <h5 class="mt-5">Your threads</h5>
@@ -70,21 +64,21 @@
       </tr>
     </thead>
     <tbody>
-    <% for(let i of userThreads){%>
+      <% for(let i of userThreads){%>
       <tr>
         <td thread-id="<%= i._id %>"><%= i.title%></td>
         <td><%= i.message%></td>
         <td><%= i.category %></td>
         <td id="delete-post-btn">
-        <span class="delete-post-btn">
-        <i class="fas fa-times"></i>
-        </span>
+          <span class="delete-post-btn">
+            <i class="fas fa-times"></i>
+          </span>
         </td>
       </tr>
-    <% } %>
+      <% } %>
     </tbody>
   </table>
-    <h5 class="mt-5">Your Posts</h5>
+  <h5 class="mt-5">Your Posts</h5>
   <table class="table table-hover table-dark container">
     <thead>
       <tr>
@@ -92,16 +86,16 @@
       </tr>
     </thead>
     <tbody>
-    <% for(let i of userPosts){%>
+      <% for(let i of userPosts){%>
       <tr>
         <td><%= i.message%></td>
         <td id="delete-post-btn">
-        <span class="delete-post-btn">
-        <i class="fas fa-times"></i>
-        </span>
+          <span class="delete-post-btn">
+            <i class="fas fa-times"></i>
+          </span>
         </td>
       </tr>
-    <% } %>
+      <% } %>
     </tbody>
   </table>
   <% } %>

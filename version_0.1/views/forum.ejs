@@ -31,53 +31,62 @@
       </div>
       <div class="form-group form-content">
         <label for="form-message">Message</label>
-        <textarea class="form-control bg-dark container" id="form-message" placeholder="input your text here..."></textarea>
+        <textarea
+          class="form-control bg-dark container"
+          id="form-message"
+          placeholder="input your text here..."
+        ></textarea>
         <button class="btn-primary btn" id="create-thread">
           Create Thread
         </button>
       </div>
     </form>
   </div>
-
 </section>
 <section id="thread-container" class="container thread-container">
- <%# Thread population %>
+  <%# Thread population %> <% for(let thread of threads){%>
 
-  <% for(let thread of threads){%>
-  
-<div class="card text-white bg-light mx-5 forum-card">
- <a href="/thread/<%= thread.id%>"> 
-  <h5 class="card-header text-white card-title"><%= thread.title%></h5>
-     </a>
+  <div class="card text-white bg-light mx-5 forum-card">
+    <a href="/thread/<%= thread.id%>">
+      <h5 class="card-header text-white card-title"><%= thread.title%></h5>
+    </a>
     <div class="card-body">
       <p><%= thread.message%></p>
       <p class="badge badge-success card-text">
-          <%= thread.owner.name %>
+        <%= thread.owner.name %>
       </p>
-        <p class="card-text">
-          <%= moment(thread.date).format("MMMM Do YYYY, h:mm") %>
+      <p class="card-text">
+        <%= moment(thread.date).format("MMMM Do YYYY, h:mm") %>
       </p>
-      <p> Comments: <span> <%=  thread.posts.length%> </span> </p> 
-     <% if(user){ %>
-        <% if(user._id.equals(thread.owner._id)){%>
-        <button thread-id="<%= thread.id %>"class="btn btn-danger">Delete own thread</button>
-        <% } %>
-      <% } %>
+      <p>Comments: <span> <%= thread.posts.length%> </span></p>
+      <% if(user){ %> <% if(user._id.equals(thread.owner._id)){%>
+      <button thread-id="<%= thread.id %>" class="btn btn-danger">
+        Delete own thread
+      </button>
+      <% } %> <% } %>
     </div>
   </div>
-<% } %>
+  <% } %>
 
-<div class="modal fade" id="error-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-body">
-        Please sign in to continue : ) 
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+  <div
+    class="modal fade"
+    id="error-modal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          Please sign in to continue : )
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Close
+          </button>
+        </div>
       </div>
     </div>
   </div>
-
 </section>
- 
