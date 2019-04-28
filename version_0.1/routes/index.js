@@ -11,6 +11,8 @@ const getAllThreads = apiThread[1];
 const getOneThread = apiThread[3];
 const getAllUsers = userAPI[2];
 const getAllNews = newsAPI[1];
+const getAllPosts = require("./api_post")[1];
+
 // Index
 router.get("/", (req, res, next) => {
   res.render("index", {
@@ -44,35 +46,28 @@ router.get("/dashboard", ensureAuth, (req, res) => {
       })
       .catch(err => console.log(err));
   } else {
-    getAllThreads()
+    Promise.all([
+      getAllThreads().catch(error => {
+        return error;
+      }),
+      getAllPosts().catch(error => {
+        return error;
+      })
+    ])
       .then(data => {
+        const allPosts = data[1];
+        const allThreads = data[0];
         res.render("dashboard", {
           script: ["profile.js"],
           name: req.user.name,
           role: req.user.role,
-          data: userData(data, req.user._id)
+          userThreads: userData(allThreads, req.user._id),
+          userPosts: userData(allPosts, req.user._id)
         });
       })
-      .catch(err => console.error(err));
+      .catch(err => console.log(err));
   }
 });
-// Forum
-// router.post("/forum", ensureAuth, (req, res) => {
-//   console.log(req.body.page, req.body.pageSize);
-// });
-
-// const pagination = (pagesCount,items, ) => {
-//   if (pagesCount === 1) return null;
-//   const pages = _.range(1, pagesCount + 1);
-
-// };
-function paginate(items, pageNumber, pageSize) {
-  const startIndex = (pageNumber - 1) * pageSize;
-  return _(items)
-    .slice(startIndex)
-    .take(pageSize)
-    .value();
-}
 
 router.get("/forum", (req, res) => {
   getAllThreads()

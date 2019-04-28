@@ -82,8 +82,9 @@ function clearInputs(elements) {
 function displaySuccess() {
   console.log("Success");
 }
+
 function displayError(dbMessage) {
-  console.log("There was and error: ", dbMessage);
+  console.log("There was an error: ", dbMessage);
 }
 
 function appendThread(parentNode, userName, message, title, threadId, date) {

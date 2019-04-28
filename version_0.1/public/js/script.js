@@ -4,7 +4,6 @@ import { Drums } from "./drum_machine.js";
 const audioCtx = new AudioContext();
 const synthNode = document.getElementById("synth-parent");
 const midiController = new MIDIController(audioCtx);
-
 const kickNode = document.getElementById("kick-section");
 const snareNode = document.getElementById("snare-section");
 const hiHatNode = document.getElementById("hi-hat-section");
@@ -40,6 +39,7 @@ synthTypeNode.onchange = function() {
   let type = synthTypeNode.value;
   keyBoard.setType(type.toLowerCase(), attack, sustain);
 };
+
 function createKnob(parentNode, value, min, max, type) {
   let knob = pureknob.createKnob(60, 60);
   knob.setProperty("angleStart", -0.75 * Math.PI);
@@ -62,6 +62,7 @@ function createKnob(parentNode, value, min, max, type) {
 createKnob(volumeKnob, 5, 0, 10, "volume");
 createKnob(modulationKnob, 5, 0.1, 10, "attack");
 createKnob(filterKnob, 5, 0.11, 1000, "sustain");
+
 function createDrumElements(name, url) {
   axios
     .post(serverUrl + "/api/soundbank/create", { name, url })

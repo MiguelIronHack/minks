@@ -19,7 +19,6 @@ router.get("/all", (req, res) => {
 
 router.post("/create", (req, res) => {
   const { owner, message, threadId } = req.body;
-  console.log(owner, message, threadId);
   create({ owner, message })
     .then(dbRes => {
       updateThread(threadId, { $push: { posts: dbRes._id } })
