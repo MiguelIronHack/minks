@@ -55,6 +55,7 @@ router.get("/dashboard", ensureAuth, (req, res) => {
       .then(data => {
         const allPosts = data[1];
         const allThreads = data[0];
+        console.log(allPosts.length, allThreads.length);
         res.render("dashboard", {
           script: ["profile.js"],
           name: req.user.name,
@@ -83,7 +84,7 @@ router.get("/news", (req, res) => {
   getAllNews()
     .then(allNews => {
       res.render("news", {
-        script: ["nav.js", "news.js"],
+        script: ["news.js"],
         allNews,
         moment
       });
