@@ -86,6 +86,9 @@ textarea {
   100% {
     opacity: 1; } }
 
+.hide {
+  display: none; }
+
 /* Index */
 .index-main {
   height: 100vh; }
@@ -390,9 +393,6 @@ textarea {
   .form-wrapper > div {
     display: flex;
     flex-direction: column; } }
-
-.hide {
-  display: none; }
 
 @media screen and (max-width: 500px) {
   .synth-pad {
