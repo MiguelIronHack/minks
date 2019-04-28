@@ -15,9 +15,7 @@ const getAllPosts = require("./api_post")[1];
 
 // Index
 router.get("/", (req, res, next) => {
-  res.render("index", {
-    script: ["nav.js"]
-  });
+  res.render("index");
 });
 // Play are
 router.get("/play", (req, res, next) => {
