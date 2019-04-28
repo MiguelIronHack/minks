@@ -55,6 +55,7 @@
     </div>
   </div>
   <h5 class="mt-5">Your threads</h5>
+  <% if(userThreads.length){ %>
   <table class="table table-hover table-dark container">
     <thead>
       <tr>
@@ -63,7 +64,6 @@
         <th scope="col">Category</th>
       </tr>
     </thead>
-    <% if(userThreads.length){ %>
     <tbody>
       <% for(let i of userThreads){%>
       <tr>
