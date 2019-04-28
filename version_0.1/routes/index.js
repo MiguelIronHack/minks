@@ -23,7 +23,6 @@ router.get("/play", (req, res, next) => {
     script: [
       "user_interface.js",
       "play.js",
-      "oscillator.js",
       "MIDI_controller.js",
       "drum_machine.js",
       "script.js"

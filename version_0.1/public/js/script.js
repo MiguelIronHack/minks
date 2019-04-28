@@ -71,7 +71,9 @@ function createDrumElements(name, url) {
     })
     .catch(err => console.log(err));
 }
-
+///////////////////////////////
+//**  Populate dataBase   **//
+/////////////////////////////
 // createDrumElements(
 //   "KICK",
 //   "https://ia801507.us.archive.org/18/items/909KICK/909_KICK.wav"

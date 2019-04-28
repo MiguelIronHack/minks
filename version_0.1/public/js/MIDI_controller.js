@@ -35,9 +35,11 @@ export class MIDIController {
   }
 
   onMIDISuccess(midiAccess) {
-    console.log("here");
     this.midi = midiAccess;
-    console.log(this.midi); // this is our raw MIDI data, inputs, outputs, and sysex status
+    //(this.midi);
+    /*
+     * this is our raw MIDI data, inputs, outputs, and sysex status
+     */
     let inputs = this.midi.inputs.values();
 
     for (let input of inputs) {
@@ -47,17 +49,18 @@ export class MIDIController {
 
   onMIDIFailure(error) {
     console.log(
-      `No access to MIDI devices or Browser doesnt support midi: ${error}`
+      `No access to MIDI devices or Browser doesn't support midi: ${error}`
     );
   }
 
   onMIDIMessage(message) {
     this.data = message.data; //  [Command, note, velocity]
-    console.log(this.data);
     let velocity = this.data[2];
     let note = this.data[1];
-    if (velocity > 1) this.keyState[note] = true; // NOTE ON
-    if (!velocity) this.keyState[note] = false; //NOTE OFF
+    if (velocity > 1) this.keyState[note] = true;
+    // NOTE ON
+    if (!velocity) this.keyState[note] = false;
+    //NOTE OFF
 
     if (this.keyState[note]) {
       this.synthArray[note].triggerAttack(this.noteToFrequence(note));

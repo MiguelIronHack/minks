@@ -121,10 +121,6 @@ export class KeyBoard {
       this.synthArray[i] = synth;
     }
   }
-
-  setAttack(type) {
-    for (let synth of this.synthArray) synth.modulationType = type;
-  }
   setAttack(val) {
     for (let synth of this.synthArray) synth.envelope.attack = val;
   }
